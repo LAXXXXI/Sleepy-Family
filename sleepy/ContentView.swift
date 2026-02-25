@@ -824,7 +824,8 @@ private struct FamilyView: View {
         moveMember(
             memberID: members[meIndex].id,
             along: approachRoute,
-            movingActivity: "Walking"
+            movingActivity: "Walking",
+            speedPerSecond: 0.23
         ) {
             guard let safeTarget = members.firstIndex(where: { $0.id == targetID }),
                   let safeMe = members.firstIndex(where: { $0.isMe }) else {
@@ -1011,19 +1012,19 @@ private struct FamilyView: View {
         var rooms: [FloorRoom] = []
         let room0 = FloorRoom(
             id: 0,
-            rect: CGRect(x: 0.06, y: 0.10, width: 0.40, height: 0.30),
-            door: RoomDoor(edge: .bottom, center: 0.27, width: minimumDoorWidth),
+            rect: CGRect(x: 0.06, y: 0.12, width: 0.34, height: 0.26),
+            door: RoomDoor(edge: .bottom, center: 0.23, width: minimumDoorWidth),
             washIndex: 0
         )
         let room1 = FloorRoom(
             id: 1,
-            rect: CGRect(x: 0.54, y: 0.10, width: 0.40, height: 0.30),
-            door: RoomDoor(edge: .bottom, center: 0.73, width: minimumDoorWidth),
+            rect: CGRect(x: 0.60, y: 0.12, width: 0.34, height: 0.26),
+            door: RoomDoor(edge: .bottom, center: 0.77, width: minimumDoorWidth),
             washIndex: 1
         )
         let room2 = FloorRoom(
             id: 2,
-            rect: CGRect(x: 0.58, y: commonRect.maxY, width: 0.33, height: 0.27),
+            rect: CGRect(x: 0.60, y: commonRect.maxY, width: 0.31, height: 0.24),
             door: RoomDoor(edge: .top, center: 0.70, width: minimumDoorWidth),
             washIndex: 2
         )
@@ -1082,8 +1083,9 @@ private struct FamilyView: View {
         var usageByDirection: [ExpandDirection: Int] = [
             .right: 0, .down: 0, .left: 0, .up: 0
         ]
-        let sideYAnchors: [CGFloat] = [0.16, 0.40, 0.66, 0.84]
-        let verticalXAnchors: [CGFloat] = [0.18, 0.50, 0.82]
+        let sideYAnchors: [CGFloat] = [0.20, 0.52, 0.84]
+        let downXAnchors: [CGFloat] = [0.20, 0.50, 0.80]
+        let upXAnchors: [CGFloat] = [0.50, 0.34, 0.66]
 
         func overlapsWithArea(_ a: CGRect, _ b: CGRect) -> Bool {
             let intersection = a.intersection(b)
@@ -1100,6 +1102,19 @@ private struct FamilyView: View {
         }
 
         func candidate(for direction: ExpandDirection, usage: Int, size: CGSize) -> (CGRect, DoorEdge)? {
+            var localSize = size
+            switch direction {
+            case .left, .right:
+                localSize.width = min(localSize.width, 0.23)
+                localSize.height = min(localSize.height, 0.22)
+            case .down:
+                localSize.width = min(localSize.width, 0.25)
+                localSize.height = min(localSize.height, 0.23)
+            case .up:
+                localSize.width = min(localSize.width, 0.22)
+                localSize.height = min(localSize.height, 0.15)
+            }
+
             switch direction {
             case .right:
                 let lane = usage % sideYAnchors.count
@@ -1107,9 +1122,9 @@ private struct FamilyView: View {
                 let yCenter = commonRect.minY + (commonRect.height * sideYAnchors[lane]) + (CGFloat(band) * 0.02)
                 let rect = CGRect(
                     x: commonRect.maxX + edgeAttachGap,
-                    y: yCenter - (size.height * 0.5),
-                    width: size.width,
-                    height: size.height
+                    y: yCenter - (localSize.height * 0.5),
+                    width: localSize.width,
+                    height: localSize.height
                 )
                 guard rect.maxX <= 0.97 else { return nil }
                 return (rect, .left)
@@ -1118,34 +1133,34 @@ private struct FamilyView: View {
                 let band = usage / sideYAnchors.count
                 let yCenter = commonRect.minY + (commonRect.height * sideYAnchors[lane]) + (CGFloat(band) * 0.02)
                 let rect = CGRect(
-                    x: commonRect.minX - edgeAttachGap - size.width,
-                    y: yCenter - (size.height * 0.5),
-                    width: size.width,
-                    height: size.height
+                    x: commonRect.minX - edgeAttachGap - localSize.width,
+                    y: yCenter - (localSize.height * 0.5),
+                    width: localSize.width,
+                    height: localSize.height
                 )
                 guard rect.minX >= 0.03 else { return nil }
                 return (rect, .right)
             case .down:
-                let lane = usage % verticalXAnchors.count
-                let row = usage / verticalXAnchors.count
-                let xCenter = commonRect.minX + (commonRect.width * verticalXAnchors[lane]) + (CGFloat(row % 2) * 0.01) - 0.005
+                let lane = usage % downXAnchors.count
+                let row = usage / downXAnchors.count
+                let xCenter = commonRect.minX + (commonRect.width * downXAnchors[lane]) + (CGFloat(row % 2) * 0.008) - 0.004
                 let rect = CGRect(
-                    x: xCenter - (size.width * 0.5),
-                    y: commonRect.maxY + edgeAttachGap + (CGFloat(row) * (size.height + roomMinimumGap)),
-                    width: size.width,
-                    height: size.height
+                    x: xCenter - (localSize.width * 0.5),
+                    y: commonRect.maxY + edgeAttachGap + (CGFloat(row) * (localSize.height + roomMinimumGap)),
+                    width: localSize.width,
+                    height: localSize.height
                 )
                 guard rect.minX >= 0.03, rect.maxX <= 0.97 else { return nil }
                 return (rect, .top)
             case .up:
-                let lane = usage % verticalXAnchors.count
-                let row = usage / verticalXAnchors.count
-                let xCenter = commonRect.minX + (commonRect.width * verticalXAnchors[lane]) + (CGFloat(row % 2) * 0.01) - 0.005
+                let lane = usage % upXAnchors.count
+                let row = usage / upXAnchors.count
+                let xCenter = commonRect.minX + (commonRect.width * upXAnchors[lane]) + (CGFloat(row % 2) * 0.008) - 0.004
                 let rect = CGRect(
-                    x: xCenter - (size.width * 0.5),
-                    y: commonRect.minY - edgeAttachGap - size.height - (CGFloat(row) * (size.height + roomMinimumGap)),
-                    width: size.width,
-                    height: size.height
+                    x: xCenter - (localSize.width * 0.5),
+                    y: commonRect.minY - edgeAttachGap - localSize.height - (CGFloat(row) * (localSize.height + roomMinimumGap)),
+                    width: localSize.width,
+                    height: localSize.height
                 )
                 guard rect.minX >= 0.03, rect.maxX <= 0.97, rect.minY >= 0.03 else { return nil }
                 return (rect, .bottom)
@@ -1158,7 +1173,17 @@ private struct FamilyView: View {
             size.height = max(size.height, size.width * 0.80)
 
             let preferred = directionCycle[index % directionCycle.count]
-            let searchOrder = [preferred] + directionCycle.filter { $0 != preferred }
+            let searchOrder: [ExpandDirection]
+            switch preferred {
+            case .right:
+                searchOrder = [.right, .left, .up, .down]
+            case .left:
+                searchOrder = [.left, .right, .up, .down]
+            case .up:
+                searchOrder = [.up, .left, .right, .down]
+            case .down:
+                searchOrder = [.down, .right, .left, .up]
+            }
 
             var chosenRect: CGRect?
             var chosenDoorEdge: DoorEdge = .top
@@ -1179,6 +1204,18 @@ private struct FamilyView: View {
                     chosenDirection = direction
                     chosenUsage = tryUsage
                     break directionLoop
+                }
+            }
+
+            if chosenRect == nil {
+                if let forcedDirection = ExpandDirection.allCases.min(by: { usageByDirection[$0, default: 0] < usageByDirection[$1, default: 0] }) {
+                    let forcedUsage = usageByDirection[forcedDirection, default: 0]
+                    if let (forcedRect, forcedEdge) = candidate(for: forcedDirection, usage: forcedUsage, size: size) {
+                        chosenRect = forcedRect
+                        chosenDoorEdge = forcedEdge
+                        chosenDirection = forcedDirection
+                        chosenUsage = forcedUsage
+                    }
                 }
             }
 
@@ -1524,9 +1561,9 @@ private struct FamilyView: View {
         memberID: UUID,
         along route: [CGPoint],
         movingActivity: String,
+        speedPerSecond: CGFloat = 0.1,
         completion: (() -> Void)? = nil
     ) {
-        let speedPerSecond: CGFloat = 0.1
         let points = compactRoute(route, epsilon: 0.0015)
         guard points.count > 1 else {
             completion?()
