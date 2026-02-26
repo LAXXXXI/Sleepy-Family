@@ -1,7 +1,6 @@
 import SwiftUI
 import Combine
 import UIKit
-import CoreText
 
 struct ContentView: View {
     @State private var tab: AppTab = .family
@@ -11,9 +10,6 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             AppPalette.appBackground
                 .ignoresSafeArea()
-                .overlay(
-                    PaperGrainOverlay()
-                )
 
             // Keep both screens mounted so Family state doesn't reset when switching tabs.
             ZStack {
@@ -27,7 +23,6 @@ struct ContentView: View {
             }
 
             BottomTabBar(selected: $tab)
-                .padding(.bottom, 8)
         }
         .font(AppTypography.pixel(14))
         .preferredColorScheme(.light)
@@ -36,119 +31,75 @@ struct ContentView: View {
 
 private enum AppTypography {
     static func pixel(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
-        FontRegistry.registerFontsIfNeeded()
-        let token: String
-        switch weight {
-        case .black, .heavy, .bold:
-            token = "Bold"
-        case .semibold:
-            token = "SemiBold"
-        case .medium:
-            token = "Medium"
-        default:
-            token = "Regular"
-        }
-
-        let candidates = [
-            "PixelifySans-\(token)",
-            "Pixelify Sans \(token)",
-            "PixelifySans"
-        ]
-
-        if let name = candidates.first(where: { UIFont(name: $0, size: size) != nil }) {
-            return .custom(name, size: size)
-        }
-
-        return .system(size: size, weight: weight, design: .monospaced)
-    }
-}
-
-private enum FontRegistry {
-    private static var didRegister = false
-
-    static func registerFontsIfNeeded() {
-        guard !didRegister else { return }
-        didRegister = true
-
-        let candidates = [
-            "PixelifySans-Variable",
-            "PixelifySans-Regular",
-            "PixelifySans-Medium",
-            "PixelifySans-SemiBold",
-            "PixelifySans-Bold"
-        ]
-
-        for file in candidates {
-            if let url = Bundle.main.url(forResource: file, withExtension: "ttf") {
-                CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
-            }
-        }
+        .system(size: size, weight: weight, design: .rounded)
     }
 }
 
 private enum AppRadius {
-    static let micro: CGFloat = 2
-    static let control: CGFloat = 3
-    static let card: CGFloat = 4
-    static let panel: CGFloat = 5
-    static let room: CGFloat = 3
+    static let micro: CGFloat = 8
+    static let control: CGFloat = 16
+    static let card: CGFloat = 18
+    static let panel: CGFloat = 20
+    static let room: CGFloat = 20
 }
 
 private enum AppStroke {
+    static let subtle: CGFloat = 1.4
     static let standard: CGFloat = 2.8
-    static let emphasis: CGFloat = 3.4
+    static let emphasis: CGFloat = 2.8
 }
 
 private enum AppPixel {
-    static let step: CGFloat = 4
+    static let step: CGFloat = 1
 }
 
 private enum AppPalette {
-    static let appBackground = Color(hex: 0xF6F0E6)
-    static let vibrantOrange = Color(hex: 0xE58B3A)
-    static let electricBlue = Color(hex: 0xA8C7E6)
-    static let hotPink = Color(hex: 0xB9B6E8)
-    static let brightYellow = Color(hex: 0xF4C542)
-    static let punchGreen = Color(hex: 0x3C8C6E)
-    static let blockOrange = Color(hex: 0xE58B3A)
-    static let blockYellow = brightYellow
-    static let blockPink = Color(hex: 0xB9B6E8)
-    static let blockGray = Color(hex: 0xEFE9DD)
-    static let blockGreen = Color(hex: 0x7DAA95)
+    static let appBackground = Color(hex: 0xEFEFF1)
+    static let vibrantOrange = Color(hex: 0xC9833A)
+    static let electricBlue = Color(hex: 0xB9C8E8)
+    static let hotPink = Color(hex: 0xD09AB6)
+    static let brightYellow = Color(hex: 0xE2B022)
+    static let punchGreen = Color(hex: 0x45BFC0)
+    static let blockOrange = Color(hex: 0xEC6E4E)
+    static let blockYellow = Color(hex: 0xE2B022)
+    static let blockPink = Color(hex: 0xC992AE)
+    static let blockGray = Color(hex: 0xD9D9DD)
+    static let blockGreen = Color(hex: 0x4E9E7D)
     static let white = Color(hex: 0xFFFFFF)
-    static let inkPrimary = Color(hex: 0x2F2F2F)
-    static let inkSecondary = Color(hex: 0x3B3B3B)
-    static let inkMuted = Color(hex: 0x565656)
+    static let inkPrimary = Color(hex: 0x1F1F1F)
+    static let inkSecondary = Color(hex: 0x646464)
+    static let inkMuted = Color(hex: 0x8D8D8D)
     static let accentPrimary = vibrantOrange
-    static let accentSecondary = Color(hex: 0x3C8C6E)
+    static let accentSecondary = electricBlue
     static let accentBlue = electricBlue
     static let accentYellow = brightYellow
-    static let flatShadow = Color(hex: 0xDAD5C9)
+    static let flatShadow = Color(hex: 0xAEA89C).opacity(0.55)
 
-    static let roomBoundary = inkPrimary
-    static let roomWall = Color(hex: 0xFFFFFF)
-    static let roomFloor = Color(hex: 0xFAFAF7)
-    static let floorWashA = Color(hex: 0xFAFAF7)
-    static let floorWashB = Color(hex: 0xFAFAF7)
-    static let floorWashC = Color(hex: 0xFAFAF7)
-    static let roomTeal = Color(hex: 0x3C8C6E)
-    static let roomSage = Color(hex: 0xBFD7B5)
-    static let roomMustard = Color(hex: 0xF4C542)
-    static let roomCoral = Color(hex: 0xE58B3A)
-    static let roomMistBlue = Color(hex: 0xA8C7E6)
-    static let roomLavender = Color(hex: 0xB9B6E8)
+    static let roomBoundary = Color(hex: 0x8D8D8D)
+    static let roomWall = Color(hex: 0xE7E3DC)
+    static let roomFloor = Color(hex: 0xE7E3DC)
+    static let floorWashA = Color(hex: 0xE7E3DC)
+    static let floorWashB = Color(hex: 0xE2E0DD)
+    static let floorWashC = Color(hex: 0xECE9E3)
+    static let roomTeal = Color(hex: 0x45BFC0)
+    static let roomSage = Color(hex: 0xA7CFAF)
+    static let roomMustard = Color(hex: 0xE2B022)
+    static let roomCoral = Color(hex: 0xF17857)
+    static let roomMistBlue = Color(hex: 0x9BB6D9)
+    static let roomLavender = Color(hex: 0xC79AB4)
 
-    static let boardWood = Color(hex: 0xE2C187)
-    static let boardPaper = Color(hex: 0xFFFDF8)
-    static let bedBlanket = Color(hex: 0xDCE5EF)
-    static let bedHeadboard = Color(hex: 0x9FA9BE)
-    static let tvFrame = Color(hex: 0xA8C7E6)
-    static let tvScreen = Color(hex: 0xF5F8FC)
-    static let alarmShell = Color(hex: 0xE7E2D6)
+    static let boardWood = Color(hex: 0xD4BA82)
+    static let boardPaper = Color(hex: 0xF4EEE2)
+    static let bedBlanket = Color(hex: 0xC9D2E3)
+    static let bedHeadboard = Color(hex: 0xA7B4CC)
+    static let tvFrame = Color(hex: 0xA1A4AB)
+    static let tvScreen = Color(hex: 0xF4F4F2)
+    static let alarmShell = Color(hex: 0xDCDCDC)
 
-    static let statusAwake = Color(hex: 0xD4E7DF)
-    static let statusSleep = Color(hex: 0xE8E4DA)
-    static let statusLate = Color(hex: 0xF1D7C9)
+    static let statusAwake = Color(hex: 0xDDE8E2)
+    static let statusSleep = Color(hex: 0xE7E3DD)
+    static let statusLate = Color(hex: 0xEEDBD0)
+    static let tabBarBackground = Color(hex: 0x0F0F0F)
 }
 
 private enum AppTab: String, CaseIterable {
@@ -174,53 +125,36 @@ private struct BottomTabBar: View {
     @Binding var selected: AppTab
 
     var body: some View {
-        HStack(spacing: 10) {
-            ForEach(AppTab.allCases, id: \.rawValue) { tab in
-                Button {
-                    selected = tab
-                } label: {
-                    VStack(spacing: 4) {
-                        PixelTabIcon(tab: tab, isActive: selected == tab)
-                            .frame(width: 16, height: 16)
-                        Text(tab.title)
-                            .font(AppTypography.pixel(11, weight: .semibold))
-                    }
-                    .frame(maxWidth: .infinity, minHeight: 46)
-                    .foregroundStyle(AppPalette.inkPrimary)
-                    .background(
-                        Capsule()
-                            .fill(selected == tab ? tabAccent(tab) : Color.clear)
-                    )
-                }
-                .buttonStyle(.plain)
-            }
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 8)
-        .background(
-            ZStack {
-                Capsule()
-                    .fill(AppPalette.flatShadow)
-                    .offset(y: 4)
-                Capsule()
-                    .fill(AppPalette.white)
-                    .overlay(
-                        Capsule()
-                            .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                    )
-            }
-        )
-        .frame(maxWidth: 292)
-        .padding(.horizontal, 22)
-    }
+        VStack(spacing: 0) {
+            Rectangle()
+                .fill(AppPalette.white.opacity(0.15))
+                .frame(height: 1)
 
-    private func tabAccent(_ tab: AppTab) -> Color {
-        switch tab {
-        case .family:
-            return AppPalette.vibrantOrange
-        case .alarm:
-            return AppPalette.vibrantOrange
+            HStack(spacing: 0) {
+                ForEach(AppTab.allCases, id: \.rawValue) { tab in
+                    Button {
+                        selected = tab
+                    } label: {
+                        VStack(spacing: 4) {
+                            Image(systemName: tab.icon)
+                                .font(AppTypography.pixel(28, weight: .semibold))
+                            Text(tab.title)
+                                .font(AppTypography.pixel(12, weight: .semibold))
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 64)
+                        .foregroundStyle(
+                            selected == tab
+                                ? AppPalette.vibrantOrange
+                                : AppPalette.white.opacity(0.94)
+                        )
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.bottom, 8)
         }
+        .background(AppPalette.tabBarBackground.ignoresSafeArea(edges: .bottom))
     }
 }
 
@@ -353,6 +287,7 @@ private struct AlarmEntry: Identifiable, Equatable {
 private final class AlarmStore: ObservableObject {
     @Published var primaryAlarm: AlarmEntry
     @Published var otherAlarms: [AlarmEntry]
+    @Published var worldModeConsentEnabled: Bool = false
 
     init(
         primaryAlarm: AlarmEntry = AlarmEntry(
@@ -476,19 +411,19 @@ private struct FamilyView: View {
     @State private var wakeActionMemberID: UUID?
     @State private var wakeReactionMemberID: UUID?
     @State private var now = Date()
-    @State private var showAddMemberSheet = false
-    @State private var pendingMemberName = ""
-    @State private var pendingAvatarID: String?
-    @State private var showAvatarEditorSheet = false
-    @State private var editingMemberName = "You"
-    @State private var editingAvatarShape: AvatarBodyShape = .cyclopsPill
-    @State private var editingAvatarHex: Int = 0xF3A45C
+    @State private var showMemberEditorSheet = false
+    @State private var memberEditorMode: MemberEditorMode = .add
+    @State private var memberEditorDraft = MemberEditorDraft(name: "", shape: .roundedSquare, colorHex: 0x42B9BB)
     @State private var showRankingScreen = false
     @State private var showWakeScheduleScreen = false
+    @State private var showWorldAlarmScreen = false
+    @State private var worldSleepers: [WorldSleeper] = []
+    @State private var wakeComposeDraft: WakeComposeDraft?
+    @State private var wakeComposeMessage = ""
     @State private var memberSlotByID: [UUID: Int] = [:]
     @State private var movementTokenByID: [UUID: UUID] = [:]
     @State private var lastWanderTargetByID: [UUID: CGPoint] = [:]
-    @State private var mapZoom: CGFloat = 1.15
+    @State private var mapZoom: CGFloat = 1.12
     @State private var mapOffset: CGSize = .zero
     @GestureState private var mapDrag: CGSize = .zero
     @GestureState private var mapPinch: CGFloat = 1
@@ -496,7 +431,7 @@ private struct FamilyView: View {
     private let ticker = Timer.publish(every: 0.8, on: .main, in: .common).autoconnect()
     private let minMapZoom: CGFloat = 0.7
     private let maxMapZoom: CGFloat = 2.5
-    private let defaultMapZoom: CGFloat = 1.15
+    private let defaultMapZoom: CGFloat = 1.12
 
     private var floorLayout: FloorLayout {
         buildFloorLayout(memberCount: max(members.count, 4))
@@ -582,12 +517,16 @@ private struct FamilyView: View {
                                 sleepingCount: sleepingCount,
                                 lateCount: lateCount,
                                 onBoardTap: { showRankingScreen = true },
-                                onAlarmTap: { showWakeScheduleScreen = true }
+                                onAlarmTap: { showWakeScheduleScreen = true },
+                                onWorldAlarmTap: { showWorldAlarmScreen = true }
                             )
 
                             ForEach(members) { member in
                                 if let slot = bedSlot(for: member.id) {
-                                    BedSlotView(isSleeping: member.status == .sleeping)
+                                    BedSlotView(
+                                        isSleeping: member.status == .sleeping,
+                                        tint: bedTint(for: slot.id)
+                                    )
                                         .position(mapPoint(slot.bedPoint, in: worldSize))
                                 }
                             }
@@ -605,10 +544,10 @@ private struct FamilyView: View {
                                         if member.isMe {
                                             openMyAvatarEditor()
                                         } else {
-                                            handleTap(on: member.id)
+                                            openComposeForFamilyTarget(memberID: member.id)
                                         }
                                     }
-                                }
+                            }
                             }
                         }
                         .frame(width: worldSize.width, height: worldSize.height)
@@ -659,6 +598,7 @@ private struct FamilyView: View {
             placeSleepersOnBeds()
             now = Date()
             wanderAwakeMembers()
+            seedWorldSleepersIfNeeded()
         }
         .onChange(of: members.count) { _, _ in
             ensureMemberSlots()
@@ -668,34 +608,19 @@ private struct FamilyView: View {
             now = Date()
             wanderAwakeMembers()
         }
-        .sheet(isPresented: $showAddMemberSheet) {
-            AddMemberSheet(
-                name: $pendingMemberName,
-                selectedAvatarID: $pendingAvatarID,
-                availableAvatars: availableAvatarThemes,
-                onCancel: {
-                    resetPendingMemberForm()
-                    showAddMemberSheet = false
-                },
-                onConfirm: {
-                    addMember()
-                    showAddMemberSheet = false
-                }
-            )
-            .presentationDetents([.medium])
-            .presentationDragIndicator(.visible)
-        }
-        .sheet(isPresented: $showAvatarEditorSheet) {
-            AvatarEditorSheet(
-                memberName: $editingMemberName,
-                selectedShape: $editingAvatarShape,
-                selectedHex: $editingAvatarHex,
+        .sheet(isPresented: $showMemberEditorSheet) {
+            MemberEditorSheet(
+                mode: memberEditorMode,
+                draft: $memberEditorDraft,
                 shapeOptions: AvatarBodyShape.allCases,
                 colorOptions: FamilySample.editableColorHexes,
-                onCancel: { showAvatarEditorSheet = false },
-                onSave: {
-                    saveMyAvatarEdits()
-                    showAvatarEditorSheet = false
+                onCancel: {
+                    resetMemberEditorDraft()
+                    showMemberEditorSheet = false
+                },
+                onConfirm: {
+                    submitMemberEditor()
+                    showMemberEditorSheet = false
                 }
             )
             .presentationDetents([.medium, .large])
@@ -710,13 +635,42 @@ private struct FamilyView: View {
             WakeScheduleFullScreenView(
                 members: sortedWakeRows,
                 isOverdue: { isOverdue($0) },
-                onWakeTap: { handleTap(on: $0) },
+                onWakeTap: { openComposeForFamilyTarget(memberID: $0) },
                 formatWake: { formatWakeTime($0) },
                 onBack: {
                     showWakeScheduleScreen = false
                 }
             )
         }
+        .fullScreenCover(isPresented: $showWorldAlarmScreen) {
+            WorldWakeFullScreenView(
+                sleepers: $worldSleepers,
+                wakeComposeDraft: $wakeComposeDraft,
+                wakeComposeMessage: $wakeComposeMessage,
+                onSendWakeDraft: { draft, message in
+                    sendWakeDraft(draft: draft, message: message)
+                },
+                onBack: { showWorldAlarmScreen = false }
+            )
+        }
+        .overlay(
+            WakeSendOverlay(
+                draft: wakeComposeDraft,
+                message: $wakeComposeMessage,
+                onCancel: {
+                    withAnimation(.easeOut(duration: 0.2)) {
+                        wakeComposeDraft = nil
+                        wakeComposeMessage = ""
+                    }
+                },
+                onSend: {
+                    guard let draft = wakeComposeDraft else { return }
+                    sendWakeDraft(draft: draft, message: wakeComposeMessage)
+                    wakeComposeDraft = nil
+                    wakeComposeMessage = ""
+                }
+            )
+        )
     }
 
     private var entryPoint: CGPoint {
@@ -741,39 +695,94 @@ private struct FamilyView: View {
         return member.position
     }
 
-    private func addMember() {
-        let trimmed = pendingMemberName.trimmingCharacters(in: .whitespacesAndNewlines)
+    private func bedTint(for slotID: Int) -> Color {
+        let palette: [Color] = [
+            AppPalette.blockYellow,
+            AppPalette.blockOrange,
+            AppPalette.blockPink,
+            AppPalette.roomTeal,
+            AppPalette.roomMistBlue,
+            AppPalette.roomSage,
+            AppPalette.roomLavender,
+            AppPalette.blockYellow,
+            AppPalette.blockOrange
+        ]
+        return palette[slotID % palette.count]
+    }
+
+    private func submitMemberEditor() {
+        let trimmed = memberEditorDraft.name.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
-        guard let selectedID = pendingAvatarID,
-              let avatar = availableAvatarThemes.first(where: { $0.id == selectedID }) else { return }
 
-        let newMember = FamilyMember(
-            id: UUID(),
-            name: trimmed,
-            avatar: avatar,
-            status: .awake,
-            wakeSchedule: WakeSchedule(hour: 8, minute: 0),
-            position: entryPoint,
-            isMe: false,
-            activity: "Entering room"
-        )
-
-        members.append(newMember)
-        ensureMemberSlots(prioritize: newMember.id)
-        placeSleepersOnBeds()
-
-        if let newIndex = members.firstIndex(where: { $0.id == newMember.id }),
-           let slot = bedSlot(for: newMember.id) {
-            withAnimation(.easeInOut(duration: 1.5)) {
-                members[newIndex].position = randomRoamPoint(in: slot)
-                members[newIndex].activity = "Walking"
+        switch memberEditorMode {
+        case .add:
+            guard members.count < FamilySample.maxMembers else {
+                wakeBanner = "Member limit reached (max \(FamilySample.maxMembers))."
+                clearBannerLater()
+                return
             }
-            startWanderIfIdle(memberID: newMember.id)
+            let avatar = makeAvatarTheme(
+                shape: memberEditorDraft.shape,
+                colorHex: memberEditorDraft.colorHex,
+                defaultFace: .classic
+            )
+
+            let newMember = FamilyMember(
+                id: UUID(),
+                name: trimmed,
+                avatar: avatar,
+                status: .awake,
+                wakeSchedule: WakeSchedule(hour: 8, minute: 0),
+                position: entryPoint,
+                isMe: false,
+                activity: "Entering room"
+            )
+
+            members.append(newMember)
+            ensureMemberSlots(prioritize: newMember.id)
+            placeSleepersOnBeds()
+
+            if let newIndex = members.firstIndex(where: { $0.id == newMember.id }),
+               let slot = bedSlot(for: newMember.id) {
+                withAnimation(.easeInOut(duration: 1.5)) {
+                    members[newIndex].position = randomRoamPoint(in: slot)
+                    members[newIndex].activity = "Walking"
+                }
+                startWanderIfIdle(memberID: newMember.id)
+            }
+
+            wakeBanner = "\(trimmed) joined the family."
+            clearBannerLater()
+
+        case .editMe:
+            guard let meIndex = members.firstIndex(where: { $0.isMe }) else { return }
+            members[meIndex].name = trimmed
+            members[meIndex].avatar = makeAvatarTheme(
+                shape: memberEditorDraft.shape,
+                colorHex: memberEditorDraft.colorHex,
+                defaultFace: members[meIndex].avatar.faceStyle
+            )
+            wakeBanner = "Profile updated."
+            clearBannerLater()
         }
 
-        wakeBanner = "\(trimmed) joined the family."
-        clearBannerLater()
-        resetPendingMemberForm()
+        resetMemberEditorDraft()
+    }
+
+    private func openComposeForFamilyTarget(memberID: UUID) {
+        guard let targetIndex = members.firstIndex(where: { $0.id == memberID }) else { return }
+        if members[targetIndex].status == .awake {
+            wakeBanner = "\(members[targetIndex].name) is already awake."
+            clearBannerLater()
+            return
+        }
+        wakeComposeMessage = ""
+        withAnimation(.easeInOut(duration: 0.2)) {
+            wakeComposeDraft = WakeComposeDraft(
+                target: .family(memberID: memberID),
+                targetTitle: members[targetIndex].name
+            )
+        }
     }
 
     private func handleTap(on memberID: UUID) {
@@ -1005,300 +1014,111 @@ private struct FamilyView: View {
     }
 
     private func buildFloorLayout(memberCount: Int) -> FloorLayout {
-        let total = max(memberCount, 4)
-        let minimumDoorWidth: CGFloat = 0.24
-        let commonRect = CGRect(x: 0.27, y: 0.44, width: 0.46, height: 0.58)
+        struct RoomTemplate {
+            let rect: CGRect
+            let door: RoomDoor
+            let bedPoint: CGPoint
+            let washIndex: Int
+        }
 
-        var rooms: [FloorRoom] = []
-        let room0 = FloorRoom(
-            id: 0,
-            rect: CGRect(x: 0.06, y: 0.12, width: 0.34, height: 0.26),
-            door: RoomDoor(edge: .bottom, center: 0.23, width: minimumDoorWidth),
-            washIndex: 0
-        )
-        let room1 = FloorRoom(
-            id: 1,
-            rect: CGRect(x: 0.60, y: 0.12, width: 0.34, height: 0.26),
-            door: RoomDoor(edge: .bottom, center: 0.77, width: minimumDoorWidth),
-            washIndex: 1
-        )
-        let room2 = FloorRoom(
-            id: 2,
-            rect: CGRect(x: 0.60, y: commonRect.maxY, width: 0.31, height: 0.24),
-            door: RoomDoor(edge: .top, center: 0.70, width: minimumDoorWidth),
-            washIndex: 2
-        )
-        rooms.append(contentsOf: [room0, room1, room2])
+        let total = min(max(memberCount, 4), FamilySample.maxMembers)
+        let commonRect = CGRect(x: 0.22, y: 0.36, width: 0.46, height: 0.46)
 
-        var slots: [BedroomSlot] = [
-            makeBedroomSlot(
-                id: 0,
-                roomID: room0.id,
-                roomRect: room0.rect,
-                door: room0.door,
-                bedPoint: CGPoint(x: room0.rect.minX + 0.13, y: room0.rect.minY + 0.15),
-                isLeft: true
+        var templates: [RoomTemplate] = [
+            // Top-left room (yellow bed)
+            RoomTemplate(
+                rect: CGRect(x: 0.08, y: 0.16, width: 0.28, height: 0.20),
+                door: RoomDoor(edge: .bottom, center: 0.22, width: 0.17),
+                bedPoint: CGPoint(x: 0.21, y: 0.24),
+                washIndex: 0
             ),
-            makeBedroomSlot(
-                id: 1,
-                roomID: room0.id,
-                roomRect: room0.rect,
-                door: room0.door,
-                bedPoint: CGPoint(x: room0.rect.minX + 0.29, y: room0.rect.minY + 0.15),
-                isLeft: true
+            // Top-middle room (orange bed)
+            RoomTemplate(
+                rect: CGRect(x: 0.36, y: 0.16, width: 0.28, height: 0.20),
+                door: RoomDoor(edge: .bottom, center: 0.50, width: 0.17),
+                bedPoint: CGPoint(x: 0.50, y: 0.24),
+                washIndex: 1
             ),
-            makeBedroomSlot(
-                id: 2,
-                roomID: room1.id,
-                roomRect: room1.rect,
-                door: room1.door,
-                bedPoint: CGPoint(x: room1.rect.midX, y: room1.rect.minY + 0.15),
-                isLeft: false
+            // Mid-left room (pink bed)
+            RoomTemplate(
+                rect: CGRect(x: 0.08, y: 0.56, width: 0.34, height: 0.24),
+                door: RoomDoor(edge: .right, center: 0.67, width: 0.17),
+                bedPoint: CGPoint(x: 0.22, y: 0.66),
+                washIndex: 2
             ),
-            makeBedroomSlot(
-                id: 3,
-                roomID: room2.id,
-                roomRect: room2.rect,
-                door: room2.door,
-                bedPoint: CGPoint(x: room2.rect.midX, y: room2.rect.minY + 0.14),
-                isLeft: false
+            // Bottom-right room (teal bed)
+            RoomTemplate(
+                rect: CGRect(x: 0.42, y: 0.84, width: 0.44, height: 0.26),
+                door: RoomDoor(edge: .top, center: 0.60, width: 0.19),
+                bedPoint: CGPoint(x: 0.63, y: 0.95),
+                washIndex: 3
             )
         ]
 
-        enum ExpandDirection: CaseIterable {
-            case right
-            case down
-            case left
-            case up
-        }
-
-        let directionCycle: [ExpandDirection] = [.right, .down, .left, .up]
-        let sizeCycle: [CGSize] = [
-            CGSize(width: 0.26, height: 0.22),
-            CGSize(width: 0.24, height: 0.24),
-            CGSize(width: 0.28, height: 0.22)
+        let expansionTemplates: [RoomTemplate] = [
+            // Expansion #1: right
+            RoomTemplate(
+                rect: CGRect(x: 0.64, y: 0.22, width: 0.22, height: 0.34),
+                door: RoomDoor(edge: .left, center: 0.46, width: 0.17),
+                bedPoint: CGPoint(x: 0.75, y: 0.33),
+                washIndex: 4
+            ),
+            // Expansion #2: down
+            RoomTemplate(
+                rect: CGRect(x: 0.50, y: 1.10, width: 0.24, height: 0.22),
+                door: RoomDoor(edge: .top, center: 0.62, width: 0.18),
+                bedPoint: CGPoint(x: 0.62, y: 1.19),
+                washIndex: 0
+            ),
+            // Expansion #3: left
+            RoomTemplate(
+                rect: CGRect(x: -0.12, y: 0.88, width: 0.20, height: 0.22),
+                door: RoomDoor(edge: .right, center: 0.99, width: 0.17),
+                bedPoint: CGPoint(x: -0.02, y: 0.97),
+                washIndex: 1
+            )
         ]
-        let roomMinimumGap: CGFloat = 0.05
-        let edgeAttachGap: CGFloat = 0.0
-        var usageByDirection: [ExpandDirection: Int] = [
-            .right: 0, .down: 0, .left: 0, .up: 0
-        ]
-        let sideYAnchors: [CGFloat] = [0.20, 0.52, 0.84]
-        let downXAnchors: [CGFloat] = [0.20, 0.50, 0.80]
-        let upXAnchors: [CGFloat] = [0.50, 0.34, 0.66]
 
-        func overlapsWithArea(_ a: CGRect, _ b: CGRect) -> Bool {
-            let intersection = a.intersection(b)
-            return !intersection.isNull && intersection.width > 0.004 && intersection.height > 0.004
+        let extraCount = min(max(0, total - 4), expansionTemplates.count)
+        templates.append(contentsOf: expansionTemplates.prefix(extraCount))
+
+        let rooms: [FloorRoom] = templates.enumerated().map { index, template in
+            FloorRoom(id: index, rect: template.rect, door: template.door, washIndex: template.washIndex)
         }
 
-        func intersectsExistingRooms(_ rect: CGRect, in existing: [FloorRoom]) -> Bool {
-            return existing.contains { overlapsWithArea(rect, $0.rect) }
-        }
-
-        func tooCloseToAny(_ rect: CGRect, in existing: [FloorRoom], minGap: CGFloat) -> Bool {
-            let expanded = rect.insetBy(dx: -minGap, dy: -minGap)
-            return existing.contains { expanded.intersects($0.rect) }
-        }
-
-        func candidate(for direction: ExpandDirection, usage: Int, size: CGSize) -> (CGRect, DoorEdge)? {
-            var localSize = size
-            switch direction {
-            case .left, .right:
-                localSize.width = min(localSize.width, 0.23)
-                localSize.height = min(localSize.height, 0.22)
-            case .down:
-                localSize.width = min(localSize.width, 0.25)
-                localSize.height = min(localSize.height, 0.23)
-            case .up:
-                localSize.width = min(localSize.width, 0.22)
-                localSize.height = min(localSize.height, 0.15)
-            }
-
-            switch direction {
-            case .right:
-                let lane = usage % sideYAnchors.count
-                let band = usage / sideYAnchors.count
-                let yCenter = commonRect.minY + (commonRect.height * sideYAnchors[lane]) + (CGFloat(band) * 0.02)
-                let rect = CGRect(
-                    x: commonRect.maxX + edgeAttachGap,
-                    y: yCenter - (localSize.height * 0.5),
-                    width: localSize.width,
-                    height: localSize.height
-                )
-                guard rect.maxX <= 0.97 else { return nil }
-                return (rect, .left)
-            case .left:
-                let lane = usage % sideYAnchors.count
-                let band = usage / sideYAnchors.count
-                let yCenter = commonRect.minY + (commonRect.height * sideYAnchors[lane]) + (CGFloat(band) * 0.02)
-                let rect = CGRect(
-                    x: commonRect.minX - edgeAttachGap - localSize.width,
-                    y: yCenter - (localSize.height * 0.5),
-                    width: localSize.width,
-                    height: localSize.height
-                )
-                guard rect.minX >= 0.03 else { return nil }
-                return (rect, .right)
-            case .down:
-                let lane = usage % downXAnchors.count
-                let row = usage / downXAnchors.count
-                let xCenter = commonRect.minX + (commonRect.width * downXAnchors[lane]) + (CGFloat(row % 2) * 0.008) - 0.004
-                let rect = CGRect(
-                    x: xCenter - (localSize.width * 0.5),
-                    y: commonRect.maxY + edgeAttachGap + (CGFloat(row) * (localSize.height + roomMinimumGap)),
-                    width: localSize.width,
-                    height: localSize.height
-                )
-                guard rect.minX >= 0.03, rect.maxX <= 0.97 else { return nil }
-                return (rect, .top)
-            case .up:
-                let lane = usage % upXAnchors.count
-                let row = usage / upXAnchors.count
-                let xCenter = commonRect.minX + (commonRect.width * upXAnchors[lane]) + (CGFloat(row % 2) * 0.008) - 0.004
-                let rect = CGRect(
-                    x: xCenter - (localSize.width * 0.5),
-                    y: commonRect.minY - edgeAttachGap - localSize.height - (CGFloat(row) * (localSize.height + roomMinimumGap)),
-                    width: localSize.width,
-                    height: localSize.height
-                )
-                guard rect.minX >= 0.03, rect.maxX <= 0.97, rect.minY >= 0.03 else { return nil }
-                return (rect, .bottom)
-            }
-        }
-
-        let extraCount = max(0, total - 4)
-        for index in 0..<extraCount {
-            var size = sizeCycle[index % sizeCycle.count]
-            size.height = max(size.height, size.width * 0.80)
-
-            let preferred = directionCycle[index % directionCycle.count]
-            let searchOrder: [ExpandDirection]
-            switch preferred {
-            case .right:
-                searchOrder = [.right, .left, .up, .down]
-            case .left:
-                searchOrder = [.left, .right, .up, .down]
-            case .up:
-                searchOrder = [.up, .left, .right, .down]
-            case .down:
-                searchOrder = [.down, .right, .left, .up]
-            }
-
-            var chosenRect: CGRect?
-            var chosenDoorEdge: DoorEdge = .top
-            var chosenDirection: ExpandDirection = preferred
-            var chosenUsage = 0
-
-            directionLoop: for direction in searchOrder {
-                let startUsage = usageByDirection[direction, default: 0]
-                for tryUsage in startUsage..<(startUsage + 10) {
-                    guard let (proposal, doorEdge) = candidate(for: direction, usage: tryUsage, size: size) else {
-                        continue
-                    }
-                    guard !overlapsWithArea(proposal, commonRect) else { continue }
-                    guard !intersectsExistingRooms(proposal, in: rooms) else { continue }
-                    guard !tooCloseToAny(proposal, in: rooms, minGap: roomMinimumGap) else { continue }
-                    chosenRect = proposal
-                    chosenDoorEdge = doorEdge
-                    chosenDirection = direction
-                    chosenUsage = tryUsage
-                    break directionLoop
-                }
-            }
-
-            if chosenRect == nil {
-                if let forcedDirection = ExpandDirection.allCases.min(by: { usageByDirection[$0, default: 0] < usageByDirection[$1, default: 0] }) {
-                    let forcedUsage = usageByDirection[forcedDirection, default: 0]
-                    if let (forcedRect, forcedEdge) = candidate(for: forcedDirection, usage: forcedUsage, size: size) {
-                        chosenRect = forcedRect
-                        chosenDoorEdge = forcedEdge
-                        chosenDirection = forcedDirection
-                        chosenUsage = forcedUsage
-                    }
-                }
-            }
-
-            if chosenRect == nil {
-                let fallbackY = (rooms.map { $0.rect.maxY }.max() ?? commonRect.maxY) + roomMinimumGap
-                chosenRect = CGRect(
-                    x: clamp(commonRect.midX - (size.width * 0.5), lower: 0.03, upper: 0.97 - size.width),
-                    y: fallbackY,
-                    width: size.width,
-                    height: size.height
-                )
-                chosenDoorEdge = .top
-                chosenDirection = .down
-                chosenUsage = usageByDirection[.down, default: 0]
-            }
-
-            usageByDirection[chosenDirection] = chosenUsage + 1
-            guard let proposal = chosenRect else { continue }
-
-            let door: RoomDoor
-            switch chosenDoorEdge {
-            case .top:
-                door = RoomDoor(
-                    edge: .top,
-                    center: clamp(proposal.midX, lower: commonRect.minX + 0.12, upper: commonRect.maxX - 0.12),
-                    width: max(minimumDoorWidth, min(0.30, proposal.width * 0.78))
-                )
-            case .bottom:
-                door = RoomDoor(
-                    edge: .bottom,
-                    center: clamp(proposal.midX, lower: commonRect.minX + 0.12, upper: commonRect.maxX - 0.12),
-                    width: max(minimumDoorWidth, min(0.30, proposal.width * 0.78))
-                )
-            case .left:
-                door = RoomDoor(
-                    edge: .left,
-                    center: clamp(proposal.midY, lower: commonRect.minY + 0.12, upper: commonRect.maxY - 0.12),
-                    width: max(minimumDoorWidth, min(0.30, proposal.height * 0.78))
-                )
-            case .right:
-                door = RoomDoor(
-                    edge: .right,
-                    center: clamp(proposal.midY, lower: commonRect.minY + 0.12, upper: commonRect.maxY - 0.12),
-                    width: max(minimumDoorWidth, min(0.30, proposal.height * 0.78))
-                )
-            }
-
-            let roomID = rooms.count
-            let room = FloorRoom(id: roomID, rect: proposal, door: door, washIndex: 0)
-            rooms.append(room)
-
-            slots.append(
-                makeBedroomSlot(
-                    id: 4 + index,
-                    roomID: room.id,
-                    roomRect: room.rect,
-                    door: room.door,
-                    bedPoint: CGPoint(x: room.rect.midX, y: room.rect.minY + max(0.12, room.rect.height * 0.40)),
-                    isLeft: room.rect.midX < commonRect.midX
-                )
+        let slots: [BedroomSlot] = templates.enumerated().map { index, template in
+            makeBedroomSlot(
+                id: index,
+                roomID: index,
+                roomRect: template.rect,
+                door: template.door,
+                bedPoint: template.bedPoint,
+                isLeft: template.rect.midX < commonRect.midX
             )
         }
 
         let allRects = rooms.map(\.rect) + [commonRect]
-        let minX = allRects.map(\.minX).min() ?? 0.08
+        let minX = allRects.map(\.minX).min() ?? 0.06
         let maxX = allRects.map(\.maxX).max() ?? 0.92
-        let topY = allRects.map(\.minY).min() ?? 0.08
-        let bottomContent = allRects.map(\.maxY).max() ?? 1.24
-        let leftWingBottom = max(commonRect.maxY, rooms.filter { $0.rect.maxX <= commonRect.minX + 0.002 }.map { $0.rect.maxY }.max() ?? commonRect.maxY)
-        let rightWingBottom = max(commonRect.maxY, rooms.filter { $0.rect.minX >= commonRect.maxX - 0.002 }.map { $0.rect.maxY }.max() ?? commonRect.maxY)
-        let downBottom = max(commonRect.maxY, rooms.filter { $0.rect.minY >= commonRect.maxY - 0.002 }.map { $0.rect.maxY }.max() ?? commonRect.maxY)
-        let floorBottom = max(bottomContent + 0.08, downBottom + 0.06)
-        let planHeight = max(1.72, floorBottom + 0.20)
+        let topY = allRects.map(\.minY).min() ?? 0.14
+        let bottomY = allRects.map(\.maxY).max() ?? 1.10
+
+        let rightWingBottom = max(
+            commonRect.maxY,
+            rooms.filter { $0.rect.minX >= commonRect.maxX - 0.001 }.map(\.rect.maxY).max() ?? commonRect.maxY
+        )
+        let leftWingBottom = max(
+            commonRect.maxY,
+            rooms.filter { $0.rect.maxX <= commonRect.minX + 0.001 }.map(\.rect.maxY).max() ?? commonRect.maxY
+        )
 
         let outlinePoints: [CGPoint] = [
             CGPoint(x: minX, y: topY),
             CGPoint(x: maxX, y: topY),
-            CGPoint(x: maxX, y: commonRect.minY),
-            CGPoint(x: commonRect.maxX, y: commonRect.minY),
-            CGPoint(x: commonRect.maxX, y: rightWingBottom),
             CGPoint(x: maxX, y: rightWingBottom),
-            CGPoint(x: maxX, y: downBottom),
-            CGPoint(x: minX, y: downBottom),
+            CGPoint(x: commonRect.maxX, y: rightWingBottom),
+            CGPoint(x: commonRect.maxX, y: bottomY),
+            CGPoint(x: minX, y: bottomY),
             CGPoint(x: minX, y: leftWingBottom),
             CGPoint(x: commonRect.minX, y: leftWingBottom),
             CGPoint(x: commonRect.minX, y: commonRect.maxY),
@@ -1306,22 +1126,16 @@ private struct FamilyView: View {
             CGPoint(x: minX, y: topY)
         ]
 
-        let floorBounds = CGRect(
-            x: minX,
-            y: topY,
-            width: maxX - minX,
-            height: floorBottom - topY
-        )
-
         let furniture = FurnitureAnchors(
-            bulletin: CGPoint(x: commonRect.minX + 0.12, y: commonRect.minY + 0.36),
-            tv: CGPoint(x: commonRect.midX, y: commonRect.minY + 0.16),
-            alarm: CGPoint(x: commonRect.maxX - 0.12, y: commonRect.minY + 0.36)
+            bulletin: CGPoint(x: 0.79, y: 0.77),
+            tv: CGPoint(x: 0.46, y: 0.57),
+            alarm: CGPoint(x: 0.79, y: 0.60),
+            worldAlarm: CGPoint(x: 0.79, y: 0.69)
         )
 
         return FloorLayout(
-            planHeight: planHeight,
-            floorBounds: floorBounds,
+            planHeight: max(1.34, bottomY + 0.16),
+            floorBounds: CGRect(x: minX, y: topY, width: maxX - minX, height: bottomY - topY),
             commonRect: commonRect,
             rooms: rooms,
             slots: slots,
@@ -1411,6 +1225,20 @@ private struct FamilyView: View {
         return WalkTarget(point: clampedToCommon(entryPoint), room: nil)
     }
 
+    private func furnitureAvoidRects() -> [CGRect] {
+        let anchors = floorLayout.furniture
+        return [
+            CGRect(x: anchors.tv.x - 0.14, y: anchors.tv.y - 0.09, width: 0.28, height: 0.18),
+            CGRect(x: anchors.alarm.x - 0.08, y: anchors.alarm.y - 0.06, width: 0.16, height: 0.13),
+            CGRect(x: anchors.worldAlarm.x - 0.08, y: anchors.worldAlarm.y - 0.06, width: 0.16, height: 0.13),
+            CGRect(x: anchors.bulletin.x - 0.09, y: anchors.bulletin.y - 0.08, width: 0.18, height: 0.17)
+        ]
+    }
+
+    private func collidesFurniture(_ point: CGPoint) -> Bool {
+        furnitureAvoidRects().contains(where: { $0.contains(point) })
+    }
+
     private func pickWanderTarget(
         memberID: UUID,
         from start: CGPoint,
@@ -1422,6 +1250,9 @@ private struct FamilyView: View {
         var fallback = randomWalkTarget()
         for _ in 0..<10 {
             let candidate = randomWalkTarget()
+            if collidesFurniture(candidate.point) {
+                continue
+            }
             let distanceNow = distanceSquared(start, candidate.point)
             if distanceNow < minMoveDistanceSq {
                 continue
@@ -1439,6 +1270,9 @@ private struct FamilyView: View {
         }
 
         if distanceSquared(start, fallback.point) < minMoveDistanceSq {
+            fallback = WalkTarget(point: clampedToCommon(entryPoint), room: nil)
+        }
+        if collidesFurniture(fallback.point) {
             fallback = WalkTarget(point: clampedToCommon(entryPoint), room: nil)
         }
         return fallback
@@ -1767,41 +1601,94 @@ private struct FamilyView: View {
         return schedule.hour * 60 + schedule.minute
     }
 
-    private var availableAvatarThemes: [AvatarTheme] {
-        FamilySample.avatarCatalog
-    }
-
     private func openAddMemberSheet() {
-        pendingMemberName = ""
-        pendingAvatarID = availableAvatarThemes.first?.id
-        showAddMemberSheet = true
+        memberEditorMode = .add
+        memberEditorDraft = MemberEditorDraft(
+            name: "",
+            shape: .roundedSquare,
+            colorHex: FamilySample.editableColorHexes.first ?? 0x42B9BB
+        )
+        showMemberEditorSheet = true
     }
 
     private func openMyAvatarEditor() {
         guard let me = members.first(where: { $0.isMe }) else { return }
-        editingMemberName = me.name
-        editingAvatarShape = me.avatar.bodyShape
-        editingAvatarHex = me.avatar.fillHex
-        showAvatarEditorSheet = true
-    }
-
-    private func saveMyAvatarEdits() {
-        guard let meIndex = members.firstIndex(where: { $0.isMe }) else { return }
-        let trimmedName = editingMemberName.trimmingCharacters(in: .whitespacesAndNewlines)
-        members[meIndex].name = trimmedName.isEmpty ? members[meIndex].name : trimmedName
-        members[meIndex].avatar = AvatarTheme(
-            id: "custom-\(UUID().uuidString.prefix(8))",
-            fillHex: editingAvatarHex,
-            bodyShape: editingAvatarShape,
-            faceStyle: members[meIndex].avatar.faceStyle
+        memberEditorMode = .editMe
+        memberEditorDraft = MemberEditorDraft(
+            name: me.name,
+            shape: me.avatar.bodyShape,
+            colorHex: me.avatar.fillHex
         )
-        wakeBanner = "Avatar updated."
-        clearBannerLater()
+        showMemberEditorSheet = true
     }
 
-    private func resetPendingMemberForm() {
-        pendingMemberName = ""
-        pendingAvatarID = nil
+    private func resetMemberEditorDraft() {
+        memberEditorDraft = MemberEditorDraft(
+            name: "",
+            shape: .roundedSquare,
+            colorHex: FamilySample.editableColorHexes.first ?? 0x42B9BB
+        )
+    }
+
+    private func makeAvatarTheme(shape: AvatarBodyShape, colorHex: Int, defaultFace: AvatarFaceStyle) -> AvatarTheme {
+        AvatarTheme(
+            id: "custom-\(UUID().uuidString.prefix(8))",
+            fillHex: colorHex,
+            bodyShape: shape,
+            faceStyle: defaultFace
+        )
+    }
+
+    private func seedWorldSleepersIfNeeded() {
+        guard worldSleepers.isEmpty else { return }
+        worldSleepers = makeWorldSleeperSamples()
+    }
+
+    private func makeWorldSleeperSamples() -> [WorldSleeper] {
+        let samples: [(String, String, Int)] = [
+            ("Luca", "IT", 18),
+            ("Mina", "KR", 12),
+            ("Noah", "US", 7),
+            ("Aya", "JP", 25),
+            ("Lena", "DE", 9),
+            ("Rui", "BR", 14),
+            ("Eli", "FR", 11)
+        ]
+
+        let picks = Array(samples.shuffled().prefix(Int.random(in: 3...5)))
+        var result = picks.map { sample in
+            WorldSleeper(
+                id: UUID(),
+                name: sample.0,
+                country: sample.1,
+                lateMinutes: sample.2,
+                isAwake: false,
+                avatarHex: FamilySample.editableColorHexes.randomElement() ?? 0x45BFC0
+            )
+        }
+        if result.allSatisfy({ $0.isAwake || $0.lateMinutes <= 0 }),
+           let first = result.indices.first {
+            result[first].isAwake = false
+            result[first].lateMinutes = 16
+        }
+        return result
+    }
+
+    private func sendWakeDraft(draft: WakeComposeDraft, message: String) {
+        switch draft.target {
+        case .family(let memberID):
+            if !message.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                wakeBanner = "Late alarm sent to \(draft.targetTitle)."
+                clearBannerLater()
+            }
+            handleTap(on: memberID)
+        case .world(let worldID):
+            guard let index = worldSleepers.firstIndex(where: { $0.id == worldID }) else { return }
+            worldSleepers[index].isAwake = true
+            worldSleepers[index].lateMinutes = 0
+            wakeBanner = "Late alarm sent to \(worldSleepers[index].name)."
+            clearBannerLater()
+        }
     }
 
     private func clamp(_ value: CGFloat, lower: CGFloat, upper: CGFloat) -> CGFloat {
@@ -1824,10 +1711,56 @@ private struct WakeMission {
     let targetID: UUID
 }
 
+private enum MemberEditorMode {
+    case add
+    case editMe
+
+    var title: String {
+        switch self {
+        case .add: return "Add Member"
+        case .editMe: return "Edit Profile"
+        }
+    }
+
+    var confirmTitle: String {
+        switch self {
+        case .add: return "Add"
+        case .editMe: return "Save"
+        }
+    }
+}
+
+private struct MemberEditorDraft {
+    var name: String
+    var shape: AvatarBodyShape
+    var colorHex: Int
+}
+
+private struct WorldSleeper: Identifiable, Equatable {
+    let id: UUID
+    var name: String
+    var country: String
+    var lateMinutes: Int
+    var isAwake: Bool
+    var avatarHex: Int
+}
+
+private enum WakeTarget: Equatable {
+    case family(memberID: UUID)
+    case world(worldID: UUID)
+}
+
+private struct WakeComposeDraft: Identifiable, Equatable {
+    let id = UUID()
+    let target: WakeTarget
+    let targetTitle: String
+}
+
 private struct FurnitureAnchors {
     let bulletin: CGPoint
     let tv: CGPoint
     let alarm: CGPoint
+    let worldAlarm: CGPoint
 }
 
 private enum DoorEdge {
@@ -1878,56 +1811,48 @@ private struct FamilySceneHeader: View {
     let onEditMeTap: () -> Void
 
     var body: some View {
-        HStack {
-            HStack(spacing: 8) {
-                Button {
-                    onEditMeTap()
-                } label: {
-                    HStack(spacing: 5) {
-                        PixelHeaderIcon(kind: .person)
-                            .frame(width: 12, height: 12)
-                        Text("Edit Me")
-                            .font(AppTypography.pixel(12, weight: .semibold))
-                    }
+        HStack(spacing: 10) {
+            Text("Sleepy Family")
+                .font(AppTypography.pixel(16, weight: .semibold))
+                .foregroundStyle(AppPalette.inkPrimary)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: AppRadius.control, style: .continuous)
+                        .fill(AppPalette.blockGray)
+                )
+
+            Button {
+                onEditMeTap()
+            } label: {
+                Text("Edit Me")
+                    .font(AppTypography.pixel(15, weight: .semibold))
                     .foregroundStyle(AppPalette.inkPrimary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 12)
                     .background(
                         RoundedRectangle(cornerRadius: AppRadius.control, style: .continuous)
-                            .fill(AppPalette.white)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: AppRadius.control, style: .continuous)
-                                    .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                            )
+                            .fill(AppPalette.accentBlue)
                     )
-                }
-                .buttonStyle(.plain)
+            }
+            .buttonStyle(.plain)
 
-                Button {
-                    onAddTap()
-                } label: {
-                    HStack(spacing: 4) {
-                        PixelHeaderIcon(kind: .plus)
-                            .frame(width: 11, height: 11)
-                        Text("Add Member")
-                            .font(AppTypography.pixel(12, weight: .semibold))
-                    }
+            Button {
+                onAddTap()
+            } label: {
+                Text("Add Member")
+                    .font(AppTypography.pixel(15, weight: .semibold))
                     .foregroundStyle(AppPalette.inkPrimary)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 12)
                     .background(
                         RoundedRectangle(cornerRadius: AppRadius.control, style: .continuous)
                             .fill(AppPalette.vibrantOrange)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: AppRadius.control, style: .continuous)
-                                    .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                            )
                     )
-                }
-                .buttonStyle(.plain)
             }
-            .frame(maxWidth: .infinity, alignment: .trailing)
+            .buttonStyle(.plain)
         }
+        .padding(.top, 2)
     }
 }
 
@@ -1976,6 +1901,7 @@ private struct RoomFurnitureLayer: View {
     let lateCount: Int
     let onBoardTap: () -> Void
     let onAlarmTap: () -> Void
+    let onWorldAlarmTap: () -> Void
 
     var body: some View {
         GeometryReader { proxy in
@@ -1983,33 +1909,6 @@ private struct RoomFurnitureLayer: View {
             let mapY: (CGFloat) -> CGFloat = { y in (y / layout.planHeight) * size.height }
 
             ZStack {
-                PixelRugDecor()
-                    .position(
-                        x: size.width * layout.commonRect.midX,
-                        y: mapY(layout.commonRect.midY + 0.16)
-                    )
-
-                PixelPlantDecor()
-                    .position(
-                        x: size.width * (layout.commonRect.minX + 0.08),
-                        y: mapY(layout.commonRect.maxY - 0.06)
-                    )
-
-                PixelCrateDecor()
-                    .position(
-                        x: size.width * (layout.commonRect.maxX - 0.08),
-                        y: mapY(layout.commonRect.maxY - 0.06)
-                    )
-
-                VStack(spacing: 4) {
-                    BulletinBoardObject(onTap: onBoardTap)
-                    furnitureLabel("Bulletin")
-                }
-                .position(
-                    x: size.width * layout.furniture.bulletin.x,
-                    y: mapY(layout.furniture.bulletin.y)
-                )
-
                 VStack(spacing: 4) {
                     TVObject(
                         awakeCount: awakeCount,
@@ -2031,23 +1930,37 @@ private struct RoomFurnitureLayer: View {
                     x: size.width * layout.furniture.alarm.x,
                     y: mapY(layout.furniture.alarm.y)
                 )
+
+                VStack(spacing: 4) {
+                    WorldAlarmObject(onTap: onWorldAlarmTap)
+                    furnitureLabel("World Alarm")
+                }
+                .position(
+                    x: size.width * layout.furniture.worldAlarm.x,
+                    y: mapY(layout.furniture.worldAlarm.y)
+                )
+
+                VStack(spacing: 4) {
+                    BulletinBoardObject(onTap: onBoardTap)
+                    furnitureLabel("Bulletin")
+                }
+                .position(
+                    x: size.width * layout.furniture.bulletin.x,
+                    y: mapY(layout.furniture.bulletin.y)
+                )
             }
         }
     }
 
     private func furnitureLabel(_ title: String) -> some View {
         Text(title)
-            .font(AppTypography.pixel(10, weight: .semibold))
+            .font(AppTypography.pixel(11, weight: .semibold))
             .foregroundStyle(AppPalette.inkPrimary)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 5)
             .background(
-                RoundedRectangle(cornerRadius: AppRadius.micro, style: .continuous)
-                    .fill(AppPalette.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: AppRadius.micro, style: .continuous)
-                            .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                    )
+                Capsule()
+                    .fill(AppPalette.roomWall.opacity(0.96))
             )
     }
 }
@@ -2142,49 +2055,39 @@ private struct BulletinBoardObject: View {
             onTap()
         } label: {
             ZStack(alignment: .bottom) {
-                Rectangle()
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(AppPalette.flatShadow)
-                    .frame(width: 70, height: 76)
-                    .offset(x: 3, y: 3)
+                    .frame(width: 76, height: 86)
+                    .offset(x: 4, y: 4)
 
-                Rectangle()
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(AppPalette.boardWood)
-                    .frame(width: 70, height: 76)
+                    .frame(width: 80, height: 92)
                     .overlay(
-                        Rectangle()
-                            .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
                     )
 
-                Rectangle()
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .fill(AppPalette.boardPaper)
-                    .frame(width: 54, height: 60)
+                    .frame(width: 64, height: 72)
 
-                Rectangle()
+                Capsule()
                     .fill(AppPalette.roomTeal.opacity(0.9))
-                    .frame(width: 22, height: 9)
+                    .frame(width: 24, height: 10)
                     .offset(x: -8, y: -16)
 
-                Rectangle()
+                Capsule()
                     .fill(AppPalette.roomMustard.opacity(0.9))
-                    .frame(width: 20, height: 8)
+                    .frame(width: 22, height: 10)
                     .offset(x: 10, y: -2)
 
-                Rectangle()
+                Capsule()
                     .fill(AppPalette.accentPrimary.opacity(0.85))
-                    .frame(width: 24, height: 8)
+                    .frame(width: 24, height: 10)
                     .offset(y: 14)
-
-                HStack(spacing: 30) {
-                    Rectangle()
-                        .fill(AppPalette.inkPrimary)
-                        .frame(width: 2, height: 18)
-                    Rectangle()
-                        .fill(AppPalette.inkPrimary)
-                        .frame(width: 2, height: 18)
-                }
-                .offset(y: 44)
             }
-            .frame(width: 82, height: 104)
+            .frame(width: 92, height: 102)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Ranking Board")
@@ -2198,38 +2101,22 @@ private struct TVObject: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            Rectangle()
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(AppPalette.flatShadow)
-                .frame(width: 138, height: 64)
-                .offset(x: 3, y: 3)
+                .frame(width: 174, height: 96)
+                .offset(x: 5, y: 5)
 
-            Rectangle()
-                .fill(AppPalette.tvFrame)
-                .frame(width: 138, height: 64)
-                .offset(y: -8)
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .fill(AppPalette.alarmShell)
+                .frame(width: 174, height: 96)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
+                )
 
-            HStack(spacing: 0) {
-                Rectangle()
-                    .fill(AppPalette.alarmShell.opacity(0.9))
-                    .frame(width: 70, height: 12)
-                Rectangle()
-                    .fill(AppPalette.alarmShell.opacity(0.78))
-                    .frame(width: 36, height: 12)
-            }
-            .overlay(
-                Rectangle()
-                    .stroke(AppPalette.inkPrimary.opacity(0.75), lineWidth: 1.1)
-            )
-            .offset(y: 28)
-
-            Rectangle()
-                .fill(AppPalette.inkPrimary.opacity(0.18))
-                .frame(width: 120, height: 8)
-                .offset(y: 29)
-
-            Rectangle()
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(AppPalette.tvScreen)
-                .frame(width: 118, height: 48)
+                .frame(width: 142, height: 62)
                 .overlay {
                     HStack(spacing: 4) {
                         statusChip(title: "Awake", value: awakeCount, tone: AppPalette.statusAwake)
@@ -2238,43 +2125,34 @@ private struct TVObject: View {
                     }
                     .padding(.horizontal, 4)
                 }
-                .offset(y: -8)
+                .offset(y: -3)
 
             Path { path in
-                path.move(to: CGPoint(x: 6, y: 12))
+                path.move(to: CGPoint(x: 12, y: 10))
                 path.addLine(to: CGPoint(x: 0, y: 0))
-                path.move(to: CGPoint(x: 18, y: 12))
-                path.addLine(to: CGPoint(x: 24, y: 0))
+                path.move(to: CGPoint(x: 24, y: 10))
+                path.addLine(to: CGPoint(x: 36, y: 0))
             }
-            .stroke(AppPalette.inkPrimary.opacity(0.7), lineWidth: 1.4)
-            .frame(width: 24, height: 12)
-            .offset(y: -44)
+            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
+            .frame(width: 36, height: 12)
+            .offset(y: -50)
         }
-        .overlay(
-            Rectangle()
-                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                .offset(y: -8)
-        )
-        .frame(width: 148, height: 88)
+        .frame(width: 186, height: 108)
     }
 
     private func statusChip(title: String, value: Int, tone: Color) -> some View {
         HStack(spacing: 3) {
             Text(title)
-                .font(AppTypography.pixel(8, weight: .semibold))
+                .font(AppTypography.pixel(9, weight: .semibold))
             Text("\(value)")
-                .font(AppTypography.pixel(9, weight: .bold))
+                .font(AppTypography.pixel(10, weight: .bold))
         }
         .foregroundStyle(AppPalette.inkPrimary)
-        .padding(.horizontal, 4)
-        .padding(.vertical, 2)
+        .padding(.horizontal, 5)
+        .padding(.vertical, 3)
         .background(
-            Rectangle()
+            Capsule()
                 .fill(tone)
-                .overlay(
-                    Rectangle()
-                        .stroke(AppPalette.inkPrimary.opacity(0.85), lineWidth: AppStroke.standard)
-                )
         )
     }
 }
@@ -2287,29 +2165,32 @@ private struct AlarmClockObject: View {
             onTap()
         } label: {
             ZStack {
-                Rectangle()
+                RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .fill(AppPalette.flatShadow)
-                    .frame(width: 72, height: 8)
+                    .frame(width: 76, height: 10)
                     .offset(y: 24)
 
-                Rectangle()
+                RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(AppPalette.alarmShell)
                     .frame(width: 58, height: 38)
                     .overlay(
-                        Rectangle()
-                            .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
                     )
 
-                Rectangle()
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(AppPalette.white)
                     .frame(width: 34, height: 20)
-                    .overlay(Rectangle().stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8, style: .continuous)
+                            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
+                    )
                     .overlay {
-                        Rectangle()
+                        Capsule()
                             .fill(AppPalette.inkPrimary)
                             .frame(width: 2, height: 6)
                             .offset(y: -3)
-                        Rectangle()
+                        Capsule()
                             .fill(AppPalette.inkPrimary)
                             .frame(width: 6, height: 2)
                             .offset(x: 4, y: 1)
@@ -2317,27 +2198,46 @@ private struct AlarmClockObject: View {
                     .offset(y: 1)
 
                 HStack(spacing: 24) {
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 3, style: .continuous)
                         .fill(AppPalette.roomMustard)
                         .frame(width: 10, height: 8)
-                        .overlay(
-                            Rectangle()
-                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                        )
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 3, style: .continuous)
                         .fill(AppPalette.roomMustard)
                         .frame(width: 10, height: 8)
-                        .overlay(
-                            Rectangle()
-                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                        )
                 }
                 .offset(y: -21)
             }
-            .frame(width: 82, height: 66)
+            .frame(width: 86, height: 68)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Open Wake Schedule")
+    }
+}
+
+private struct WorldAlarmObject: View {
+    let onTap: () -> Void
+
+    var body: some View {
+        Button {
+            onTap()
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                    .fill(AppPalette.alarmShell)
+                    .frame(width: 64, height: 46)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14, style: .continuous)
+                            .stroke(AppPalette.blockOrange, lineWidth: AppStroke.standard)
+                    )
+
+                Image(systemName: "clock")
+                    .font(AppTypography.pixel(18, weight: .bold))
+                    .foregroundStyle(AppPalette.inkPrimary)
+            }
+            .frame(width: 86, height: 66)
+        }
+        .buttonStyle(.plain)
+        .accessibilityLabel("Open World Alarm")
     }
 }
 
@@ -2345,8 +2245,6 @@ private struct RoomBackground: View {
     let layout: FloorLayout
     private let wallLineWidth: CGFloat = AppStroke.standard
     private let innerWallLineWidth: CGFloat = AppStroke.standard
-    private let pixelStep: CGFloat = AppPixel.step
-    private let cornerStep: CGFloat = AppPixel.step * 1.25
 
     var body: some View {
         GeometryReader { proxy in
@@ -2358,27 +2256,28 @@ private struct RoomBackground: View {
                     .fill(AppPalette.roomFloor)
 
                 ForEach(layout.rooms) { room in
-                    beveledRectPath(room.rect, in: size, corner: cornerStep)
-                        .fill(AppPalette.roomWall)
-
-                    roomWallPath(for: room, in: size)
-                        .stroke(
-                            AppPalette.inkPrimary,
-                            style: StrokeStyle(
-                                lineWidth: innerWallLineWidth,
-                                lineCap: .butt,
-                                lineJoin: .miter
-                            )
-                        )
+                    RoundedRectangle(cornerRadius: AppRadius.room, style: .continuous)
+                        .path(in: normalizedRect(room.rect, in: size))
+                        .fill(AppPalette.roomWall.opacity(0.95))
                 }
+
+                innerWallsPath(in: size)
+                    .stroke(
+                        AppPalette.roomBoundary,
+                        style: StrokeStyle(
+                            lineWidth: innerWallLineWidth,
+                            lineCap: .round,
+                            lineJoin: .round
+                        )
+                    )
 
                 mainOutline
                     .stroke(
-                        AppPalette.inkPrimary,
+                        AppPalette.roomBoundary,
                         style: StrokeStyle(
                             lineWidth: wallLineWidth,
-                            lineCap: .butt,
-                            lineJoin: .miter
+                            lineCap: .round,
+                            lineJoin: .round
                         )
                     )
             }
@@ -2390,18 +2289,16 @@ private struct RoomBackground: View {
     }
 
     private func normalizedRect(_ rect: CGRect, in size: CGSize) -> CGRect {
-        pixelSnappedRect(
-            CGRect(
+        CGRect(
             x: rect.minX * size.width,
             y: normalizedY(rect.minY, in: size),
             width: rect.width * size.width,
             height: (rect.height / layout.planHeight) * size.height
-            )
         )
     }
 
     private func floorOutlinePath(in size: CGSize) -> Path {
-        beveledClosedPath(points: normalizedOutlinePoints(in: size), corner: cornerStep)
+        roundedClosedPath(points: normalizedOutlinePoints(in: size), radius: AppRadius.room)
     }
 
     private func normalizedOutlinePoints(in size: CGSize) -> [CGPoint] {
@@ -2409,67 +2306,99 @@ private struct RoomBackground: View {
         if points.count > 1, pointDistanceSquared(points.first!, points.last!) < 0.5 {
             points.removeLast()
         }
-        return points.map { pixelSnappedPoint($0) }
+        return points
     }
 
-    private func roomWallPath(for room: FloorRoom, in size: CGSize) -> Path {
+    private struct LineSegment {
+        let horizontal: Bool
+        let fixed: CGFloat
+        let start: CGFloat
+        let end: CGFloat
+    }
+
+    private func innerWallsPath(in size: CGSize) -> Path {
         var path = Path()
-        let rect = normalizedRect(room.rect, in: size)
-        let doorCenter = pixelSnappedPoint(normalizedDoorCenter(room.door, roomRect: room.rect, in: size))
-        let doorHalfW = max(pixelStep * 3.2, room.door.width * size.width * 0.5)
-        let doorHalfH = max(pixelStep * 3.2, (room.door.width / layout.planHeight) * size.height * 0.5)
-        let xInset = cornerStep
-        let yInset = cornerStep
-
-        func addHorizontal(y: CGFloat, from startX: CGFloat, to endX: CGFloat) {
-            guard abs(endX - startX) > 1 else { return }
-            path.move(to: CGPoint(x: pixelSnappedPoint(CGPoint(x: startX, y: y)).x, y: y))
-            path.addLine(to: CGPoint(x: pixelSnappedPoint(CGPoint(x: endX, y: y)).x, y: y))
-        }
-
-        func addVertical(x: CGFloat, from startY: CGFloat, to endY: CGFloat) {
-            guard abs(endY - startY) > 1 else { return }
-            path.move(to: CGPoint(x: x, y: pixelSnappedPoint(CGPoint(x: x, y: startY)).y))
-            path.addLine(to: CGPoint(x: x, y: pixelSnappedPoint(CGPoint(x: x, y: endY)).y))
-        }
-
-        if !isEdgeOnOutline(horizontal: true, fixed: room.rect.minY, start: room.rect.minX, end: room.rect.maxX) {
-            if room.door.edge == .top {
-                addHorizontal(y: rect.minY, from: rect.minX + xInset, to: doorCenter.x - doorHalfW)
-                addHorizontal(y: rect.minY, from: doorCenter.x + doorHalfW, to: rect.maxX - xInset)
+        for segment in deduplicatedInnerSegments(in: size) {
+            if segment.horizontal {
+                path.move(to: CGPoint(x: segment.start, y: segment.fixed))
+                path.addLine(to: CGPoint(x: segment.end, y: segment.fixed))
             } else {
-                addHorizontal(y: rect.minY, from: rect.minX + xInset, to: rect.maxX - xInset)
+                path.move(to: CGPoint(x: segment.fixed, y: segment.start))
+                path.addLine(to: CGPoint(x: segment.fixed, y: segment.end))
             }
         }
-
-        if !isEdgeOnOutline(horizontal: true, fixed: room.rect.maxY, start: room.rect.minX, end: room.rect.maxX) {
-            if room.door.edge == .bottom {
-                addHorizontal(y: rect.maxY, from: rect.minX + xInset, to: doorCenter.x - doorHalfW)
-                addHorizontal(y: rect.maxY, from: doorCenter.x + doorHalfW, to: rect.maxX - xInset)
-            } else {
-                addHorizontal(y: rect.maxY, from: rect.minX + xInset, to: rect.maxX - xInset)
-            }
-        }
-
-        if !isEdgeOnOutline(horizontal: false, fixed: room.rect.minX, start: room.rect.minY, end: room.rect.maxY) {
-            if room.door.edge == .left {
-                addVertical(x: rect.minX, from: rect.minY + yInset, to: doorCenter.y - doorHalfH)
-                addVertical(x: rect.minX, from: doorCenter.y + doorHalfH, to: rect.maxY - yInset)
-            } else {
-                addVertical(x: rect.minX, from: rect.minY + yInset, to: rect.maxY - yInset)
-            }
-        }
-
-        if !isEdgeOnOutline(horizontal: false, fixed: room.rect.maxX, start: room.rect.minY, end: room.rect.maxY) {
-            if room.door.edge == .right {
-                addVertical(x: rect.maxX, from: rect.minY + yInset, to: doorCenter.y - doorHalfH)
-                addVertical(x: rect.maxX, from: doorCenter.y + doorHalfH, to: rect.maxY - yInset)
-            } else {
-                addVertical(x: rect.maxX, from: rect.minY + yInset, to: rect.maxY - yInset)
-            }
-        }
-
         return path
+    }
+
+    private func deduplicatedInnerSegments(in size: CGSize) -> [LineSegment] {
+        var segments: [LineSegment] = []
+
+        for room in layout.rooms {
+            let rect = normalizedRect(room.rect, in: size)
+            let doorCenter = normalizedDoorCenter(room.door, roomRect: room.rect, in: size)
+            let doorHalfW = max(pixelStep * 3.2, room.door.width * size.width * 0.5)
+            let doorHalfH = max(pixelStep * 3.2, (room.door.width / layout.planHeight) * size.height * 0.5)
+
+            func addHorizontal(y: CGFloat, startX: CGFloat, endX: CGFloat) {
+                let start = min(startX, endX)
+                let end = max(startX, endX)
+                guard end - start > 1 else { return }
+                segments.append(LineSegment(horizontal: true, fixed: y, start: start, end: end))
+            }
+
+            func addVertical(x: CGFloat, startY: CGFloat, endY: CGFloat) {
+                let start = min(startY, endY)
+                let end = max(startY, endY)
+                guard end - start > 1 else { return }
+                segments.append(LineSegment(horizontal: false, fixed: x, start: start, end: end))
+            }
+
+            if !isEdgeOnOutline(horizontal: true, fixed: room.rect.minY, start: room.rect.minX, end: room.rect.maxX) {
+                if room.door.edge == .top {
+                    addHorizontal(y: rect.minY, startX: rect.minX, endX: doorCenter.x - doorHalfW)
+                    addHorizontal(y: rect.minY, startX: doorCenter.x + doorHalfW, endX: rect.maxX)
+                } else {
+                    addHorizontal(y: rect.minY, startX: rect.minX, endX: rect.maxX)
+                }
+            }
+
+            if !isEdgeOnOutline(horizontal: true, fixed: room.rect.maxY, start: room.rect.minX, end: room.rect.maxX) {
+                if room.door.edge == .bottom {
+                    addHorizontal(y: rect.maxY, startX: rect.minX, endX: doorCenter.x - doorHalfW)
+                    addHorizontal(y: rect.maxY, startX: doorCenter.x + doorHalfW, endX: rect.maxX)
+                } else {
+                    addHorizontal(y: rect.maxY, startX: rect.minX, endX: rect.maxX)
+                }
+            }
+
+            if !isEdgeOnOutline(horizontal: false, fixed: room.rect.minX, start: room.rect.minY, end: room.rect.maxY) {
+                if room.door.edge == .left {
+                    addVertical(x: rect.minX, startY: rect.minY, endY: doorCenter.y - doorHalfH)
+                    addVertical(x: rect.minX, startY: doorCenter.y + doorHalfH, endY: rect.maxY)
+                } else {
+                    addVertical(x: rect.minX, startY: rect.minY, endY: rect.maxY)
+                }
+            }
+
+            if !isEdgeOnOutline(horizontal: false, fixed: room.rect.maxX, start: room.rect.minY, end: room.rect.maxY) {
+                if room.door.edge == .right {
+                    addVertical(x: rect.maxX, startY: rect.minY, endY: doorCenter.y - doorHalfH)
+                    addVertical(x: rect.maxX, startY: doorCenter.y + doorHalfH, endY: rect.maxY)
+                } else {
+                    addVertical(x: rect.maxX, startY: rect.minY, endY: rect.maxY)
+                }
+            }
+        }
+
+        var unique: [String: LineSegment] = [:]
+        for segment in segments {
+            let fixed = Int((segment.fixed * 100).rounded())
+            let start = Int((segment.start * 100).rounded())
+            let end = Int((segment.end * 100).rounded())
+            let key = "\(segment.horizontal)-\(fixed)-\(start)-\(end)"
+            unique[key] = segment
+        }
+        return Array(unique.values)
     }
 
     private struct AxisSegment {
@@ -2525,50 +2454,35 @@ private struct RoomBackground: View {
         return segments
     }
 
-    private func beveledRectPath(_ rect: CGRect, in size: CGSize, corner: CGFloat) -> Path {
-        let r = normalizedRect(rect, in: size)
-        let c = min(corner, min(r.width, r.height) * 0.28)
-        let points: [CGPoint] = [
-            CGPoint(x: r.minX + c, y: r.minY),
-            CGPoint(x: r.maxX - c, y: r.minY),
-            CGPoint(x: r.maxX, y: r.minY + c),
-            CGPoint(x: r.maxX, y: r.maxY - c),
-            CGPoint(x: r.maxX - c, y: r.maxY),
-            CGPoint(x: r.minX + c, y: r.maxY),
-            CGPoint(x: r.minX, y: r.maxY - c),
-            CGPoint(x: r.minX, y: r.minY + c)
-        ]
-        return polygonPath(points: points)
-    }
-
-    private func beveledClosedPath(points: [CGPoint], corner: CGFloat) -> Path {
-        guard points.count >= 3 else { return polygonPath(points: points) }
-        var beveled: [CGPoint] = []
+    private func roundedClosedPath(points: [CGPoint], radius: CGFloat) -> Path {
+        guard points.count > 2 else { return polygonPath(points: points) }
+        var path = Path()
 
         for i in 0..<points.count {
             let prev = points[(i - 1 + points.count) % points.count]
             let current = points[i]
             let next = points[(i + 1) % points.count]
 
-            let toPrev = CGPoint(x: prev.x - current.x, y: prev.y - current.y)
-            let toNext = CGPoint(x: next.x - current.x, y: next.y - current.y)
-            let prevLen = sqrt((toPrev.x * toPrev.x) + (toPrev.y * toPrev.y))
-            let nextLen = sqrt((toNext.x * toNext.x) + (toNext.y * toNext.y))
-            guard prevLen > 0.001, nextLen > 0.001 else { continue }
+            let v1 = CGVector(dx: current.x - prev.x, dy: current.y - prev.y)
+            let v2 = CGVector(dx: next.x - current.x, dy: next.y - current.y)
+            let len1 = sqrt((v1.dx * v1.dx) + (v1.dy * v1.dy))
+            let len2 = sqrt((v2.dx * v2.dx) + (v2.dy * v2.dy))
+            guard len1 > 0.01, len2 > 0.01 else { continue }
 
-            let localCorner = min(corner, (min(prevLen, nextLen) * 0.42))
-            let p1 = CGPoint(
-                x: current.x + (toPrev.x / prevLen) * localCorner,
-                y: current.y + (toPrev.y / prevLen) * localCorner
-            )
-            let p2 = CGPoint(
-                x: current.x + (toNext.x / nextLen) * localCorner,
-                y: current.y + (toNext.y / nextLen) * localCorner
-            )
-            beveled.append(pixelSnappedPoint(p1))
-            beveled.append(pixelSnappedPoint(p2))
+            let trim = min(radius, min(len1, len2) * 0.4)
+            let p1 = CGPoint(x: current.x - (v1.dx / len1) * trim, y: current.y - (v1.dy / len1) * trim)
+            let p2 = CGPoint(x: current.x + (v2.dx / len2) * trim, y: current.y + (v2.dy / len2) * trim)
+
+            if i == 0 {
+                path.move(to: p1)
+            } else {
+                path.addLine(to: p1)
+            }
+            path.addQuadCurve(to: p2, control: current)
         }
-        return polygonPath(points: beveled)
+
+        path.closeSubpath()
+        return path
     }
 
     private func polygonPath(points: [CGPoint]) -> Path {
@@ -2589,11 +2503,9 @@ private struct RoomBackground: View {
     }
 
     private func point(_ normalized: CGPoint, in size: CGSize) -> CGPoint {
-        pixelSnappedPoint(
-            CGPoint(
+        CGPoint(
             x: normalized.x * size.width,
             y: normalizedY(normalized.y, in: size)
-            )
         )
     }
 
@@ -2610,63 +2522,34 @@ private struct RoomBackground: View {
         }
     }
 
-    private func pixelSnappedPoint(_ point: CGPoint) -> CGPoint {
-        CGPoint(x: snap(point.x), y: snap(point.y))
-    }
-
-    private func pixelSnappedRect(_ rect: CGRect) -> CGRect {
-        let minX = snap(rect.minX)
-        let minY = snap(rect.minY)
-        let maxX = snap(rect.maxX)
-        let maxY = snap(rect.maxY)
-        return CGRect(
-            x: minX,
-            y: minY,
-            width: max(pixelStep, maxX - minX),
-            height: max(pixelStep, maxY - minY)
-        )
-    }
-
-    private func snap(_ value: CGFloat) -> CGFloat {
-        (value / pixelStep).rounded() * pixelStep
-    }
+    private var pixelStep: CGFloat { 1 }
 }
 
 private struct BedSlotView: View {
     let isSleeping: Bool
+    let tint: Color
 
     var body: some View {
-        ZStack(alignment: .top) {
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .fill(AppPalette.flatShadow)
-                    .frame(width: 84, height: 50)
-                    .offset(x: 3, y: 3)
+        ZStack {
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(AppPalette.flatShadow.opacity(0.55))
+                .frame(width: 126, height: 76)
+                .offset(x: 4, y: 4)
 
-                Rectangle()
-                    .fill(AppPalette.boardPaper)
-                    .frame(width: 84, height: 50)
-                    .overlay(
-                        Rectangle()
-                            .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                    )
+            RoundedRectangle(cornerRadius: 18, style: .continuous)
+                .fill(AppPalette.roomWall)
+                .frame(width: 126, height: 76)
 
-                Rectangle()
-                    .fill(AppPalette.bedHeadboard)
-                    .frame(width: 12, height: 30)
-                    .padding(.leading, 7)
-
-                Rectangle()
-                    .fill(Color(hex: 0xE4DED2))
-                    .frame(width: 58, height: 30)
-                    .offset(x: 18, y: 6)
-
-                Rectangle()
-                    .fill(AppPalette.bedBlanket)
-                    .frame(width: isSleeping ? 54 : 46, height: isSleeping ? 20 : 16)
-                    .offset(x: 20, y: 15)
+            HStack(spacing: 10) {
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(AppPalette.white)
+                    .frame(width: 30, height: 44)
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .fill(isSleeping ? tint.opacity(0.68) : tint)
+                    .frame(width: 78, height: 46)
             }
         }
+        .frame(width: 126, height: 76)
     }
 }
 
@@ -2844,134 +2727,56 @@ private struct StickerAvatar: View {
         ZStack {
             avatarShape
                 .fill(member.avatar.fillColor)
-                .frame(width: 50, height: 50)
+                .frame(width: 58, height: 58)
+                .shadow(color: AppPalette.flatShadow.opacity(0.35), radius: 0, x: 2, y: 3)
 
             if member.status == .sleeping {
-                sleepingFace
-            } else if isWakeReaction {
-                wakeReactionFace
+                sleepingEyes
+                    .offset(y: -2)
             } else {
-                defaultFace
-            }
-
-            if member.status == .sleeping {
-                Rectangle()
-                    .fill(AppPalette.bedBlanket)
-                    .frame(width: 44, height: 24)
-                    .overlay(
-                        Rectangle()
-                            .stroke(AppPalette.inkPrimary.opacity(0.7), lineWidth: AppStroke.standard)
-                    )
-                    .offset(y: 14)
+                normalEyes
+                    .offset(y: -1)
+                if isWakeReaction {
+                    Circle()
+                        .fill(AppPalette.inkPrimary)
+                        .frame(width: 4, height: 4)
+                        .offset(y: 10)
+                } else {
+                    Capsule()
+                        .fill(AppPalette.inkPrimary)
+                        .frame(width: 10, height: 2)
+                        .offset(y: 10)
+                }
             }
         }
-        .frame(width: 56, height: 56)
+        .frame(width: 62, height: 62)
     }
 
     private var avatarShape: AnyShape {
-        AnyShape(PixelAvatarBodyShape(style: member.avatar.bodyShape))
+        member.avatar.bodyShape.view
     }
 
-    @ViewBuilder
-    private var defaultFace: some View {
-        switch member.avatar.faceStyle {
-        case .cyclops:
-            EyeBall(pupilOffset: CGSize(width: 0, height: 0), size: 26, pupilSize: 13)
-                .offset(y: -8)
-        case .sleepyLid:
-            HStack(spacing: 16) {
-                LiddedEye(pupilX: -1)
-                LiddedEye(pupilX: 1)
-            }
-            .offset(y: 5)
-        case .socket:
-            HStack(spacing: 14) {
-                SocketEye()
-                SocketEye()
-            }
-            .offset(y: -2)
-        case .sideEye:
-            EyeBall(pupilOffset: CGSize(width: 1, height: 0), size: 22, pupilSize: 11)
-                .offset(x: 8, y: -3)
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 18, height: 2)
-                .offset(x: -6, y: 9)
-        case .flat:
-            HStack(spacing: 10) {
-                Rectangle().fill(AppPalette.inkPrimary).frame(width: 10, height: 2)
-                Rectangle().fill(AppPalette.inkPrimary).frame(width: 10, height: 2)
-            }
-            .offset(y: -4)
-
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 14, height: 3)
-                .offset(y: 9)
-        case .tinyPair:
-            HStack(spacing: 9) {
-                EyeBall(pupilOffset: CGSize(width: -1, height: 0), size: 11, pupilSize: 5)
-                EyeBall(pupilOffset: CGSize(width: 1, height: 0), size: 11, pupilSize: 5)
-            }
-            .offset(y: -3)
-        case .wink:
-            HStack(spacing: 10) {
-                Rectangle().fill(AppPalette.inkPrimary).frame(width: 11, height: 2)
-                EyeBall(pupilOffset: .zero, size: 12, pupilSize: 6)
-            }
-            .offset(y: -2)
-        case .mono:
-            EyeBall(pupilOffset: .zero, size: 20, pupilSize: 10)
-                .offset(y: -2)
-        case .surprise:
-            HStack(spacing: 10) {
-                EyeBall(pupilOffset: .zero, size: 12, pupilSize: 6)
-                EyeBall(pupilOffset: .zero, size: 12, pupilSize: 6)
-            }
-            .offset(y: -6)
-
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 5, height: 5)
-                .offset(y: 9)
-        case .softSmile:
-            HStack(spacing: 10) {
-                EyeBall(pupilOffset: CGSize(width: -1, height: 0), size: 10, pupilSize: 5)
-                EyeBall(pupilOffset: CGSize(width: 1, height: 0), size: 10, pupilSize: 5)
-            }
-            .offset(y: -4)
-
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 14, height: 2)
-                .offset(y: 8)
+    private var normalEyes: some View {
+        HStack(spacing: 8) {
+            Circle()
+                .fill(AppPalette.white)
+                .frame(width: 18, height: 18)
+                .overlay(Circle().fill(AppPalette.inkPrimary).frame(width: 12, height: 12))
+            Circle()
+                .fill(AppPalette.white)
+                .frame(width: 18, height: 18)
+                .overlay(Circle().fill(AppPalette.inkPrimary).frame(width: 12, height: 12))
         }
     }
 
-    private var sleepingFace: some View {
+    private var sleepingEyes: some View {
         HStack(spacing: 10) {
-            Rectangle()
+            Capsule()
                 .fill(AppPalette.inkPrimary)
-                .frame(width: 10, height: 2)
-            Rectangle()
+                .frame(width: 12, height: 3)
+            Capsule()
                 .fill(AppPalette.inkPrimary)
-                .frame(width: 10, height: 2)
-        }
-        .offset(y: -4)
-    }
-
-    private var wakeReactionFace: some View {
-        ZStack {
-            HStack(spacing: 12) {
-                EyeBall(pupilOffset: .zero, size: 14, pupilSize: 6.5)
-                EyeBall(pupilOffset: .zero, size: 14, pupilSize: 6.5)
-            }
-            .offset(y: -6)
-
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 8, height: 10)
-                .offset(y: 8)
+                .frame(width: 12, height: 3)
         }
     }
 }
@@ -2990,322 +2795,80 @@ private struct AnyShape: Shape {
     }
 }
 
-private struct EyeBall: View {
-    let pupilOffset: CGSize
-    var size: CGFloat = 12
-    var pupilSize: CGFloat = 6
-
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(AppPalette.white)
-                .frame(width: size, height: size)
-                .overlay(
-                    Rectangle()
-                        .stroke(AppPalette.inkPrimary, lineWidth: 1.2)
-                )
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: pupilSize, height: pupilSize)
-                .offset(pupilOffset)
-        }
-    }
-}
-
-private struct LiddedEye: View {
-    let pupilX: CGFloat
-
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            Rectangle()
-                .fill(AppPalette.white)
-                .frame(width: 16, height: 12)
-                .overlay(
-                    Rectangle()
-                        .stroke(AppPalette.inkPrimary, lineWidth: 1.2)
-                )
-
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 7, height: 7)
-                .offset(x: pupilX, y: -1)
-        }
-    }
-}
-
-private struct SocketEye: View {
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(AppPalette.white)
-                .frame(width: 16, height: 14)
-                .overlay(
-                    Rectangle()
-                        .stroke(AppPalette.inkPrimary, lineWidth: 1.2)
-                )
-            Rectangle()
-                .fill(AppPalette.inkPrimary)
-                .frame(width: 7, height: 7)
-        }
-    }
-}
-
-private struct ArcMouth: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let minX = rect.minX
-        let midX = rect.midX
-        let maxX = rect.maxX
-        let minY = rect.minY
-        let maxY = rect.maxY
-        path.move(to: CGPoint(x: minX, y: minY + (maxY - minY) * 0.65))
-        path.addLine(to: CGPoint(x: midX - 2, y: maxY))
-        path.addLine(to: CGPoint(x: midX + 2, y: maxY))
-        path.addLine(to: CGPoint(x: maxX, y: minY + (maxY - minY) * 0.65))
-        return path
-    }
-}
-
-private struct FlowerBlob: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let radius = min(rect.width, rect.height) * 0.24
-        let centers = [
-            CGPoint(x: rect.midX, y: rect.minY + radius),
-            CGPoint(x: rect.minX + radius, y: rect.midY),
-            CGPoint(x: rect.midX, y: rect.maxY - radius),
-            CGPoint(x: rect.maxX - radius, y: rect.midY)
-        ]
-
-        for center in centers {
-            path.addEllipse(in: CGRect(x: center.x - radius, y: center.y - radius, width: radius * 2, height: radius * 2))
-        }
-        path.addRoundedRect(in: rect.insetBy(dx: radius * 0.9, dy: radius * 0.9), cornerSize: CGSize(width: 8, height: 8))
-        return path
-    }
-}
-
-private struct BeanBlob: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.addRoundedRect(in: rect, cornerSize: CGSize(width: 22, height: 22))
-        path.addEllipse(in: CGRect(x: rect.minX + rect.width * 0.08, y: rect.minY + rect.height * 0.15, width: rect.width * 0.35, height: rect.height * 0.35))
-        return path
-    }
-}
-
-private struct LoftBlob: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let top = rect.minY + rect.height * 0.18
-        path.move(to: CGPoint(x: rect.minX + rect.width * 0.2, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX + rect.width * 0.2, y: top + 8))
-        path.addQuadCurve(
-            to: CGPoint(x: rect.midX, y: top),
-            control: CGPoint(x: rect.minX + rect.width * 0.28, y: top - 7)
-        )
-        path.addQuadCurve(
-            to: CGPoint(x: rect.maxX - rect.width * 0.2, y: top + 8),
-            control: CGPoint(x: rect.maxX - rect.width * 0.28, y: top - 7)
-        )
-        path.addLine(to: CGPoint(x: rect.maxX - rect.width * 0.2, y: rect.maxY))
-        path.closeSubpath()
-        return path
-    }
-}
-
-private struct PebbleBlob: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.addRoundedRect(
-            in: rect.insetBy(dx: rect.width * 0.06, dy: rect.height * 0.04),
-            cornerSize: CGSize(width: rect.width * 0.34, height: rect.height * 0.34)
-        )
-        return path
-    }
-}
-
 private extension AvatarBodyShape {
     var view: AnyShape {
-        AnyShape(PixelAvatarBodyShape(style: self))
+        AnyShape(AvatarSilhouetteShape(style: self))
     }
 }
 
-private struct PixelAvatarBodyShape: Shape {
+private struct AvatarSilhouetteShape: Shape {
     let style: AvatarBodyShape
 
     func path(in rect: CGRect) -> Path {
-        let pattern = patternForStyle(style)
-        let rows = pattern.count
-        let cols = pattern.first?.count ?? 0
-        guard rows > 0, cols > 0 else { return Path() }
-
-        let cellW = rect.width / CGFloat(cols)
-        let cellH = rect.height / CGFloat(rows)
-
-        return Path { path in
-            for (rowIndex, row) in pattern.enumerated() {
-                for (colIndex, bit) in row.enumerated() where bit == "1" {
-                    let x = rect.minX + CGFloat(colIndex) * cellW
-                    let y = rect.minY + CGFloat(rowIndex) * cellH
-                    path.addRect(CGRect(x: x, y: y, width: cellW, height: cellH))
-                }
-            }
-        }
-    }
-
-    private func patternForStyle(_ style: AvatarBodyShape) -> [String] {
         switch style {
-        case .cyclopsPill:
-            return [
-                "00111100",
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "01111110",
-                "00111100"
-            ]
-        case .fluffyFlower:
-            return [
-                "00111100",
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "01111110",
-                "00111100"
-            ]
-        case .domeHalf:
-            return [
-                "00011000",
-                "00111100",
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111"
-            ]
-        case .softStar:
-            return [
-                "00100100",
-                "01111110",
-                "11111111",
-                "01111110",
-                "11111111",
-                "11111111",
-                "01111110",
-                "00100100"
-            ]
-        case .roundedBlock:
-            return [
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "01111110"
-            ]
-        case .bean:
-            return [
-                "01111100",
-                "11111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111110",
-                "01111100"
-            ]
-        case .orb:
-            return [
-                "00111100",
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "01111110",
-                "00111100"
-            ]
-        case .loft:
-            return [
-                "00011000",
-                "00111100",
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111"
-            ]
-        case .pebble:
-            return [
-                "00111110",
-                "01111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "01111111",
-                "00111110"
-            ]
-        case .capsule:
-            return [
-                "00111100",
-                "01111110",
-                "11111111",
-                "11111111",
-                "11111111",
-                "11111111",
-                "01111110",
-                "00111100"
-            ]
+        case .coralCircle:
+            return Circle().path(in: rect)
+        case .archPill:
+            return RoundedRectangle(cornerRadius: rect.width * 0.30, style: .continuous).path(in: rect)
+        case .fourBlob:
+            var path = Path()
+            let r = min(rect.width, rect.height) * 0.30
+            path.addEllipse(in: CGRect(x: rect.midX - r * 1.15, y: rect.minY, width: r * 2, height: r * 2))
+            path.addEllipse(in: CGRect(x: rect.midX - r * 0.85, y: rect.minY, width: r * 2, height: r * 2))
+            path.addEllipse(in: CGRect(x: rect.midX - r * 1.15, y: rect.midY - r * 0.15, width: r * 2, height: r * 2))
+            path.addEllipse(in: CGRect(x: rect.midX - r * 0.85, y: rect.midY - r * 0.15, width: r * 2, height: r * 2))
+            path.addRoundedRect(
+                in: CGRect(x: rect.midX - r * 1.08, y: rect.minY + r * 0.55, width: r * 2.16, height: r * 1.3),
+                cornerSize: CGSize(width: r * 0.9, height: r * 0.9)
+            )
+            return path
+        case .pentagon:
+            var path = Path()
+            path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.maxX - rect.width * 0.10, y: rect.minY + rect.height * 0.40))
+            path.addLine(to: CGPoint(x: rect.maxX - rect.width * 0.22, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.minX + rect.width * 0.22, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.minX + rect.width * 0.10, y: rect.minY + rect.height * 0.40))
+            path.closeSubpath()
+            return path
+        case .roundedSquare:
+            return RoundedRectangle(cornerRadius: rect.width * 0.24, style: .continuous).path(in: rect)
+        case .mintDroplet:
+            var path = Path()
+            path.move(to: CGPoint(x: rect.midX, y: rect.minY))
+            path.addQuadCurve(
+                to: CGPoint(x: rect.maxX - rect.width * 0.10, y: rect.midY),
+                control: CGPoint(x: rect.maxX, y: rect.minY + rect.height * 0.16)
+            )
+            path.addQuadCurve(
+                to: CGPoint(x: rect.midX, y: rect.maxY),
+                control: CGPoint(x: rect.maxX - rect.width * 0.06, y: rect.maxY)
+            )
+            path.addQuadCurve(
+                to: CGPoint(x: rect.minX + rect.width * 0.10, y: rect.midY),
+                control: CGPoint(x: rect.minX + rect.width * 0.06, y: rect.maxY)
+            )
+            path.addQuadCurve(
+                to: CGPoint(x: rect.midX, y: rect.minY),
+                control: CGPoint(x: rect.minX, y: rect.minY + rect.height * 0.16)
+            )
+            path.closeSubpath()
+            return path
+        case .lavenderCloud:
+            var path = Path()
+            let w = rect.width
+            let h = rect.height
+            path.addEllipse(in: CGRect(x: rect.minX + w * 0.03, y: rect.minY + h * 0.30, width: w * 0.42, height: h * 0.44))
+            path.addEllipse(in: CGRect(x: rect.minX + w * 0.28, y: rect.minY + h * 0.15, width: w * 0.42, height: h * 0.48))
+            path.addEllipse(in: CGRect(x: rect.minX + w * 0.55, y: rect.minY + h * 0.32, width: w * 0.40, height: h * 0.42))
+            path.addRoundedRect(
+                in: CGRect(x: rect.minX + w * 0.14, y: rect.minY + h * 0.40, width: w * 0.72, height: h * 0.46),
+                cornerSize: CGSize(width: w * 0.28, height: w * 0.28)
+            )
+            return path
+        case .apricotRoundedRect:
+            return RoundedRectangle(cornerRadius: rect.width * 0.20, style: .continuous).path(in: rect)
         }
-    }
-}
-
-private struct HalfDomeShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let radius = rect.width * 0.5
-        path.addArc(
-            center: CGPoint(x: rect.midX, y: rect.maxY),
-            radius: radius,
-            startAngle: .degrees(180),
-            endAngle: .degrees(0),
-            clockwise: false
-        )
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.closeSubpath()
-        return path
-    }
-}
-
-private struct SoftStarBlob: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let r = min(rect.width, rect.height) * 0.23
-        let points = [
-            CGPoint(x: rect.midX, y: rect.minY + r),
-            CGPoint(x: rect.minX + r * 1.1, y: rect.midY - r * 0.2),
-            CGPoint(x: rect.minX + r * 1.3, y: rect.maxY - r * 1.1),
-            CGPoint(x: rect.midX, y: rect.maxY - r * 0.7),
-            CGPoint(x: rect.maxX - r * 1.2, y: rect.maxY - r * 1.1),
-            CGPoint(x: rect.maxX - r * 1.1, y: rect.midY - r * 0.2)
-        ]
-
-        for p in points {
-            path.addEllipse(in: CGRect(x: p.x - r, y: p.y - r, width: r * 2, height: r * 2))
-        }
-        path.addRoundedRect(in: rect.insetBy(dx: r * 0.95, dy: r * 0.9), cornerSize: CGSize(width: 9, height: 9))
-        return path
     }
 }
 
@@ -3470,120 +3033,215 @@ private struct WakeScheduleFullScreenView: View {
     }
 }
 
-private struct AddMemberSheet: View {
-    @Binding var name: String
-    @Binding var selectedAvatarID: String?
-    let availableAvatars: [AvatarTheme]
+private struct WakeSendOverlay: View {
+    let draft: WakeComposeDraft?
+    @Binding var message: String
+    let onCancel: () -> Void
+    let onSend: () -> Void
+
+    var body: some View {
+        if let draft {
+            ZStack {
+                Color.black.opacity(0.24)
+                    .ignoresSafeArea()
+                    .onTapGesture { onCancel() }
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Send Late Alarm")
+                        .font(AppTypography.pixel(20, weight: .semibold))
+                        .foregroundStyle(AppPalette.inkPrimary)
+
+                    Text("Send a late wake alarm to \(draft.targetTitle)")
+                        .font(AppTypography.pixel(13, weight: .regular))
+                        .foregroundStyle(AppPalette.inkSecondary)
+
+                    TextField("Leave a message (optional)", text: $message)
+                        .font(AppTypography.pixel(14, weight: .regular))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                .fill(AppPalette.white)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                        .stroke(AppPalette.roomBoundary.opacity(0.45), lineWidth: 1.2)
+                                )
+                        )
+
+                    HStack(spacing: 10) {
+                        Button("Cancel", action: onCancel)
+                            .font(AppTypography.pixel(14, weight: .semibold))
+                            .foregroundStyle(AppPalette.inkPrimary)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                    .fill(AppPalette.blockGray)
+                            )
+
+                        Spacer()
+
+                        Button("Send", action: onSend)
+                            .font(AppTypography.pixel(14, weight: .semibold))
+                            .foregroundStyle(AppPalette.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 10)
+                            .background(
+                                RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                    .fill(AppPalette.vibrantOrange)
+                            )
+                    }
+                }
+                .padding(16)
+                .background(
+                    RoundedRectangle(cornerRadius: AppRadius.panel, style: .continuous)
+                        .fill(AppPalette.white)
+                        .shadow(color: Color.black.opacity(0.14), radius: 14, x: 0, y: 8)
+                )
+                .padding(.horizontal, 24)
+            }
+        }
+    }
+}
+
+private struct WorldWakeFullScreenView: View {
+    @Binding var sleepers: [WorldSleeper]
+    @Binding var wakeComposeDraft: WakeComposeDraft?
+    @Binding var wakeComposeMessage: String
+    let onSendWakeDraft: (WakeComposeDraft, String) -> Void
+    let onBack: () -> Void
+
+    private var overdueSleepers: [WorldSleeper] {
+        sleepers.filter { !$0.isAwake && $0.lateMinutes > 0 }
+    }
+
+    var body: some View {
+        ZStack {
+            AppPalette.appBackground.ignoresSafeArea()
+
+            VStack(spacing: 12) {
+                HStack {
+                    Button {
+                        onBack()
+                    } label: {
+                        Label("Back", systemImage: "chevron.left")
+                            .font(AppTypography.pixel(14, weight: .semibold))
+                            .foregroundStyle(AppPalette.inkPrimary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 9)
+                            .background(
+                                Capsule()
+                                    .fill(AppPalette.white)
+                            )
+                    }
+                    .buttonStyle(.plain)
+
+                    Spacer()
+                    Text("World Alarm")
+                        .font(AppTypography.pixel(24, weight: .semibold))
+                        .foregroundStyle(AppPalette.inkPrimary)
+                    Spacer()
+                    Color.clear.frame(width: 66, height: 1)
+                }
+
+                if overdueSleepers.isEmpty {
+                    Spacer()
+                    Text("No overdue sleepers right now")
+                        .font(AppTypography.pixel(14, weight: .regular))
+                        .foregroundStyle(AppPalette.inkSecondary)
+                    Spacer()
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 10) {
+                            ForEach(overdueSleepers) { sleeper in
+                                HStack(spacing: 10) {
+                                    Circle()
+                                        .fill(Color(hex: UInt(sleeper.avatarHex)))
+                                        .frame(width: 22, height: 22)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(sleeper.name)
+                                            .font(AppTypography.pixel(14, weight: .semibold))
+                                            .foregroundStyle(AppPalette.inkPrimary)
+                                        Text(sleeper.country)
+                                            .font(AppTypography.pixel(12, weight: .regular))
+                                            .foregroundStyle(AppPalette.inkSecondary)
+                                    }
+                                    Spacer()
+                                    Text("Late \(sleeper.lateMinutes)m")
+                                        .font(AppTypography.pixel(12, weight: .regular))
+                                        .foregroundStyle(AppPalette.inkSecondary)
+                                    Button {
+                                        wakeComposeMessage = ""
+                                        wakeComposeDraft = WakeComposeDraft(
+                                            target: .world(worldID: sleeper.id),
+                                            targetTitle: "\(sleeper.name) (\(sleeper.country))"
+                                        )
+                                    } label: {
+                                        Text("Awake")
+                                            .font(AppTypography.pixel(12, weight: .semibold))
+                                            .foregroundStyle(AppPalette.white)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 8)
+                                            .background(
+                                                Capsule().fill(AppPalette.vibrantOrange)
+                                            )
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 10)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                        .fill(AppPalette.white)
+                                )
+                            }
+                        }
+                        .padding(.bottom, 24)
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 10)
+
+            WakeSendOverlay(
+                draft: wakeComposeDraft,
+                message: $wakeComposeMessage,
+                onCancel: {
+                    wakeComposeDraft = nil
+                    wakeComposeMessage = ""
+                },
+                onSend: {
+                    guard let draft = wakeComposeDraft else { return }
+                    onSendWakeDraft(draft, wakeComposeMessage)
+                    wakeComposeDraft = nil
+                    wakeComposeMessage = ""
+                }
+            )
+        }
+    }
+}
+
+private struct MemberEditorSheet: View {
+    let mode: MemberEditorMode
+    @Binding var draft: MemberEditorDraft
+    let shapeOptions: [AvatarBodyShape]
+    let colorOptions: [Int]
     let onCancel: () -> Void
     let onConfirm: () -> Void
 
     private var canConfirm: Bool {
-        !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty && selectedAvatarID != nil
+        !draft.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            HStack {
-                Text("Add Family Member")
-                    .font(AppTypography.pixel(20, weight: .black))
-                    .foregroundStyle(AppPalette.inkPrimary)
-                Spacer()
-                Text("styles \(availableAvatars.count)")
-                    .font(AppTypography.pixel(11, weight: .semibold))
-                    .foregroundStyle(AppPalette.inkMuted)
-            }
-
-            TextField("Name", text: $name)
-                .font(AppTypography.pixel(15, weight: .semibold))
-                .padding(.horizontal, 12)
-                .padding(.vertical, 10)
-                .background(
-                    RoundedRectangle(cornerRadius: AppRadius.control)
-                        .fill(AppPalette.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppRadius.control)
-                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                        )
-                )
-
-            Text("Choose an avatar")
-                .font(AppTypography.pixel(13, weight: .black))
-                .foregroundStyle(AppPalette.inkSecondary)
-
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 5), spacing: 8) {
-                ForEach(availableAvatars, id: \.id) { avatar in
-                    AvatarSelectionCell(
-                        avatar: avatar,
-                        isSelected: selectedAvatarID == avatar.id
-                    )
-                    .onTapGesture {
-                        selectedAvatarID = avatar.id
-                    }
-                }
-            }
-
-            Spacer(minLength: 8)
-
-            HStack {
-                Button("Cancel") {
-                    onCancel()
-                }
-                .font(AppTypography.pixel(14, weight: .semibold))
-                .foregroundStyle(AppPalette.inkPrimary)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 10)
-                .background(
-                    RoundedRectangle(cornerRadius: AppRadius.control)
-                        .fill(AppPalette.blockYellow)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppRadius.control)
-                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                        )
-                )
-
-                Spacer()
-
-                Button("Add") {
-                    onConfirm()
-                }
-                .font(AppTypography.pixel(14, weight: .black))
-                .foregroundStyle(AppPalette.inkPrimary)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(
-                    RoundedRectangle(cornerRadius: AppRadius.control)
-                        .fill(canConfirm ? AppPalette.electricBlue : AppPalette.inkMuted)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppRadius.control)
-                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                        )
-                )
-                .disabled(!canConfirm)
-            }
-        }
-        .padding(16)
-        .presentationBackground(AppPalette.appBackground)
-    }
-}
-
-private struct AvatarEditorSheet: View {
-    @Binding var memberName: String
-    @Binding var selectedShape: AvatarBodyShape
-    @Binding var selectedHex: Int
-    let shapeOptions: [AvatarBodyShape]
-    let colorOptions: [Int]
-    let onCancel: () -> Void
-    let onSave: () -> Void
 
     private var previewMember: FamilyMember {
         FamilyMember(
             id: UUID(),
-            name: memberName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "You" : memberName,
+            name: draft.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? "Preview" : draft.name,
             avatar: AvatarTheme(
                 id: "preview",
-                fillHex: selectedHex,
-                bodyShape: selectedShape,
-                faceStyle: .softSmile
+                fillHex: draft.colorHex,
+                bodyShape: draft.shape,
+                faceStyle: .classic
             ),
             status: .awake,
             wakeSchedule: WakeSchedule(hour: 8, minute: 0),
@@ -3595,6 +3253,10 @@ private struct AvatarEditorSheet: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
+            Text(mode.title)
+                .font(AppTypography.pixel(20, weight: .semibold))
+                .foregroundStyle(AppPalette.inkPrimary)
+
             HStack(spacing: 10) {
                 StickerAvatar(member: previewMember, isWakeReaction: false)
                     .frame(width: 72, height: 72)
@@ -3607,7 +3269,7 @@ private struct AvatarEditorSheet: View {
                             )
                     )
 
-                TextField("Name", text: $memberName)
+                TextField("Name", text: $draft.name)
                     .font(AppTypography.pixel(16, weight: .semibold))
                     .foregroundStyle(AppPalette.inkPrimary)
                     .padding(.horizontal, 12)
@@ -3630,10 +3292,10 @@ private struct AvatarEditorSheet: View {
                 ForEach(shapeOptions, id: \.self) { shape in
                     ShapeOptionCell(
                         shape: shape,
-                        colorHex: selectedHex,
-                        isSelected: selectedShape == shape
+                        colorHex: draft.colorHex,
+                        isSelected: draft.shape == shape
                     )
-                    .onTapGesture { selectedShape = shape }
+                    .onTapGesture { draft.shape = shape }
                 }
             }
 
@@ -3648,9 +3310,9 @@ private struct AvatarEditorSheet: View {
                         .frame(width: 30, height: 30)
                         .overlay(
                             Circle()
-                                .stroke(AppPalette.inkPrimary, lineWidth: selectedHex == hex ? 2.4 : 1.2)
+                                .stroke(AppPalette.inkPrimary, lineWidth: draft.colorHex == hex ? 2.4 : 1.2)
                         )
-                        .onTapGesture { selectedHex = hex }
+                        .onTapGesture { draft.colorHex = hex }
                 }
             }
 
@@ -3673,7 +3335,7 @@ private struct AvatarEditorSheet: View {
 
                 Spacer()
 
-                Button("Save") { onSave() }
+                Button(mode.confirmTitle) { onConfirm() }
                     .font(AppTypography.pixel(14, weight: .bold))
                     .foregroundStyle(AppPalette.inkPrimary)
                     .padding(.horizontal, 16)
@@ -3686,6 +3348,8 @@ private struct AvatarEditorSheet: View {
                                     .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
                             )
                     )
+                    .disabled(!canConfirm)
+                    .opacity(canConfirm ? 1 : 0.5)
             }
         }
         .padding(16)
@@ -3779,58 +3443,45 @@ private struct AvatarTheme {
 }
 
 private enum AvatarBodyShape: CaseIterable {
-    case cyclopsPill
-    case fluffyFlower
-    case domeHalf
-    case softStar
-    case roundedBlock
-    case bean
-    case orb
-    case loft
-    case pebble
-    case capsule
+    case coralCircle
+    case archPill
+    case fourBlob
+    case pentagon
+    case roundedSquare
+    case mintDroplet
+    case lavenderCloud
+    case apricotRoundedRect
 }
 
 private enum AvatarFaceStyle {
-    case cyclops
-    case sleepyLid
-    case socket
-    case sideEye
-    case flat
-    case tinyPair
-    case wink
-    case mono
-    case surprise
-    case softSmile
+    case classic
 }
 
 private enum FamilySample {
-    static let maxMembers = 99
+    static let maxMembers = 7
 
     static let editableColorHexes: [Int] = [
-        0xC84C3A, // terracotta
-        0xD6A21E, // mustard
-        0x3F8A8C, // dusty teal
-        0xE7C6BC, // soft blush
-        0xB4644E,
-        0xC5A058,
-        0x5E8F8A,
-        0xD9B5A9,
-        0x8C7F6E,
-        0xA95C55
+        0x42B9BB,
+        0xCC95AE,
+        0xEE6C4D,
+        0xE2AF26,
+        0x7692CC,
+        0x6EC9B1,
+        0xB8AFE0,
+        0xE8B27B,
+        0x9CB9D9,
+        0xAFCDBA
     ]
 
     static let avatarCatalog: [AvatarTheme] = [
-        AvatarTheme(id: "a1", fillHex: 0xC84C3A, bodyShape: .cyclopsPill, faceStyle: .cyclops),
-        AvatarTheme(id: "a2", fillHex: 0xD6A21E, bodyShape: .fluffyFlower, faceStyle: .sleepyLid),
-        AvatarTheme(id: "a3", fillHex: 0x3F8A8C, bodyShape: .domeHalf, faceStyle: .socket),
-        AvatarTheme(id: "a4", fillHex: 0xE7C6BC, bodyShape: .softStar, faceStyle: .sideEye),
-        AvatarTheme(id: "a5", fillHex: 0xB4644E, bodyShape: .roundedBlock, faceStyle: .flat),
-        AvatarTheme(id: "a6", fillHex: 0x5E8F8A, bodyShape: .bean, faceStyle: .tinyPair),
-        AvatarTheme(id: "a7", fillHex: 0xC5A058, bodyShape: .orb, faceStyle: .wink),
-        AvatarTheme(id: "a8", fillHex: 0xD9B5A9, bodyShape: .loft, faceStyle: .mono),
-        AvatarTheme(id: "a9", fillHex: 0x8C7F6E, bodyShape: .pebble, faceStyle: .surprise),
-        AvatarTheme(id: "a10", fillHex: 0xA95C55, bodyShape: .capsule, faceStyle: .softSmile)
+        AvatarTheme(id: "shape-teal-square", fillHex: 0x42B9BB, bodyShape: .roundedSquare, faceStyle: .classic),
+        AvatarTheme(id: "shape-pink-pentagon", fillHex: 0xCC95AE, bodyShape: .pentagon, faceStyle: .classic),
+        AvatarTheme(id: "shape-coral-circle", fillHex: 0xEE6C4D, bodyShape: .coralCircle, faceStyle: .classic),
+        AvatarTheme(id: "shape-yellow-four", fillHex: 0xE2AF26, bodyShape: .fourBlob, faceStyle: .classic),
+        AvatarTheme(id: "shape-blue-arch", fillHex: 0x7692CC, bodyShape: .archPill, faceStyle: .classic),
+        AvatarTheme(id: "shape-mint-drop", fillHex: 0x6EC9B1, bodyShape: .mintDroplet, faceStyle: .classic),
+        AvatarTheme(id: "shape-lav-cloud", fillHex: 0xB8AFE0, bodyShape: .lavenderCloud, faceStyle: .classic),
+        AvatarTheme(id: "shape-apricot-rect", fillHex: 0xE8B27B, bodyShape: .apricotRoundedRect, faceStyle: .classic)
     ]
 
     static func avatarTheme(with id: String) -> AvatarTheme {
@@ -3840,43 +3491,53 @@ private enum FamilySample {
     static let members: [FamilyMember] = [
         FamilyMember(
             id: UUID(),
-            name: "You",
-            avatar: avatarTheme(with: "a1"),
+            name: "Laxxi",
+            avatar: avatarTheme(with: "shape-teal-square"),
             status: .awake,
             wakeSchedule: WakeSchedule(hour: 7, minute: 30),
-            position: CGPoint(x: 0.26, y: 0.48),
+            position: CGPoint(x: 0.16, y: 0.50),
             isMe: true,
             activity: "Walking"
         ),
         FamilyMember(
             id: UUID(),
-            name: "Koi",
-            avatar: avatarTheme(with: "a2"),
-            status: .sleeping,
+            name: "Ruby",
+            avatar: avatarTheme(with: "shape-pink-pentagon"),
+            status: .awake,
             wakeSchedule: WakeSchedule(hour: 7, minute: 45),
-            position: CGPoint(x: 0.5, y: 0.5),
+            position: CGPoint(x: 0.24, y: 0.62),
             isMe: false,
-            activity: "Sleeping"
+            activity: "Walking"
         ),
         FamilyMember(
             id: UUID(),
-            name: "Yara",
-            avatar: avatarTheme(with: "a3"),
+            name: "Will",
+            avatar: avatarTheme(with: "shape-coral-circle"),
             status: .awake,
             wakeSchedule: WakeSchedule(hour: 8, minute: 20),
-            position: CGPoint(x: 0.74, y: 0.43),
+            position: CGPoint(x: 0.61, y: 0.72),
             isMe: false,
-            activity: "Stretching"
+            activity: "Walking"
         ),
         FamilyMember(
             id: UUID(),
-            name: "Kai",
-            avatar: avatarTheme(with: "a4"),
-            status: .sleeping,
+            name: "Mason",
+            avatar: avatarTheme(with: "shape-yellow-four"),
+            status: .awake,
             wakeSchedule: WakeSchedule(hour: 9, minute: 30),
-            position: CGPoint(x: 0.4, y: 0.7),
+            position: CGPoint(x: 0.46, y: 0.80),
             isMe: false,
-            activity: "Sleeping"
+            activity: "Walking"
+        ),
+        FamilyMember(
+            id: UUID(),
+            name: "Eric",
+            avatar: avatarTheme(with: "shape-blue-arch"),
+            status: .awake,
+            wakeSchedule: WakeSchedule(hour: 8, minute: 40),
+            position: CGPoint(x: 0.43, y: 0.94),
+            isMe: false,
+            activity: "Walking"
         )
     ]
 
@@ -4003,30 +3664,30 @@ private struct RankingView: View {
 
     private let sections: [RankSection] = [
         RankSection(
-            title: "遲睡最多次",
+            title: "Most Late Wake-ups",
             tint: AppPalette.blockGray,
             rows: [
-                RankRow(rank: 1, name: "Koi", score: "12 次"),
-                RankRow(rank: 2, name: "Kai", score: "9 次"),
-                RankRow(rank: 3, name: "Alex", score: "7 次")
+                RankRow(rank: 1, name: "Koi", score: "12 times"),
+                RankRow(rank: 2, name: "Kai", score: "9 times"),
+                RankRow(rank: 3, name: "Alex", score: "7 times")
             ]
         ),
         RankSection(
-            title: "睡最久",
+            title: "Longest Sleep",
             tint: AppPalette.blockGray,
             rows: [
-                RankRow(rank: 1, name: "Kai", score: "平均 9h 42m"),
-                RankRow(rank: 2, name: "Koi", score: "平均 8h 55m"),
-                RankRow(rank: 3, name: "Yara", score: "平均 8h 20m")
+                RankRow(rank: 1, name: "Kai", score: "Avg 9h 42m"),
+                RankRow(rank: 2, name: "Koi", score: "Avg 8h 55m"),
+                RankRow(rank: 3, name: "Yara", score: "Avg 8h 20m")
             ]
         ),
         RankSection(
-            title: "作息最規律",
+            title: "Most Consistent Schedule",
             tint: AppPalette.blockGray,
             rows: [
-                RankRow(rank: 1, name: "You", score: "連續 16 天準時"),
-                RankRow(rank: 2, name: "Yara", score: "連續 12 天準時"),
-                RankRow(rank: 3, name: "Alex", score: "連續 9 天準時")
+                RankRow(rank: 1, name: "You", score: "16-day streak"),
+                RankRow(rank: 2, name: "Yara", score: "12-day streak"),
+                RankRow(rank: 3, name: "Alex", score: "9-day streak")
             ]
         )
     ]
@@ -4257,6 +3918,7 @@ private struct AlarmSettingsView: View {
         .sheet(item: $editingAlarm) { alarm in
             AlarmEditView(
                 draft: alarm,
+                worldConsent: $alarmStore.worldModeConsentEnabled,
                 onSave: { edited in
                     alarmStore.upsert(edited)
                 },
@@ -4378,6 +4040,7 @@ private struct AlarmListRow: View {
 private struct AlarmEditView: View {
     @Environment(\.dismiss) private var dismiss
     @State var draft: AlarmEntry
+    @Binding var worldConsent: Bool
     let onSave: (AlarmEntry) -> Void
     let onDelete: (() -> Void)?
 
@@ -4493,6 +4156,20 @@ private struct AlarmEditView: View {
                                 }
                             }
                         }
+
+                        dividerLine
+
+                        rowContainer {
+                            HStack {
+                                Text("World Mode Consent")
+                                    .font(AppTypography.pixel(19, weight: .semibold))
+                                    .foregroundStyle(AppPalette.inkPrimary)
+                                Spacer()
+                                Toggle("", isOn: $worldConsent)
+                                    .labelsHidden()
+                                    .tint(AppPalette.punchGreen)
+                            }
+                        }
                     }
                     .background(
                         RoundedRectangle(cornerRadius: AppRadius.panel)
@@ -4605,11 +4282,6 @@ private struct IOSWheelTimePicker: View {
             let pickerWidth = max((proxy.size.width - 56) / 2, 118)
 
             ZStack {
-                RoundedRectangle(cornerRadius: 14, style: .continuous)
-                    .fill(AppPalette.inkPrimary.opacity(0.08))
-                    .frame(height: 42)
-                    .padding(.horizontal, 12)
-
                 HStack(spacing: 0) {
                     Picker("Hour", selection: $hour) {
                         ForEach(0..<24, id: \.self) { value in
