@@ -45,8 +45,8 @@ private enum AppRadius {
 
 private enum AppStroke {
     static let subtle: CGFloat = 1.4
-    static let standard: CGFloat = 2.8
-    static let emphasis: CGFloat = 2.8
+    static let standard: CGFloat = 3.4
+    static let emphasis: CGFloat = 3.4
 }
 
 private enum AppPixel {
@@ -54,52 +54,55 @@ private enum AppPixel {
 }
 
 private enum AppPalette {
-    static let appBackground = Color(hex: 0xEFEFF1)
-    static let vibrantOrange = Color(hex: 0xC9833A)
-    static let electricBlue = Color(hex: 0xB9C8E8)
-    static let hotPink = Color(hex: 0xD09AB6)
-    static let brightYellow = Color(hex: 0xE2B022)
-    static let punchGreen = Color(hex: 0x45BFC0)
-    static let blockOrange = Color(hex: 0xEC6E4E)
-    static let blockYellow = Color(hex: 0xE2B022)
-    static let blockPink = Color(hex: 0xC992AE)
-    static let blockGray = Color(hex: 0xD9D9DD)
-    static let blockGreen = Color(hex: 0x4E9E7D)
+    static let appBackground = Color(hex: 0xF5EDDF)
+    static let fieldBackground = Color(hex: 0xF5EDDF)
+    static let grass = Color(hex: 0x9EDC2E)
+    static let vibrantOrange = Color(hex: 0xD59048)
+    static let electricBlue = Color(hex: 0xCAD6F0)
+    static let hotPink = Color(hex: 0xDAA9C3)
+    static let brightYellow = Color(hex: 0xEEBC30)
+    static let punchGreen = Color(hex: 0x53CBCC)
+    static let blockOrange = Color(hex: 0xF57D5E)
+    static let blockYellow = Color(hex: 0xEEBC30)
+    static let blockPink = Color(hex: 0xD4A1BB)
+    static let blockGray = Color(hex: 0xE6E6E9)
+    static let blockGreen = Color(hex: 0x54B18B)
     static let white = Color(hex: 0xFFFFFF)
-    static let inkPrimary = Color(hex: 0x1F1F1F)
-    static let inkSecondary = Color(hex: 0x646464)
-    static let inkMuted = Color(hex: 0x8D8D8D)
+    static let inkPrimary = Color(hex: 0x2C2C2C)
+    static let inkSecondary = Color(hex: 0x717171)
+    static let inkMuted = Color(hex: 0x9A9A9A)
     static let accentPrimary = vibrantOrange
     static let accentSecondary = electricBlue
     static let accentBlue = electricBlue
     static let accentYellow = brightYellow
-    static let flatShadow = Color(hex: 0xAEA89C).opacity(0.55)
+    static let flatShadow = Color(hex: 0xBAB5A9).opacity(0.55)
 
-    static let roomBoundary = Color(hex: 0x8D8D8D)
-    static let roomWall = Color(hex: 0xE7E3DC)
-    static let roomFloor = Color(hex: 0xE7E3DC)
-    static let floorWashA = Color(hex: 0xE7E3DC)
-    static let floorWashB = Color(hex: 0xE2E0DD)
-    static let floorWashC = Color(hex: 0xECE9E3)
-    static let roomTeal = Color(hex: 0x45BFC0)
-    static let roomSage = Color(hex: 0xA7CFAF)
-    static let roomMustard = Color(hex: 0xE2B022)
-    static let roomCoral = Color(hex: 0xF17857)
-    static let roomMistBlue = Color(hex: 0x9BB6D9)
-    static let roomLavender = Color(hex: 0xC79AB4)
+    static let roomBoundary = Color(hex: 0x9A9A9A)
+    static let roomWall = Color(hex: 0xEEEDEB)
+    static let roomFloor = Color(hex: 0xF2EFEB)
+    static let floorWashA = Color(hex: 0xF2EFEB)
+    static let floorWashB = Color(hex: 0xEDEAE5)
+    static let floorWashC = Color(hex: 0xF3F1ED)
+    static let roomTeal = Color(hex: 0x53CBCC)
+    static let roomSage = Color(hex: 0xB6DABD)
+    static let roomMustard = Color(hex: 0xEEBC30)
+    static let roomCoral = Color(hex: 0xFA8768)
+    static let roomMistBlue = Color(hex: 0xABC3E3)
+    static let roomLavender = Color(hex: 0xD4A1BB)
 
-    static let boardWood = Color(hex: 0xD4BA82)
-    static let boardPaper = Color(hex: 0xF4EEE2)
-    static let bedBlanket = Color(hex: 0xC9D2E3)
-    static let bedHeadboard = Color(hex: 0xA7B4CC)
-    static let tvFrame = Color(hex: 0xA1A4AB)
-    static let tvScreen = Color(hex: 0xF4F4F2)
-    static let alarmShell = Color(hex: 0xDCDCDC)
+    static let boardWood = Color(hex: 0xDEC691)
+    static let boardPaper = Color(hex: 0xFBF9F4)
+    static let bedBlanket = Color(hex: 0xB6D0E7)
+    static let bedHeadboard = Color(hex: 0xBFC3CA)
+    static let bedShell = Color(hex: 0xE2E4E8)
+    static let tvFrame = Color(hex: 0xAEB1B7)
+    static let tvScreen = Color(hex: 0xFFFFFF)
+    static let alarmShell = Color(hex: 0xE9E9E9)
 
-    static let statusAwake = Color(hex: 0xDDE8E2)
-    static let statusSleep = Color(hex: 0xE7E3DD)
-    static let statusLate = Color(hex: 0xEEDBD0)
-    static let tabBarBackground = Color(hex: 0x0F0F0F)
+    static let statusAwake = Color(hex: 0xECF3EF)
+    static let statusSleep = Color(hex: 0xF2EFEB)
+    static let statusLate = Color(hex: 0xF6E9E2)
+    static let tabBarBackground = Color(hex: 0x1C1C1C)
 }
 
 private enum AppTab: String, CaseIterable {
@@ -125,36 +128,37 @@ private struct BottomTabBar: View {
     @Binding var selected: AppTab
 
     var body: some View {
-        VStack(spacing: 0) {
-            Rectangle()
-                .fill(AppPalette.white.opacity(0.15))
-                .frame(height: 1)
-
-            HStack(spacing: 0) {
-                ForEach(AppTab.allCases, id: \.rawValue) { tab in
-                    Button {
-                        selected = tab
-                    } label: {
-                        VStack(spacing: 4) {
-                            Image(systemName: tab.icon)
-                                .font(AppTypography.pixel(28, weight: .semibold))
-                            Text(tab.title)
-                                .font(AppTypography.pixel(12, weight: .semibold))
-                        }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 64)
-                        .foregroundStyle(
-                            selected == tab
-                                ? AppPalette.vibrantOrange
-                                : AppPalette.white.opacity(0.94)
-                        )
+        HStack(spacing: 0) {
+            ForEach(AppTab.allCases, id: \.rawValue) { tab in
+                Button {
+                    selected = tab
+                } label: {
+                    VStack(spacing: 2) {
+                        Image(systemName: tab.icon)
+                            .font(AppTypography.pixel(19, weight: .semibold))
+                        Text(tab.title)
+                            .font(AppTypography.pixel(10, weight: .semibold))
                     }
-                    .buttonStyle(.plain)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 44)
+                    .foregroundStyle(
+                        selected == tab
+                            ? AppPalette.vibrantOrange
+                            : AppPalette.inkSecondary
+                    )
                 }
+                .buttonStyle(.plain)
             }
-            .padding(.bottom, 8)
         }
-        .background(AppPalette.tabBarBackground.ignoresSafeArea(edges: .bottom))
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(
+            Capsule(style: .continuous)
+                .fill(AppPalette.white)
+                .shadow(color: AppPalette.flatShadow.opacity(0.18), radius: 6, x: 0, y: 4)
+        )
+        .padding(.horizontal, 48)
+        .padding(.bottom, 8)
     }
 }
 
@@ -239,6 +243,33 @@ private struct PaperGrainOverlay: View {
             }
         }
         .blendMode(.multiply)
+        .allowsHitTesting(false)
+    }
+}
+
+private struct GrassPatternLayer: View {
+    var body: some View {
+        GeometryReader { proxy in
+            let points: [CGPoint] = [
+                CGPoint(x: 0.14, y: 0.08), CGPoint(x: 0.30, y: 0.10), CGPoint(x: 0.52, y: 0.11),
+                CGPoint(x: 0.73, y: 0.09), CGPoint(x: 0.88, y: 0.07), CGPoint(x: 0.92, y: 0.20),
+                CGPoint(x: 0.06, y: 0.31), CGPoint(x: 0.18, y: 0.44), CGPoint(x: 0.92, y: 0.48),
+                CGPoint(x: 0.30, y: 0.58), CGPoint(x: 0.08, y: 0.66), CGPoint(x: 0.26, y: 0.74),
+                CGPoint(x: 0.88, y: 0.78), CGPoint(x: 0.16, y: 0.86), CGPoint(x: 0.58, y: 0.88),
+                CGPoint(x: 0.84, y: 0.93), CGPoint(x: 0.12, y: 0.95), CGPoint(x: 0.44, y: 0.96)
+            ]
+            ZStack {
+                ForEach(Array(points.enumerated()), id: \.offset) { _, point in
+                    HStack(spacing: 4) {
+                        Capsule().fill(AppPalette.grass)
+                        Capsule().fill(AppPalette.grass)
+                        Capsule().fill(AppPalette.grass)
+                    }
+                    .frame(width: 30, height: 14)
+                    .position(x: proxy.size.width * point.x, y: proxy.size.height * point.y)
+                }
+            }
+        }
         .allowsHitTesting(false)
     }
 }
@@ -423,15 +454,16 @@ private struct FamilyView: View {
     @State private var memberSlotByID: [UUID: Int] = [:]
     @State private var movementTokenByID: [UUID: UUID] = [:]
     @State private var lastWanderTargetByID: [UUID: CGPoint] = [:]
-    @State private var mapZoom: CGFloat = 1.12
+    @State private var didSeedDemoScenario = false
+    @State private var mapZoom: CGFloat = 1.0
     @State private var mapOffset: CGSize = .zero
     @GestureState private var mapDrag: CGSize = .zero
     @GestureState private var mapPinch: CGFloat = 1
 
     private let ticker = Timer.publish(every: 0.8, on: .main, in: .common).autoconnect()
-    private let minMapZoom: CGFloat = 0.7
+    private let minMapZoom: CGFloat = 0.75
     private let maxMapZoom: CGFloat = 2.5
-    private let defaultMapZoom: CGFloat = 1.12
+    private let defaultMapZoom: CGFloat = 1.38
 
     private var floorLayout: FloorLayout {
         buildFloorLayout(memberCount: max(members.count, 4))
@@ -506,6 +538,10 @@ private struct FamilyView: View {
                         zoom: liveZoom
                     )
                     ZStack {
+                        Rectangle()
+                            .fill(AppPalette.fieldBackground)
+                        GrassPatternLayer()
+
                         ZStack {
                             RoomBackground(
                                 layout: layout
@@ -516,16 +552,22 @@ private struct FamilyView: View {
                                 awakeCount: awakeCount,
                                 sleepingCount: sleepingCount,
                                 lateCount: lateCount,
-                                onBoardTap: { showRankingScreen = true },
-                                onAlarmTap: { showWakeScheduleScreen = true },
-                                onWorldAlarmTap: { showWorldAlarmScreen = true }
+                                onBoardTap: {
+                                    handleFurnitureTap(.bulletin, anchor: layout.furniture.bulletin)
+                                },
+                                onAlarmTap: {
+                                    handleFurnitureTap(.alarm, anchor: layout.furniture.alarm)
+                                },
+                                onWorldAlarmTap: {
+                                    handleFurnitureTap(.worldAlarm, anchor: layout.furniture.worldAlarm)
+                                }
                             )
 
                             ForEach(members) { member in
                                 if let slot = bedSlot(for: member.id) {
                                     BedSlotView(
                                         isSleeping: member.status == .sleeping,
-                                        tint: bedTint(for: slot.id)
+                                        orientation: slot.bedOrientation
                                     )
                                         .position(mapPoint(slot.bedPoint, in: worldSize))
                                 }
@@ -571,7 +613,7 @@ private struct FamilyView: View {
             }
             .padding(.horizontal, 14)
             .padding(.top, 12)
-            .padding(.bottom, 92)
+            .padding(.bottom, 76)
 
             if let wakeBanner {
                 Text(wakeBanner)
@@ -587,7 +629,7 @@ private struct FamilyView: View {
                                     .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
                             )
                     )
-                    .padding(.bottom, 106)
+                    .padding(.bottom, 88)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
@@ -595,6 +637,10 @@ private struct FamilyView: View {
             mapZoom = defaultMapZoom // FIX 2 keep default centered scale on open
             mapOffset = .zero // FIX 2 prevent stale drag offset on reopen
             ensureMemberSlots()
+            if !didSeedDemoScenario {
+                configureDemoScenario()
+                didSeedDemoScenario = true
+            }
             placeSleepersOnBeds()
             now = Date()
             wanderAwakeMembers()
@@ -659,15 +705,13 @@ private struct FamilyView: View {
                 message: $wakeComposeMessage,
                 onCancel: {
                     withAnimation(.easeOut(duration: 0.2)) {
-                        wakeComposeDraft = nil
-                        wakeComposeMessage = ""
+                        resetComposeStateAfterDismiss()
                     }
                 },
                 onSend: {
                     guard let draft = wakeComposeDraft else { return }
                     sendWakeDraft(draft: draft, message: wakeComposeMessage)
-                    wakeComposeDraft = nil
-                    wakeComposeMessage = ""
+                    resetComposeStateAfterDismiss()
                 }
             )
         )
@@ -693,21 +737,6 @@ private struct FamilyView: View {
             return CGPoint(x: bedPoint.x, y: bedPoint.y + 0.012)
         }
         return member.position
-    }
-
-    private func bedTint(for slotID: Int) -> Color {
-        let palette: [Color] = [
-            AppPalette.blockYellow,
-            AppPalette.blockOrange,
-            AppPalette.blockPink,
-            AppPalette.roomTeal,
-            AppPalette.roomMistBlue,
-            AppPalette.roomSage,
-            AppPalette.roomLavender,
-            AppPalette.blockYellow,
-            AppPalette.blockOrange
-        ]
-        return palette[slotID % palette.count]
     }
 
     private func submitMemberEditor() {
@@ -745,7 +774,7 @@ private struct FamilyView: View {
             if let newIndex = members.firstIndex(where: { $0.id == newMember.id }),
                let slot = bedSlot(for: newMember.id) {
                 withAnimation(.easeInOut(duration: 1.5)) {
-                    members[newIndex].position = randomRoamPoint(in: slot)
+                    members[newIndex].position = randomRoamPoint(in: slot, excluding: newMember.id)
                     members[newIndex].activity = "Walking"
                 }
                 startWanderIfIdle(memberID: newMember.id)
@@ -776,20 +805,177 @@ private struct FamilyView: View {
             clearBannerLater()
             return
         }
-        wakeComposeMessage = ""
-        withAnimation(.easeInOut(duration: 0.2)) {
-            wakeComposeDraft = WakeComposeDraft(
-                target: .family(memberID: memberID),
-                targetTitle: members[targetIndex].name
-            )
+
+        if !isOverdue(members[targetIndex]) {
+            wakeBanner = "\(members[targetIndex].name) is not overdue yet."
+            clearBannerLater()
+            return
+        }
+
+        guard let meIndex = members.firstIndex(where: { $0.isMe }) else { return }
+        guard members[meIndex].status == .awake else {
+            wakeBanner = "You need to wake up first."
+            clearBannerLater()
+            return
+        }
+        guard wakeMission == nil, wakeComposeDraft == nil else { return }
+        guard let targetSlot = bedSlot(for: memberID) else { return }
+
+        let meID = members[meIndex].id
+        let meCurrent = members[meIndex].position
+        let meRoom = roomContaining(meCurrent)
+        let targetRoom = roomForMember(memberID)
+        let startPoint = meRoom == nil
+            ? clampedToCommon(meCurrent, inset: 0.10)
+            : clampedToRoom(meCurrent, room: meRoom!.rect, inset: 0.10)
+        let horizontalOffset: CGFloat = targetSlot.isLeftColumn ? 0.12 : -0.12
+        let approachPoint = clampedToRoom(
+            CGPoint(
+                x: targetSlot.bedPoint.x + horizontalOffset,
+                y: targetSlot.bedPoint.y + 0.05
+            ),
+            room: targetSlot.roomRect,
+            inset: 0.12
+        )
+        let approachRoute = routeBetween(
+            start: startPoint,
+            startRoom: meRoom,
+            end: approachPoint,
+            endRoom: targetRoom
+        )
+
+        moveMember(
+            memberID: meID,
+            along: approachRoute,
+            movingActivity: "Walking",
+            speedPerSecond: 0.23
+        ) {
+            guard let refreshedTarget = members.first(where: { $0.id == memberID }) else { return }
+            guard refreshedTarget.status == .sleeping, isOverdue(refreshedTarget) else {
+                wakeBanner = "\(refreshedTarget.name) is already handled."
+                clearBannerLater()
+                return
+            }
+            wakeComposeMessage = ""
+            withAnimation(.easeInOut(duration: 0.2)) {
+                wakeComposeDraft = WakeComposeDraft(
+                    target: .family(memberID: memberID),
+                    targetTitle: refreshedTarget.name
+                )
+            }
         }
     }
 
-    private func handleTap(on memberID: UUID) {
+    private func configureDemoScenario() {
+        guard !members.isEmpty else { return }
+        let calendar = Calendar.current
+        let nowDate = Date()
+
+        if let meIndex = members.firstIndex(where: { $0.isMe }) {
+            members[meIndex].status = .awake
+            members[meIndex].activity = "Walking"
+        }
+
+        if members.indices.contains(1) {
+            members[1].status = .sleeping
+            if let future = calendar.date(byAdding: .minute, value: 25, to: nowDate) {
+                members[1].wakeSchedule = WakeSchedule(
+                    hour: calendar.component(.hour, from: future),
+                    minute: calendar.component(.minute, from: future)
+                )
+            }
+            members[1].activity = "Sleeping"
+        }
+
+        if members.indices.contains(2) {
+            members[2].status = .sleeping
+            if let past = calendar.date(byAdding: .minute, value: -20, to: nowDate) {
+                members[2].wakeSchedule = WakeSchedule(
+                    hour: calendar.component(.hour, from: past),
+                    minute: calendar.component(.minute, from: past)
+                )
+            }
+            members[2].activity = "Sleeping"
+        }
+
+        for idx in members.indices where idx > 2 {
+            members[idx].status = .awake
+            members[idx].activity = "Walking"
+        }
+    }
+
+    private func handleFurnitureTap(_ target: FurnitureActionTarget, anchor: CGPoint) {
+        guard let meIndex = members.firstIndex(where: { $0.isMe }) else {
+            presentFurnitureTarget(target)
+            return
+        }
+
+        guard members[meIndex].status == .awake, wakeMission == nil else {
+            presentFurnitureTarget(target)
+            return
+        }
+
+        let meID = members[meIndex].id
+        let meStart = members[meIndex].position
+        let meRoom = roomContaining(meStart)
+
+        let furnitureStop = clampedToCommon(furnitureApproachPoint(for: target, anchor: anchor), inset: 0.09)
+        let route = routeBetween(
+            start: meStart,
+            startRoom: meRoom,
+            end: furnitureStop,
+            endRoom: nil
+        )
+
+        moveMember(
+            memberID: meID,
+            along: route,
+            movingActivity: "Walking",
+            speedPerSecond: 0.23
+        ) {
+            if let latestMe = members.firstIndex(where: { $0.id == meID }),
+               members[latestMe].status == .awake {
+                members[latestMe].activity = "Walking"
+            }
+            presentFurnitureTarget(target)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+                startWanderIfIdle(memberID: meID)
+            }
+        }
+    }
+
+    private func furnitureApproachPoint(for target: FurnitureActionTarget, anchor: CGPoint) -> CGPoint {
+        switch target {
+        case .bulletin:
+            return CGPoint(x: anchor.x - 0.11, y: anchor.y + 0.008)
+        case .alarm:
+            return CGPoint(x: anchor.x - 0.11, y: anchor.y + 0.004)
+        case .worldAlarm:
+            return CGPoint(x: anchor.x - 0.11, y: anchor.y + 0.004)
+        }
+    }
+
+    private func presentFurnitureTarget(_ target: FurnitureActionTarget) {
+        switch target {
+        case .bulletin:
+            showRankingScreen = true
+        case .alarm:
+            showWakeScheduleScreen = true
+        case .worldAlarm:
+            showWorldAlarmScreen = true
+        }
+    }
+
+    private func performWake(memberID: UUID) {
         guard let targetIndex = members.firstIndex(where: { $0.id == memberID }) else { return }
 
         if members[targetIndex].status == .awake {
             wakeBanner = "\(members[targetIndex].name) is already awake."
+            clearBannerLater()
+            return
+        }
+        if !isOverdue(members[targetIndex]) {
+            wakeBanner = "\(members[targetIndex].name) is not overdue yet."
             clearBannerLater()
             return
         }
@@ -801,92 +987,56 @@ private struct FamilyView: View {
             return
         }
         guard wakeMission == nil else { return }
-        guard let targetSlot = bedSlot(for: memberID) else { return }
 
         let targetID = memberID
         wakeActionMemberID = nil
         wakeReactionMemberID = nil
-        let meCurrent = members[meIndex].position
-        let meRoom = roomContaining(meCurrent)
-        let targetRoom = roomForMember(targetID)
-        let startPoint = meRoom == nil
-            ? clampedToCommon(meCurrent, inset: 0.10)
-            : clampedToRoom(meCurrent, room: meRoom!.rect, inset: 0.10)
-        let approachPoint = clampedToRoom(
-            CGPoint(
-                x: targetSlot.roomRect.midX,
-                y: targetSlot.roomRect.midY + 0.03
-            ),
-            room: targetSlot.roomRect,
-            inset: 0.10
-        )
 
         wakeMission = WakeMission(targetID: targetID)
+        let targetName = members[targetIndex].name
+        withAnimation(.easeInOut(duration: 0.16).repeatCount(4, autoreverses: true)) {
+            wakeActionMemberID = members[meIndex].id
+            members[meIndex].activity = "Calling \(targetName)"
+        }
 
-        let approachRoute = routeBetween(
-            start: startPoint,
-            startRoom: meRoom,
-            end: approachPoint,
-            endRoom: targetRoom
-        )
-
-        moveMember(
-            memberID: members[meIndex].id,
-            along: approachRoute,
-            movingActivity: "Walking",
-            speedPerSecond: 0.23
-        ) {
-            guard let safeTarget = members.firstIndex(where: { $0.id == targetID }),
-                  let safeMe = members.firstIndex(where: { $0.isMe }) else {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.52) {
+            guard let wakeTarget = members.firstIndex(where: { $0.id == targetID }) else {
+                wakeActionMemberID = nil
                 wakeMission = nil
                 return
             }
 
-            let targetName = members[safeTarget].name
-            withAnimation(.easeInOut(duration: 0.16).repeatCount(4, autoreverses: true)) {
-                wakeActionMemberID = members[safeMe].id
-                members[safeMe].activity = "Calling \(targetName)"
+            let wokeName = members[wakeTarget].name
+            if let slot = bedSlot(for: targetID) {
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
+                    members[wakeTarget].status = .awake
+                    members[wakeTarget].position = randomRoamPoint(in: slot, excluding: targetID)
+                    members[wakeTarget].activity = "Whoa!"
+                    wakeReactionMemberID = targetID
+                }
             }
 
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.52) {
-                guard let wakeTarget = members.firstIndex(where: { $0.id == targetID }) else {
-                    wakeActionMemberID = nil
-                    wakeMission = nil
-                    return
+            wakeBanner = "You woke \(wokeName)!"
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.95) {
+                wakeReactionMemberID = nil
+                if let settled = members.firstIndex(where: { $0.id == targetID }),
+                   members[settled].status == .awake {
+                    members[settled].activity = FamilySample.randomActivity()
+                    startWanderIfIdle(memberID: targetID)
                 }
-
-                let wokeName = members[wakeTarget].name
-                if let slot = bedSlot(for: targetID) {
-                    withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
-                        members[wakeTarget].status = .awake
-                        members[wakeTarget].position = randomRoamPoint(in: slot)
-                        members[wakeTarget].activity = "Whoa!"
-                        wakeReactionMemberID = targetID
-                    }
-                }
-
-                wakeBanner = "You woke \(wokeName)!"
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.95) {
-                    wakeReactionMemberID = nil
-                    if let settled = members.firstIndex(where: { $0.id == targetID }),
-                       members[settled].status == .awake {
-                        members[settled].activity = FamilySample.randomActivity()
-                        startWanderIfIdle(memberID: targetID)
-                    }
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
-                    wakeActionMemberID = nil
-                    if let me = members.firstIndex(where: { $0.isMe }) {
-                        members[me].activity = "Walking"
-                        startWanderIfIdle(memberID: members[me].id)
-                    }
-                    wakeMission = nil
-                }
-
-                clearBannerLater()
             }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) {
+                wakeActionMemberID = nil
+                if let me = members.firstIndex(where: { $0.isMe }) {
+                    members[me].activity = "Walking"
+                    startWanderIfIdle(memberID: members[me].id)
+                }
+                wakeMission = nil
+            }
+
+            clearBannerLater()
         }
     }
 
@@ -897,6 +1047,10 @@ private struct FamilyView: View {
             if members[index].status == .sleeping {
                 members[index].position = slot.bedPoint
                 continue
+            }
+
+            if !isPointWalkable(members[index].position) {
+                members[index].position = nearestWalkablePoint(to: members[index].position)
             }
 
             startWanderIfIdle(memberID: members[index].id)
@@ -937,12 +1091,24 @@ private struct FamilyView: View {
     }
 
     private func placeSleepersOnBeds() {
+        let presetAwakePoints: [String: CGPoint] = [
+            "Laxxi": CGPoint(x: 0.18, y: 0.66),
+            "Will": CGPoint(x: 0.62, y: 0.82),
+            "Mason": CGPoint(x: 0.49, y: 0.90),
+            "Eric": CGPoint(x: 0.48, y: 1.10)
+        ]
+
         for index in members.indices {
             guard let slot = bedSlot(for: members[index].id) else { continue }
             if members[index].status == .sleeping {
                 members[index].position = slot.bedPoint
-            } else if !floorPlanBounds.contains(members[index].position) {
-                members[index].position = randomRoamPoint(in: slot)
+            } else {
+                if let preset = presetAwakePoints[members[index].name], isPointWalkable(preset) {
+                    members[index].position = nearestWalkablePoint(to: preset)
+                } else {
+                    members[index].position = randomRoamPoint(in: slot, excluding: members[index].id)
+                }
+                members[index].activity = "Walking"
             }
         }
     }
@@ -957,33 +1123,41 @@ private struct FamilyView: View {
 
     private func ensureMemberSlots(prioritize memberID: UUID? = nil) {
         let slots = activeBedroomSlots
-        var mapping: [UUID: Int] = [:]
-        var used = Set<Int>()
+        guard !slots.isEmpty else {
+            memberSlotByID = [:]
+            return
+        }
 
-        // Keep prior assignments only if still valid and unique.
+        var mapping: [UUID: Int] = [:]
+        var used: Set<Int> = []
+
+        // 4人預設對齊手稿: top-left(empty bed), top-middle(Ruby), left-middle(Will), bottom-right(Eric)
+        // 新增成員優先使用右/下/左外擴房，最後才補右上房。
+        let preferredOrder = [0, 1, 3, 4, 5, 6, 7, 2]
+
         for member in members {
-            guard let prior = memberSlotByID[member.id], slots.indices.contains(prior), !used.contains(prior) else {
+            if let old = memberSlotByID[member.id], slots.indices.contains(old), !used.contains(old) {
+                mapping[member.id] = old
+                used.insert(old)
                 continue
             }
-            mapping[member.id] = prior
-            used.insert(prior)
-        }
 
-        // Deterministic baseline for initial layout.
-        if mapping.isEmpty {
-            for (index, member) in members.enumerated() where slots.indices.contains(index) && !used.contains(index) {
-                mapping[member.id] = index
-                used.insert(index)
-            }
-        }
-
-        // Fill all remaining members with nearest free slot.
-        for member in members where mapping[member.id] == nil {
-            let reference = member.id == memberID ? entryPoint : CGPoint(x: 0.5, y: 0.78)
-            if let candidate = nearestAvailableSlot(from: reference, slots: slots, used: used) {
+            if let candidate = preferredOrder.first(where: { slots.indices.contains($0) && !used.contains($0) }) {
                 mapping[member.id] = candidate
                 used.insert(candidate)
+                continue
             }
+
+            if let fallback = slots.indices.first(where: { !used.contains($0) }) {
+                mapping[member.id] = fallback
+                used.insert(fallback)
+            }
+        }
+
+        if let memberID,
+           let preferred = mapping[memberID] {
+            // Keep mapping stable but ensure prioritized member owns a valid slot.
+            mapping[memberID] = preferred
         }
 
         memberSlotByID = mapping
@@ -1019,160 +1193,349 @@ private struct FamilyView: View {
             let door: RoomDoor
             let bedPoint: CGPoint
             let washIndex: Int
+            let orientation: BedOrientation
+        }
+
+        struct TemplateSpec {
+            let rooms: [RoomTemplate]
+            let outlinePoints: [CGPoint]
+            let furniture: FurnitureAnchors
+            let commonRect: CGRect
+            let planHeight: CGFloat
+            let innerWalls: [InnerWallSegment]
         }
 
         let total = min(max(memberCount, 4), FamilySample.maxMembers)
-        let commonRect = CGRect(x: 0.22, y: 0.36, width: 0.46, height: 0.46)
+        let doorWidth: CGFloat = 0.22
 
-        var templates: [RoomTemplate] = [
-            // Top-left room (yellow bed)
-            RoomTemplate(
-                rect: CGRect(x: 0.08, y: 0.16, width: 0.28, height: 0.20),
-                door: RoomDoor(edge: .bottom, center: 0.22, width: 0.17),
-                bedPoint: CGPoint(x: 0.21, y: 0.24),
-                washIndex: 0
-            ),
-            // Top-middle room (orange bed)
-            RoomTemplate(
-                rect: CGRect(x: 0.36, y: 0.16, width: 0.28, height: 0.20),
-                door: RoomDoor(edge: .bottom, center: 0.50, width: 0.17),
-                bedPoint: CGPoint(x: 0.50, y: 0.24),
-                washIndex: 1
-            ),
-            // Mid-left room (pink bed)
-            RoomTemplate(
-                rect: CGRect(x: 0.08, y: 0.56, width: 0.34, height: 0.24),
-                door: RoomDoor(edge: .right, center: 0.67, width: 0.17),
-                bedPoint: CGPoint(x: 0.22, y: 0.66),
-                washIndex: 2
-            ),
-            // Bottom-right room (teal bed)
-            RoomTemplate(
-                rect: CGRect(x: 0.42, y: 0.84, width: 0.44, height: 0.26),
-                door: RoomDoor(edge: .top, center: 0.60, width: 0.19),
-                bedPoint: CGPoint(x: 0.63, y: 0.95),
-                washIndex: 3
-            )
+        let topLeft = RoomTemplate(
+            rect: CGRect(x: 0.08, y: 0.30, width: 0.30, height: 0.24),
+            door: RoomDoor(edge: .bottom, center: 0.23, width: doorWidth),
+            bedPoint: CGPoint(x: 0.23, y: 0.40),
+            washIndex: 0,
+            orientation: .horizontal
+        )
+        let topMiddle = RoomTemplate(
+            rect: CGRect(x: 0.38, y: 0.30, width: 0.30, height: 0.24),
+            door: RoomDoor(edge: .bottom, center: 0.53, width: doorWidth),
+            bedPoint: CGPoint(x: 0.53, y: 0.40),
+            washIndex: 1,
+            orientation: .horizontal
+        )
+        let rightTop = RoomTemplate(
+            rect: CGRect(x: 0.68, y: 0.42, width: 0.22, height: 0.30),
+            door: RoomDoor(edge: .left, center: 0.57, width: doorWidth),
+            bedPoint: CGPoint(x: 0.79, y: 0.57),
+            washIndex: 2,
+            orientation: .vertical
+        )
+        let leftMiddle = RoomTemplate(
+            rect: CGRect(x: 0.08, y: 0.80, width: 0.34, height: 0.25),
+            door: RoomDoor(edge: .right, center: 0.92, width: doorWidth),
+            bedPoint: CGPoint(x: 0.25, y: 0.92),
+            washIndex: 3,
+            orientation: .horizontal
+        )
+        let bottomRight = RoomTemplate(
+            rect: CGRect(x: 0.42, y: 1.04, width: 0.48, height: 0.30),
+            door: RoomDoor(edge: .top, center: 0.64, width: doorWidth),
+            bedPoint: CGPoint(x: 0.66, y: 1.20),
+            washIndex: 4,
+            orientation: .horizontal
+        )
+        let rightExtension = RoomTemplate(
+            rect: CGRect(x: 0.90, y: 0.88, width: 0.22, height: 0.28),
+            door: RoomDoor(edge: .left, center: 1.02, width: doorWidth),
+            bedPoint: CGPoint(x: 1.01, y: 1.02),
+            washIndex: 5,
+            orientation: .horizontal
+        )
+        let bottomExtension = RoomTemplate(
+            rect: CGRect(x: 0.50, y: 1.34, width: 0.30, height: 0.24),
+            door: RoomDoor(edge: .top, center: 0.65, width: doorWidth),
+            bedPoint: CGPoint(x: 0.65, y: 1.46),
+            washIndex: 6,
+            orientation: .horizontal
+        )
+        let leftExtension = RoomTemplate(
+            rect: CGRect(x: -0.14, y: 1.06, width: 0.22, height: 0.28),
+            door: RoomDoor(edge: .right, center: 1.20, width: doorWidth),
+            bedPoint: CGPoint(x: -0.03, y: 1.20),
+            washIndex: 7,
+            orientation: .horizontal
+        )
+
+        let baseFurniture = FurnitureAnchors(
+            bulletin: CGPoint(x: 0.78, y: 0.96),
+            tv: CGPoint(x: 0.50, y: 0.70),
+            alarm: CGPoint(x: 0.78, y: 0.62),
+            worldAlarm: CGPoint(x: 0.78, y: 0.77)
+        )
+
+        func wall(_ x1: CGFloat, _ y1: CGFloat, _ x2: CGFloat, _ y2: CGFloat) -> InnerWallSegment {
+            InnerWallSegment(start: CGPoint(x: x1, y: y1), end: CGPoint(x: x2, y: y2))
+        }
+
+        // Hand-authored inner walls to avoid branch artifacts from auto-generated segments.
+        let baseInnerWalls: [InnerWallSegment] = [
+            wall(0.38, 0.30, 0.38, 0.58),  // top split
+            wall(0.18, 0.58, 0.68, 0.58),  // upper corridor divider (connected)
+            wall(0.68, 0.58, 0.68, 0.72),  // right divider (kept away from outer corner)
+            wall(0.08, 0.80, 0.42, 0.80),  // left room top (connected)
+            wall(0.42, 0.80, 0.42, 0.96),  // left room right boundary (with door gap below)
+            wall(0.55, 1.05, 0.90, 1.05)   // lower right room top
         ]
 
-        let expansionTemplates: [RoomTemplate] = [
-            // Expansion #1: right
-            RoomTemplate(
-                rect: CGRect(x: 0.64, y: 0.22, width: 0.22, height: 0.34),
-                door: RoomDoor(edge: .left, center: 0.46, width: 0.17),
-                bedPoint: CGPoint(x: 0.75, y: 0.33),
-                washIndex: 4
-            ),
-            // Expansion #2: down
-            RoomTemplate(
-                rect: CGRect(x: 0.50, y: 1.10, width: 0.24, height: 0.22),
-                door: RoomDoor(edge: .top, center: 0.62, width: 0.18),
-                bedPoint: CGPoint(x: 0.62, y: 1.19),
-                washIndex: 0
-            ),
-            // Expansion #3: left
-            RoomTemplate(
-                rect: CGRect(x: -0.12, y: 0.88, width: 0.20, height: 0.22),
-                door: RoomDoor(edge: .right, center: 0.99, width: 0.17),
-                bedPoint: CGPoint(x: -0.02, y: 0.97),
-                washIndex: 1
-            )
-        ]
+        let template4 = TemplateSpec(
+            rooms: [topLeft, topMiddle, rightTop, leftMiddle, bottomRight],
+            outlinePoints: [
+                CGPoint(x: 0.08, y: 0.30),
+                CGPoint(x: 0.68, y: 0.30),
+                CGPoint(x: 0.68, y: 0.42),
+                CGPoint(x: 0.90, y: 0.42),
+                CGPoint(x: 0.90, y: 1.04),
+                CGPoint(x: 0.90, y: 1.34),
+                CGPoint(x: 0.42, y: 1.34),
+                CGPoint(x: 0.42, y: 1.05),
+                CGPoint(x: 0.08, y: 1.05)
+            ],
+            furniture: baseFurniture,
+            commonRect: CGRect(x: 0.16, y: 0.58, width: 0.66, height: 0.54),
+            planHeight: 1.42,
+            innerWalls: baseInnerWalls
+        )
 
-        let extraCount = min(max(0, total - 4), expansionTemplates.count)
-        templates.append(contentsOf: expansionTemplates.prefix(extraCount))
+        let template5 = TemplateSpec(
+            rooms: template4.rooms + [rightExtension],
+            outlinePoints: [
+                CGPoint(x: 0.08, y: 0.30),
+                CGPoint(x: 0.68, y: 0.30),
+                CGPoint(x: 0.68, y: 0.42),
+                CGPoint(x: 0.90, y: 0.42),
+                CGPoint(x: 0.90, y: 0.88),
+                CGPoint(x: 1.12, y: 0.88),
+                CGPoint(x: 1.12, y: 1.16),
+                CGPoint(x: 0.90, y: 1.16),
+                CGPoint(x: 0.90, y: 1.34),
+                CGPoint(x: 0.42, y: 1.34),
+                CGPoint(x: 0.42, y: 1.05),
+                CGPoint(x: 0.08, y: 1.05)
+            ],
+            furniture: baseFurniture,
+            commonRect: CGRect(x: 0.16, y: 0.58, width: 0.78, height: 0.56),
+            planHeight: 1.42,
+            innerWalls: baseInnerWalls + [
+                wall(0.90, 0.96, 0.90, 1.10) // extension separator (door preserved by partial segment)
+            ]
+        )
 
-        let rooms: [FloorRoom] = templates.enumerated().map { index, template in
+        let template6 = TemplateSpec(
+            rooms: template5.rooms + [bottomExtension],
+            outlinePoints: [
+                CGPoint(x: 0.08, y: 0.30),
+                CGPoint(x: 0.68, y: 0.30),
+                CGPoint(x: 0.68, y: 0.42),
+                CGPoint(x: 0.90, y: 0.42),
+                CGPoint(x: 0.90, y: 0.88),
+                CGPoint(x: 1.12, y: 0.88),
+                CGPoint(x: 1.12, y: 1.16),
+                CGPoint(x: 0.90, y: 1.16),
+                CGPoint(x: 0.90, y: 1.34),
+                CGPoint(x: 0.80, y: 1.34),
+                CGPoint(x: 0.80, y: 1.58),
+                CGPoint(x: 0.50, y: 1.58),
+                CGPoint(x: 0.50, y: 1.34),
+                CGPoint(x: 0.42, y: 1.34),
+                CGPoint(x: 0.42, y: 1.05),
+                CGPoint(x: 0.08, y: 1.05)
+            ],
+            furniture: baseFurniture,
+            commonRect: CGRect(x: 0.16, y: 0.58, width: 0.78, height: 0.70),
+            planHeight: 1.66,
+            innerWalls: baseInnerWalls + [
+                wall(0.90, 0.96, 0.90, 1.10),
+                wall(0.58, 1.34, 0.72, 1.34) // bottom extension separator
+            ]
+        )
+
+        let template7 = TemplateSpec(
+            rooms: template6.rooms + [leftExtension],
+            outlinePoints: [
+                CGPoint(x: 0.08, y: 0.30),
+                CGPoint(x: 0.68, y: 0.30),
+                CGPoint(x: 0.68, y: 0.42),
+                CGPoint(x: 0.90, y: 0.42),
+                CGPoint(x: 0.90, y: 0.88),
+                CGPoint(x: 1.12, y: 0.88),
+                CGPoint(x: 1.12, y: 1.16),
+                CGPoint(x: 0.90, y: 1.16),
+                CGPoint(x: 0.90, y: 1.34),
+                CGPoint(x: 0.80, y: 1.34),
+                CGPoint(x: 0.80, y: 1.58),
+                CGPoint(x: 0.50, y: 1.58),
+                CGPoint(x: 0.50, y: 1.34),
+                CGPoint(x: 0.08, y: 1.34),
+                CGPoint(x: -0.14, y: 1.34),
+                CGPoint(x: -0.14, y: 1.06),
+                CGPoint(x: 0.08, y: 1.06),
+                CGPoint(x: 0.08, y: 1.05)
+            ],
+            furniture: baseFurniture,
+            commonRect: CGRect(x: 0.02, y: 0.58, width: 0.92, height: 0.70),
+            planHeight: 1.66,
+            innerWalls: baseInnerWalls + [
+                wall(0.90, 0.96, 0.90, 1.10),
+                wall(0.58, 1.34, 0.72, 1.34),
+                wall(0.08, 1.12, 0.08, 1.28) // left extension separator
+            ]
+        )
+
+        let spec: TemplateSpec
+        switch total {
+        case 4:
+            spec = template4
+        case 5:
+            spec = template5
+        case 6:
+            spec = template6
+        default:
+            spec = template7
+        }
+
+        let rooms = spec.rooms.enumerated().map { index, template in
             FloorRoom(id: index, rect: template.rect, door: template.door, washIndex: template.washIndex)
         }
 
-        let slots: [BedroomSlot] = templates.enumerated().map { index, template in
+        let slots = spec.rooms.enumerated().map { index, template in
             makeBedroomSlot(
                 id: index,
                 roomID: index,
                 roomRect: template.rect,
                 door: template.door,
                 bedPoint: template.bedPoint,
-                isLeft: template.rect.midX < commonRect.midX
+                isLeft: template.rect.midX < spec.commonRect.midX,
+                orientation: template.orientation
             )
         }
 
-        let allRects = rooms.map(\.rect) + [commonRect]
-        let minX = allRects.map(\.minX).min() ?? 0.06
-        let maxX = allRects.map(\.maxX).max() ?? 0.92
-        let topY = allRects.map(\.minY).min() ?? 0.14
-        let bottomY = allRects.map(\.maxY).max() ?? 1.10
-
-        let rightWingBottom = max(
-            commonRect.maxY,
-            rooms.filter { $0.rect.minX >= commonRect.maxX - 0.001 }.map(\.rect.maxY).max() ?? commonRect.maxY
-        )
-        let leftWingBottom = max(
-            commonRect.maxY,
-            rooms.filter { $0.rect.maxX <= commonRect.minX + 0.001 }.map(\.rect.maxY).max() ?? commonRect.maxY
-        )
-
-        let outlinePoints: [CGPoint] = [
-            CGPoint(x: minX, y: topY),
-            CGPoint(x: maxX, y: topY),
-            CGPoint(x: maxX, y: rightWingBottom),
-            CGPoint(x: commonRect.maxX, y: rightWingBottom),
-            CGPoint(x: commonRect.maxX, y: bottomY),
-            CGPoint(x: minX, y: bottomY),
-            CGPoint(x: minX, y: leftWingBottom),
-            CGPoint(x: commonRect.minX, y: leftWingBottom),
-            CGPoint(x: commonRect.minX, y: commonRect.maxY),
-            CGPoint(x: minX, y: commonRect.maxY),
-            CGPoint(x: minX, y: topY)
-        ]
-
-        let furniture = FurnitureAnchors(
-            bulletin: CGPoint(x: 0.79, y: 0.77),
-            tv: CGPoint(x: 0.46, y: 0.57),
-            alarm: CGPoint(x: 0.79, y: 0.60),
-            worldAlarm: CGPoint(x: 0.79, y: 0.69)
-        )
+        let minX = spec.outlinePoints.map(\.x).min() ?? 0.08
+        let maxX = spec.outlinePoints.map(\.x).max() ?? 0.90
+        let topY = spec.outlinePoints.map(\.y).min() ?? 0.30
+        let bottomY = spec.outlinePoints.map(\.y).max() ?? 1.34
 
         return FloorLayout(
-            planHeight: max(1.34, bottomY + 0.16),
+            planHeight: spec.planHeight,
             floorBounds: CGRect(x: minX, y: topY, width: maxX - minX, height: bottomY - topY),
-            commonRect: commonRect,
+            commonRect: spec.commonRect,
             rooms: rooms,
             slots: slots,
-            outlinePoints: outlinePoints,
-            furniture: furniture
+            outlinePoints: spec.outlinePoints,
+            furniture: spec.furniture,
+            innerWalls: spec.innerWalls
         )
     }
-
     private func makeBedroomSlot(
         id: Int,
         roomID: Int,
         roomRect: CGRect,
         door: RoomDoor,
         bedPoint: CGPoint,
-        isLeft: Bool
+        isLeft: Bool,
+        orientation: BedOrientation
     ) -> BedroomSlot {
-        let roamRect = roomRect.insetBy(
-            dx: max(0.05, roomRect.width * 0.14),
-            dy: max(0.05, roomRect.height * 0.15)
-        )
+        let roamInsetX = min(max(0.075, roomRect.width * 0.20), roomRect.width * 0.30)
+        let roamInsetY = min(max(0.08, roomRect.height * 0.22), roomRect.height * 0.30)
+        let roamRect = roomRect.insetBy(dx: roamInsetX, dy: roamInsetY)
         return BedroomSlot(
             id: id,
             roomID: roomID,
             roomRect: roomRect,
             door: door,
-            doorPoint: door.point(in: roomRect, inset: 0.095),
+            doorPoint: door.point(in: roomRect, inset: 0.13),
             bedPoint: bedPoint,
             roamRect: roamRect,
-            isLeftColumn: isLeft
+            isLeftColumn: isLeft,
+            bedOrientation: orientation
         )
     }
 
-    private func randomRoamPoint(in slot: BedroomSlot) -> CGPoint {
-        CGPoint(
-            x: clamp(.random(in: slot.roamRect.minX...slot.roamRect.maxX), lower: floorPlanBounds.minX, upper: floorPlanBounds.maxX),
-            y: clamp(.random(in: slot.roamRect.minY...slot.roamRect.maxY), lower: floorPlanBounds.minY, upper: floorPlanBounds.maxY)
+    private func randomRoamPoint(in slot: BedroomSlot, excluding memberID: UUID? = nil) -> CGPoint {
+        let fallback = CGPoint(
+            x: clamp(slot.roamRect.midX, lower: floorPlanBounds.minX, upper: floorPlanBounds.maxX),
+            y: clamp(slot.roamRect.midY, lower: floorPlanBounds.minY, upper: floorPlanBounds.maxY)
         )
+
+        for _ in 0..<36 {
+            let candidate = CGPoint(
+                x: clamp(.random(in: slot.roamRect.minX...slot.roamRect.maxX), lower: floorPlanBounds.minX, upper: floorPlanBounds.maxX),
+                y: clamp(.random(in: slot.roamRect.minY...slot.roamRect.maxY), lower: floorPlanBounds.minY, upper: floorPlanBounds.maxY)
+            )
+            if !isPointWalkable(candidate) { continue }
+            if collidesFurniture(candidate) { continue }
+            if collidesBedSpace(candidate) { continue }
+            if let memberID, collidesAvatarSpace(candidate, for: memberID) { continue }
+            return candidate
+        }
+
+        return nearestWalkablePoint(to: fallback)
+    }
+
+    private var walkableZones: [CGRect] {
+        let roomInsetX: CGFloat = 0.062
+        let roomInsetY: CGFloat = 0.070
+        let commonInsetX: CGFloat = 0.060
+        let commonInsetY: CGFloat = 0.066
+        let corridorPadding: CGFloat = 0.028
+
+        var zones: [CGRect] = [floorLayout.commonRect.insetBy(dx: commonInsetX, dy: commonInsetY)]
+        zones.append(contentsOf: floorLayout.rooms.map { $0.rect.insetBy(dx: roomInsetX, dy: roomInsetY) })
+
+        // Bridge each room door to common corridor so routes do not "hit an invisible wall".
+        for room in floorLayout.rooms {
+            let roomDoor = room.door.point(in: room.rect, inset: 0.09)
+            let commonDoor = commonDoorPoint(for: room, inset: 0.09)
+            let corridor = CGRect(
+                x: min(roomDoor.x, commonDoor.x) - corridorPadding,
+                y: min(roomDoor.y, commonDoor.y) - corridorPadding,
+                width: abs(roomDoor.x - commonDoor.x) + corridorPadding * 2,
+                height: abs(roomDoor.y - commonDoor.y) + corridorPadding * 2
+            )
+            zones.append(corridor)
+        }
+
+        return zones.filter { $0.width > 0.02 && $0.height > 0.02 }
+    }
+
+    private func isPointWalkable(_ point: CGPoint) -> Bool {
+        let safety: CGFloat = 0.020
+        let samples = [
+            point,
+            CGPoint(x: point.x + safety, y: point.y),
+            CGPoint(x: point.x - safety, y: point.y),
+            CGPoint(x: point.x, y: point.y + safety),
+            CGPoint(x: point.x, y: point.y - safety)
+        ]
+        guard samples.allSatisfy({ isInsideFloorOutline($0) }) else { return false }
+        return samples.allSatisfy { sample in
+            walkableZones.contains { $0.contains(sample) }
+        }
+    }
+
+    private func nearestWalkablePoint(to point: CGPoint) -> CGPoint {
+        if isPointWalkable(point) { return point }
+        let clampedCandidates: [CGPoint] = walkableZones.map { zone in
+            CGPoint(
+                x: clamp(point.x, lower: zone.minX, upper: zone.maxX),
+                y: clamp(point.y, lower: zone.minY, upper: zone.maxY)
+            )
+        }
+        let validCandidates = clampedCandidates.filter {
+            isPointWalkable($0) && !collidesFurniture($0) && !collidesBedSpace($0)
+        }
+        guard let nearest = validCandidates.min(by: { distanceSquared($0, point) < distanceSquared($1, point) }) else {
+            return clampedToCommon(entryPoint, inset: 0.12)
+        }
+        return nearest
     }
 
     private struct WalkTarget {
@@ -1181,12 +1544,70 @@ private struct FamilyView: View {
     }
 
     private func roomContaining(_ point: CGPoint) -> FloorRoom? {
-        floorLayout.rooms.first(where: { $0.rect.contains(point) })
+        floorLayout.rooms.first(where: { $0.rect.insetBy(dx: -0.003, dy: -0.003).contains(point) })
     }
 
     private func roomForMember(_ memberID: UUID) -> FloorRoom? {
         guard let slot = bedSlot(for: memberID) else { return nil }
         return floorLayout.rooms.first(where: { $0.id == slot.roomID })
+    }
+
+    private func randomWalkTarget(
+        for memberID: UUID,
+        includeAllRooms: Bool,
+        includeCommon: Bool
+    ) -> WalkTarget {
+        var zones: [WalkTarget] = []
+
+        let common = floorLayout.commonRect.insetBy(dx: 0.07, dy: 0.08)
+        if includeCommon, common.width > 0.05, common.height > 0.05 {
+            zones.append(
+                WalkTarget(
+                    point: CGPoint(
+                        x: .random(in: common.minX...common.maxX),
+                        y: .random(in: common.minY...common.maxY)
+                    ),
+                    room: nil
+                )
+            )
+        }
+
+        if let ownSlot = bedSlot(for: memberID),
+           let ownRoom = floorLayout.rooms.first(where: { $0.id == ownSlot.roomID }) {
+            let roam = ownRoom.rect.insetBy(dx: 0.07, dy: 0.08)
+            if roam.width > 0.05, roam.height > 0.05 {
+                zones.append(
+                    WalkTarget(
+                        point: CGPoint(
+                            x: .random(in: roam.minX...roam.maxX),
+                            y: .random(in: roam.minY...roam.maxY)
+                        ),
+                        room: ownRoom
+                    )
+                )
+            }
+        }
+
+        if includeAllRooms {
+            for room in floorLayout.rooms {
+                let roam = room.rect.insetBy(dx: 0.07, dy: 0.08)
+                guard roam.width > 0.05, roam.height > 0.05 else { continue }
+                zones.append(
+                    WalkTarget(
+                        point: CGPoint(
+                            x: .random(in: roam.minX...roam.maxX),
+                            y: .random(in: roam.minY...roam.maxY)
+                        ),
+                        room: room
+                    )
+                )
+            }
+        }
+
+        if let pick = zones.randomElement() {
+            return pick
+        }
+        return WalkTarget(point: clampedToCommon(entryPoint, inset: 0.14), room: nil)
     }
 
     private func randomWalkTarget() -> WalkTarget {
@@ -1206,7 +1627,7 @@ private struct FamilyView: View {
         }
 
         for room in floorLayout.rooms {
-            let roam = room.rect.insetBy(dx: 0.06, dy: 0.07)
+            let roam = room.rect.insetBy(dx: 0.07, dy: 0.08)
             guard roam.width > 0.05, roam.height > 0.05 else { continue }
             zones.append(
                 WalkTarget(
@@ -1228,10 +1649,10 @@ private struct FamilyView: View {
     private func furnitureAvoidRects() -> [CGRect] {
         let anchors = floorLayout.furniture
         return [
-            CGRect(x: anchors.tv.x - 0.14, y: anchors.tv.y - 0.09, width: 0.28, height: 0.18),
-            CGRect(x: anchors.alarm.x - 0.08, y: anchors.alarm.y - 0.06, width: 0.16, height: 0.13),
-            CGRect(x: anchors.worldAlarm.x - 0.08, y: anchors.worldAlarm.y - 0.06, width: 0.16, height: 0.13),
-            CGRect(x: anchors.bulletin.x - 0.09, y: anchors.bulletin.y - 0.08, width: 0.18, height: 0.17)
+            CGRect(x: anchors.tv.x - 0.056, y: anchors.tv.y - 0.034, width: 0.112, height: 0.068),
+            CGRect(x: anchors.alarm.x - 0.022, y: anchors.alarm.y - 0.018, width: 0.044, height: 0.036),
+            CGRect(x: anchors.worldAlarm.x - 0.022, y: anchors.worldAlarm.y - 0.018, width: 0.044, height: 0.036),
+            CGRect(x: anchors.bulletin.x - 0.028, y: anchors.bulletin.y - 0.036, width: 0.056, height: 0.072)
         ]
     }
 
@@ -1239,18 +1660,81 @@ private struct FamilyView: View {
         furnitureAvoidRects().contains(where: { $0.contains(point) })
     }
 
+    private func collidesAvatarSpace(_ point: CGPoint, for movingMemberID: UUID) -> Bool {
+        let awakeDistanceSq: CGFloat = 0.096 * 0.096
+        let sleepingDistanceSq: CGFloat = 0.088 * 0.088
+
+        for member in members where member.id != movingMemberID {
+            if member.status == .awake {
+                if distanceSquared(point, member.position) < awakeDistanceSq {
+                    return true
+                }
+            } else if let slot = bedSlot(for: member.id) {
+                if distanceSquared(point, slot.bedPoint) < sleepingDistanceSq {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    private func collidesBedSpace(_ point: CGPoint) -> Bool {
+        let bedDistanceSq: CGFloat = 0.098 * 0.098
+        for slot in activeBedroomSlots {
+            if distanceSquared(point, slot.bedPoint) < bedDistanceSq {
+                return true
+            }
+        }
+        return false
+    }
+
+    private func isInsideFloorOutline(_ point: CGPoint) -> Bool {
+        let polygon = floorLayout.outlinePoints
+        guard polygon.count > 2 else { return false }
+        var inside = false
+        var j = polygon.count - 1
+        for i in 0..<polygon.count {
+            let pi = polygon[i]
+            let pj = polygon[j]
+            let intersects = ((pi.y > point.y) != (pj.y > point.y))
+                && (point.x < (pj.x - pi.x) * (point.y - pi.y) / max(0.000001, (pj.y - pi.y)) + pi.x)
+            if intersects {
+                inside.toggle()
+            }
+            j = i
+        }
+        return inside
+    }
+
     private func pickWanderTarget(
         memberID: UUID,
         from start: CGPoint,
         startRoom: FloorRoom?
     ) -> WalkTarget {
+        let isMe = members.first(where: { $0.id == memberID })?.isMe == true
         let last = lastWanderTargetByID[memberID]
         let minMoveDistanceSq: CGFloat = 0.035 * 0.035
 
-        var fallback = randomWalkTarget()
+        var fallback = randomWalkTarget(
+            for: memberID,
+            includeAllRooms: false,
+            includeCommon: isMe
+        )
         for _ in 0..<10 {
-            let candidate = randomWalkTarget()
+            let includeAllRooms = Int.random(in: 0..<100) < 48
+            let includeCommon = true
+            let candidate = randomWalkTarget(
+                for: memberID,
+                includeAllRooms: includeAllRooms,
+                includeCommon: includeCommon
+            )
             if collidesFurniture(candidate.point) {
+                continue
+            }
+            if collidesBedSpace(candidate.point) {
+                continue
+            }
+            if collidesAvatarSpace(candidate.point, for: memberID) {
                 continue
             }
             let distanceNow = distanceSquared(start, candidate.point)
@@ -1270,10 +1754,32 @@ private struct FamilyView: View {
         }
 
         if distanceSquared(start, fallback.point) < minMoveDistanceSq {
-            fallback = WalkTarget(point: clampedToCommon(entryPoint), room: nil)
+            fallback = randomWalkTarget(
+                for: memberID,
+                includeAllRooms: false,
+                includeCommon: true
+            )
         }
         if collidesFurniture(fallback.point) {
-            fallback = WalkTarget(point: clampedToCommon(entryPoint), room: nil)
+            fallback = randomWalkTarget(
+                for: memberID,
+                includeAllRooms: false,
+                includeCommon: true
+            )
+        }
+        if collidesBedSpace(fallback.point) {
+            fallback = randomWalkTarget(
+                for: memberID,
+                includeAllRooms: false,
+                includeCommon: false
+            )
+        }
+        if collidesAvatarSpace(fallback.point, for: memberID) {
+            fallback = randomWalkTarget(
+                for: memberID,
+                includeAllRooms: false,
+                includeCommon: false
+            )
         }
         return fallback
     }
@@ -1284,34 +1790,43 @@ private struct FamilyView: View {
         end: CGPoint,
         endRoom: FloorRoom?
     ) -> [CGPoint] {
-        let cleanStart = startRoom == nil
-            ? clampedToCommon(start, inset: 0.10)
-            : clampedToRoom(start, room: startRoom!.rect, inset: 0.10)
-        let cleanEnd = endRoom == nil
-            ? clampedToCommon(end, inset: 0.10)
-            : clampedToRoom(end, room: endRoom!.rect, inset: 0.10)
+        let resolvedStartRoom = startRoom ?? roomContaining(start)
+        let resolvedEndRoom = endRoom ?? roomContaining(end)
 
-        if let s = startRoom, let e = endRoom, s.id == e.id {
-            return simplifyRoute(compactRoute([cleanStart, cleanEnd]))
+        let roomInset: CGFloat = 0.09
+        let commonInset: CGFloat = 0.09
+        let cleanStart = resolvedStartRoom == nil
+            ? clampedToCommon(start, inset: commonInset)
+            : clampedToRoom(start, room: resolvedStartRoom!.rect, inset: roomInset)
+        let cleanEnd = resolvedEndRoom == nil
+            ? clampedToCommon(end, inset: commonInset)
+            : clampedToRoom(end, room: resolvedEndRoom!.rect, inset: roomInset)
+
+        if let s = resolvedStartRoom, let e = resolvedEndRoom, s.id == e.id {
+            let sameRoomRoute = simplifyRoute(compactRoute([cleanStart, cleanEnd]))
+            if routeCrossesFurniture(sameRoomRoute) {
+                return simplifyRoute(compactRoute(rerouteThroughCommonLane(sameRoomRoute)))
+            }
+            return sameRoomRoute
         }
 
         var route: [CGPoint] = [cleanStart]
 
-        if let s = startRoom {
-            let roomDoor = s.door.point(in: s.rect, inset: 0.095)
-            let commonDoor = commonDoorPoint(for: s, inset: 0.095)
+        if let s = resolvedStartRoom {
+            let roomDoor = s.door.point(in: s.rect, inset: roomInset)
+            let commonDoor = commonDoorPoint(for: s, inset: roomInset)
             route.append(CGPoint(x: cleanStart.x, y: roomDoor.y))
             route.append(roomDoor)
             route.append(commonDoor)
         }
 
-        if let e = endRoom {
-            let targetCommonDoor = commonDoorPoint(for: e, inset: 0.095)
+        if let e = resolvedEndRoom {
+            let targetCommonDoor = commonDoorPoint(for: e, inset: roomInset)
             if let last = route.last {
                 route.append(CGPoint(x: targetCommonDoor.x, y: last.y))
             }
             route.append(targetCommonDoor)
-            let targetRoomDoor = e.door.point(in: e.rect, inset: 0.095)
+            let targetRoomDoor = e.door.point(in: e.rect, inset: roomInset)
             route.append(targetRoomDoor)
             route.append(CGPoint(x: cleanEnd.x, y: targetRoomDoor.y))
         } else {
@@ -1321,7 +1836,67 @@ private struct FamilyView: View {
         }
 
         route.append(cleanEnd)
-        return simplifyRoute(compactRoute(route))
+        let baseRoute = simplifyRoute(compactRoute(route))
+        if routeLeavesWalkableArea(baseRoute) {
+            return simplifyRoute(compactRoute(rerouteThroughCommonLane(baseRoute)))
+        }
+        return baseRoute
+    }
+
+    private func routeCrossesFurniture(_ route: [CGPoint]) -> Bool {
+        guard route.count > 1 else { return false }
+        for idx in 0..<(route.count - 1) {
+            if segmentIntersectsFurniture(from: route[idx], to: route[idx + 1]) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private func routeLeavesWalkableArea(_ route: [CGPoint]) -> Bool {
+        guard route.count > 1 else { return false }
+        for idx in 0..<(route.count - 1) {
+            let sampled = sampledRoute([route[idx], route[idx + 1]], stepLength: 0.01)
+            if sampled.contains(where: { !isPointWalkable($0) }) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private func segmentIntersectsFurniture(from: CGPoint, to: CGPoint) -> Bool {
+        sampledRoute([from, to], stepLength: 0.01).contains { point in
+            collidesFurniture(point)
+        }
+    }
+
+    private func rerouteThroughCommonLane(_ route: [CGPoint]) -> [CGPoint] {
+        guard route.count > 1 else { return route }
+        let common = floorLayout.commonRect
+        let laneX = common.minX + min(common.width * 0.16, 0.12)
+        let lowerY = common.minY + 0.08
+        let upperY = common.maxY - 0.08
+
+        var redirected: [CGPoint] = [route[0]]
+        for point in route.dropFirst() {
+            guard let last = redirected.last else { continue }
+            if segmentIntersectsFurniture(from: last, to: point) {
+                redirected.append(
+                    CGPoint(
+                        x: laneX,
+                        y: clamp(last.y, lower: lowerY, upper: upperY)
+                    )
+                )
+                redirected.append(
+                    CGPoint(
+                        x: laneX,
+                        y: clamp(point.y, lower: lowerY, upper: upperY)
+                    )
+                )
+            }
+            redirected.append(point)
+        }
+        return redirected
     }
 
     private func compactRoute(_ route: [CGPoint], epsilon: CGFloat = 0.003) -> [CGPoint] {
@@ -1426,7 +2001,7 @@ private struct FamilyView: View {
             }
 
             let current = members[memberIndex].position
-            let target = points[index]
+            let target = nearestWalkablePoint(to: points[index])
             let distance = sqrt(distanceSquared(current, target))
             let duration = max(0.03, distance / speedPerSecond)
 
@@ -1446,43 +2021,41 @@ private struct FamilyView: View {
         step(1)
     }
 
-    private func clampedToRoom(_ point: CGPoint, room: CGRect, inset: CGFloat = 0.06) -> CGPoint {
-        CGPoint(
-            x: clamp(point.x, lower: room.minX + inset, upper: room.maxX - inset),
-            y: clamp(point.y, lower: room.minY + inset, upper: room.maxY - inset)
+    private func clampedToRoom(_ point: CGPoint, room: CGRect, inset: CGFloat = 0.115) -> CGPoint {
+        let capInset = min(inset, min(room.width, room.height) * 0.32)
+        return CGPoint(
+            x: clamp(point.x, lower: room.minX + capInset, upper: room.maxX - capInset),
+            y: clamp(point.y, lower: room.minY + capInset, upper: room.maxY - capInset)
         )
     }
 
     private func clampedToFloor(_ point: CGPoint) -> CGPoint {
-        CGPoint(
+        return CGPoint(
             x: clamp(point.x, lower: floorPlanBounds.minX + 0.03, upper: floorPlanBounds.maxX - 0.03),
             y: clamp(point.y, lower: floorPlanBounds.minY + 0.03, upper: floorPlanBounds.maxY - 0.03)
         )
     }
 
-    private func clampedToCommon(_ point: CGPoint, inset: CGFloat = 0.11) -> CGPoint {
-        CGPoint(
-            x: clamp(point.x, lower: floorLayout.commonRect.minX + inset, upper: floorLayout.commonRect.maxX - inset),
-            y: clamp(point.y, lower: floorLayout.commonRect.minY + inset, upper: floorLayout.commonRect.maxY - inset)
+    private func clampedToCommon(_ point: CGPoint, inset: CGFloat = 0.115) -> CGPoint {
+        let capInset = min(inset, min(floorLayout.commonRect.width, floorLayout.commonRect.height) * 0.32)
+        return CGPoint(
+            x: clamp(point.x, lower: floorLayout.commonRect.minX + capInset, upper: floorLayout.commonRect.maxX - capInset),
+            y: clamp(point.y, lower: floorLayout.commonRect.minY + capInset, upper: floorLayout.commonRect.maxY - capInset)
         )
     }
 
     private func commonDoorPoint(for room: FloorRoom, inset: CGFloat) -> CGPoint {
-        let common = floorLayout.commonRect
-        let interiorProbe = room.rect.insetBy(dx: 0.002, dy: 0.002)
-        if common.contains(interiorProbe) {
-            return room.door.point(in: room.rect, inset: inset)
-        }
-        switch room.door.edge {
-        case .top:
-            return CGPoint(x: room.door.center, y: common.maxY - inset)
-        case .bottom:
-            return CGPoint(x: room.door.center, y: common.minY + inset)
-        case .left:
-            return CGPoint(x: common.maxX - inset, y: room.door.center)
-        case .right:
-            return CGPoint(x: common.minX + inset, y: room.door.center)
-        }
+        let door = room.door.point(in: room.rect, inset: inset)
+        let commonCenter = CGPoint(x: floorLayout.commonRect.midX, y: floorLayout.commonRect.midY)
+        let dx = commonCenter.x - door.x
+        let dy = commonCenter.y - door.y
+        let length = max(0.0001, sqrt((dx * dx) + (dy * dy)))
+        let step: CGFloat = 0.032
+        let nudged = CGPoint(
+            x: door.x + (dx / length) * step,
+            y: door.y + (dy / length) * step
+        )
+        return clampedToCommon(nudged, inset: 0.055)
     }
 
     private func mapPoint(_ normalized: CGPoint, in size: CGSize) -> CGPoint {
@@ -1681,13 +2254,23 @@ private struct FamilyView: View {
                 wakeBanner = "Late alarm sent to \(draft.targetTitle)."
                 clearBannerLater()
             }
-            handleTap(on: memberID)
+            performWake(memberID: memberID)
         case .world(let worldID):
             guard let index = worldSleepers.firstIndex(where: { $0.id == worldID }) else { return }
             worldSleepers[index].isAwake = true
             worldSleepers[index].lateMinutes = 0
             wakeBanner = "Late alarm sent to \(worldSleepers[index].name)."
             clearBannerLater()
+        }
+    }
+
+    private func resetComposeStateAfterDismiss() {
+        wakeComposeDraft = nil
+        wakeComposeMessage = ""
+        if let meIndex = members.firstIndex(where: { $0.isMe }),
+           members[meIndex].status == .awake {
+            members[meIndex].activity = "Walking"
+            startWanderIfIdle(memberID: members[meIndex].id)
         }
     }
 
@@ -1705,6 +2288,12 @@ private struct BedroomSlot: Identifiable {
     let bedPoint: CGPoint
     let roamRect: CGRect
     let isLeftColumn: Bool
+    let bedOrientation: BedOrientation
+}
+
+private enum BedOrientation {
+    case horizontal
+    case vertical
 }
 
 private struct WakeMission {
@@ -1748,6 +2337,12 @@ private struct WorldSleeper: Identifiable, Equatable {
 private enum WakeTarget: Equatable {
     case family(memberID: UUID)
     case world(worldID: UUID)
+}
+
+private enum FurnitureActionTarget {
+    case bulletin
+    case alarm
+    case worldAlarm
 }
 
 private struct WakeComposeDraft: Identifiable, Equatable {
@@ -1804,6 +2399,12 @@ private struct FloorLayout {
     let slots: [BedroomSlot]
     let outlinePoints: [CGPoint]
     let furniture: FurnitureAnchors
+    let innerWalls: [InnerWallSegment]
+}
+
+private struct InnerWallSegment {
+    let start: CGPoint
+    let end: CGPoint
 }
 
 private struct FamilySceneHeader: View {
@@ -1827,7 +2428,7 @@ private struct FamilySceneHeader: View {
             } label: {
                 Text("Edit Me")
                     .font(AppTypography.pixel(15, weight: .semibold))
-                    .foregroundStyle(AppPalette.inkPrimary)
+                    .foregroundStyle(AppPalette.white)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 12)
                     .background(
@@ -1842,7 +2443,7 @@ private struct FamilySceneHeader: View {
             } label: {
                 Text("Add Member")
                     .font(AppTypography.pixel(15, weight: .semibold))
-                    .foregroundStyle(AppPalette.inkPrimary)
+                    .foregroundStyle(AppPalette.white)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 12)
                     .background(
@@ -1907,9 +2508,22 @@ private struct RoomFurnitureLayer: View {
         GeometryReader { proxy in
             let size = proxy.size
             let mapY: (CGFloat) -> CGFloat = { y in (y / layout.planHeight) * size.height }
+            let tvAnchor = layout.furniture.tv
+            let alarmAnchor = layout.furniture.alarm
+            let worldAnchor = layout.furniture.worldAlarm
+            let boardAnchor = layout.furniture.bulletin
+            let rightMinY = mapY(layout.commonRect.minY) + 34
+            let rightMaxY = mapY(layout.commonRect.maxY) - 26
+            let desiredRight = [mapY(alarmAnchor.y), mapY(worldAnchor.y), mapY(boardAnchor.y)]
+            let rightY = clampedVerticalLayout(
+                desired: desiredRight,
+                minY: rightMinY,
+                maxY: rightMaxY,
+                minGap: 80
+            )
 
             ZStack {
-                VStack(spacing: 4) {
+                VStack(spacing: 2) {
                     TVObject(
                         awakeCount: awakeCount,
                         sleepingCount: sleepingCount,
@@ -1918,49 +2532,64 @@ private struct RoomFurnitureLayer: View {
                     furnitureLabel("TV")
                 }
                 .position(
-                    x: size.width * layout.furniture.tv.x,
-                    y: mapY(layout.furniture.tv.y)
+                    x: size.width * tvAnchor.x,
+                    y: mapY(tvAnchor.y)
                 )
 
-                VStack(spacing: 4) {
+                VStack(spacing: 2) {
                     AlarmClockObject(onTap: onAlarmTap)
                     furnitureLabel("Alarm")
                 }
                 .position(
-                    x: size.width * layout.furniture.alarm.x,
-                    y: mapY(layout.furniture.alarm.y)
+                    x: size.width * alarmAnchor.x,
+                    y: rightY[0]
                 )
 
-                VStack(spacing: 4) {
+                VStack(spacing: 2) {
                     WorldAlarmObject(onTap: onWorldAlarmTap)
                     furnitureLabel("World Alarm")
                 }
                 .position(
-                    x: size.width * layout.furniture.worldAlarm.x,
-                    y: mapY(layout.furniture.worldAlarm.y)
+                    x: size.width * worldAnchor.x,
+                    y: rightY[1]
                 )
 
-                VStack(spacing: 4) {
+                VStack(spacing: 2) {
                     BulletinBoardObject(onTap: onBoardTap)
                     furnitureLabel("Bulletin")
                 }
                 .position(
-                    x: size.width * layout.furniture.bulletin.x,
-                    y: mapY(layout.furniture.bulletin.y)
+                    x: size.width * boardAnchor.x,
+                    y: rightY[2]
                 )
             }
         }
     }
 
+    private func clampedVerticalLayout(
+        desired: [CGFloat],
+        minY: CGFloat,
+        maxY: CGFloat,
+        minGap: CGFloat
+    ) -> [CGFloat] {
+        guard !desired.isEmpty else { return [] }
+        let neededSpan = minGap * CGFloat(max(0, desired.count - 1))
+        let highestStart = max(minY, maxY - neededSpan)
+        let start = min(max(desired[0], minY), highestStart)
+        return desired.indices.map { index in
+            start + CGFloat(index) * minGap
+        }
+    }
+
     private func furnitureLabel(_ title: String) -> some View {
         Text(title)
-            .font(AppTypography.pixel(11, weight: .semibold))
+            .font(AppTypography.pixel(10, weight: .semibold))
             .foregroundStyle(AppPalette.inkPrimary)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 5)
+            .padding(.horizontal, 7)
+            .padding(.vertical, 2.5)
             .background(
                 Capsule()
-                    .fill(AppPalette.roomWall.opacity(0.96))
+                    .fill(AppPalette.white)
             )
     }
 }
@@ -2057,37 +2686,37 @@ private struct BulletinBoardObject: View {
             ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(AppPalette.flatShadow)
-                    .frame(width: 76, height: 86)
-                    .offset(x: 4, y: 4)
+                    .frame(width: 56, height: 74)
+                    .offset(x: 2, y: 2)
 
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(AppPalette.boardWood)
-                    .frame(width: 80, height: 92)
+                    .frame(width: 58, height: 76)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
+                            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.subtle)
                     )
 
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .fill(AppPalette.boardPaper)
-                    .frame(width: 64, height: 72)
+                    .frame(width: 41, height: 50)
 
                 Capsule()
                     .fill(AppPalette.roomTeal.opacity(0.9))
-                    .frame(width: 24, height: 10)
-                    .offset(x: -8, y: -16)
+                    .frame(width: 24, height: 8.5)
+                    .offset(x: -6, y: -16)
 
                 Capsule()
                     .fill(AppPalette.roomMustard.opacity(0.9))
-                    .frame(width: 22, height: 10)
-                    .offset(x: 10, y: -2)
+                    .frame(width: 19, height: 8.5)
+                    .offset(x: 8, y: 1.5)
 
                 Capsule()
                     .fill(AppPalette.accentPrimary.opacity(0.85))
-                    .frame(width: 24, height: 10)
-                    .offset(y: 14)
+                    .frame(width: 17, height: 7.5)
+                    .offset(y: 18)
             }
-            .frame(width: 92, height: 102)
+            .frame(width: 66, height: 82)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Ranking Board")
@@ -2103,57 +2732,55 @@ private struct TVObject: View {
         ZStack(alignment: .bottom) {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(AppPalette.flatShadow)
-                .frame(width: 174, height: 96)
-                .offset(x: 5, y: 5)
+                .frame(width: 120, height: 76)
+                .offset(x: 3, y: 3)
 
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .fill(AppPalette.alarmShell)
-                .frame(width: 174, height: 96)
+                .frame(width: 120, height: 76)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
+                        .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.subtle)
                 )
 
-            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
                 .fill(AppPalette.tvScreen)
-                .frame(width: 142, height: 62)
+                .frame(width: 92, height: 48)
                 .overlay {
-                    HStack(spacing: 4) {
+                    VStack(spacing: 4) {
                         statusChip(title: "Awake", value: awakeCount, tone: AppPalette.statusAwake)
                         statusChip(title: "Sleep", value: sleepingCount, tone: AppPalette.statusSleep)
                         statusChip(title: "Late", value: lateCount, tone: AppPalette.statusLate)
                     }
-                    .padding(.horizontal, 4)
+                    .padding(.vertical, 4)
                 }
-                .offset(y: -3)
+                .offset(y: -6)
 
             Path { path in
-                path.move(to: CGPoint(x: 12, y: 10))
-                path.addLine(to: CGPoint(x: 0, y: 0))
-                path.move(to: CGPoint(x: 24, y: 10))
-                path.addLine(to: CGPoint(x: 36, y: 0))
+                path.move(to: CGPoint(x: 22, y: 12))
+                path.addLine(to: CGPoint(x: 10, y: 0))
+                path.move(to: CGPoint(x: 22, y: 12))
+                path.addLine(to: CGPoint(x: 34, y: 0))
             }
-            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
-            .frame(width: 36, height: 12)
-            .offset(y: -50)
+            .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.subtle)
+            .frame(width: 44, height: 12)
+            .offset(y: -80)
+            .zIndex(5)
         }
-        .frame(width: 186, height: 108)
+        .frame(width: 124, height: 84)
     }
 
     private func statusChip(title: String, value: Int, tone: Color) -> some View {
-        HStack(spacing: 3) {
-            Text(title)
-                .font(AppTypography.pixel(9, weight: .semibold))
-            Text("\(value)")
-                .font(AppTypography.pixel(10, weight: .bold))
-        }
-        .foregroundStyle(AppPalette.inkPrimary)
-        .padding(.horizontal, 5)
-        .padding(.vertical, 3)
-        .background(
-            Capsule()
-                .fill(tone)
-        )
+        Text("\(title) \(value)")
+            .font(AppTypography.pixel(9.4, weight: .semibold))
+            .foregroundStyle(AppPalette.inkPrimary)
+            .lineLimit(1)
+            .minimumScaleFactor(0.9)
+            .frame(width: 80, height: 14)
+            .background(
+                Capsule()
+                    .fill(tone)
+            )
     }
 }
 
@@ -2167,12 +2794,12 @@ private struct AlarmClockObject: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .fill(AppPalette.flatShadow)
-                    .frame(width: 76, height: 10)
-                    .offset(y: 24)
+                    .frame(width: 46, height: 6)
+                    .offset(y: 16)
 
                 RoundedRectangle(cornerRadius: 16, style: .continuous)
                     .fill(AppPalette.alarmShell)
-                    .frame(width: 58, height: 38)
+                    .frame(width: 43, height: 34)
                     .overlay(
                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                             .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
@@ -2180,7 +2807,7 @@ private struct AlarmClockObject: View {
 
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(AppPalette.white)
-                    .frame(width: 34, height: 20)
+                    .frame(width: 24, height: 17)
                     .overlay(
                         RoundedRectangle(cornerRadius: 8, style: .continuous)
                             .stroke(AppPalette.roomBoundary, lineWidth: AppStroke.standard)
@@ -2188,26 +2815,26 @@ private struct AlarmClockObject: View {
                     .overlay {
                         Capsule()
                             .fill(AppPalette.inkPrimary)
-                            .frame(width: 2, height: 6)
-                            .offset(y: -3)
+                            .frame(width: 3.4, height: 9.5)
+                            .offset(y: -3.2)
                         Capsule()
                             .fill(AppPalette.inkPrimary)
-                            .frame(width: 6, height: 2)
-                            .offset(x: 4, y: 1)
+                            .frame(width: 9.5, height: 3.4)
+                            .offset(x: 4, y: 1.5)
                     }
-                    .offset(y: 1)
+                    .offset(y: 0.6)
 
-                HStack(spacing: 24) {
+                HStack(spacing: 19) {
                     RoundedRectangle(cornerRadius: 3, style: .continuous)
-                        .fill(AppPalette.roomMustard)
-                        .frame(width: 10, height: 8)
+                        .fill(AppPalette.roomMustard.opacity(0.86))
+                        .frame(width: 5.4, height: 3.6)
                     RoundedRectangle(cornerRadius: 3, style: .continuous)
-                        .fill(AppPalette.roomMustard)
-                        .frame(width: 10, height: 8)
+                        .fill(AppPalette.roomMustard.opacity(0.86))
+                        .frame(width: 5.4, height: 3.6)
                 }
-                .offset(y: -21)
+                .offset(y: -14.5)
             }
-            .frame(width: 86, height: 68)
+            .frame(width: 53, height: 43)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Open Wake Schedule")
@@ -2224,17 +2851,17 @@ private struct WorldAlarmObject: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
                     .fill(AppPalette.alarmShell)
-                    .frame(width: 64, height: 46)
+                    .frame(width: 43, height: 34)
                     .overlay(
                         RoundedRectangle(cornerRadius: 14, style: .continuous)
                             .stroke(AppPalette.blockOrange, lineWidth: AppStroke.standard)
                     )
 
                 Image(systemName: "clock")
-                    .font(AppTypography.pixel(18, weight: .bold))
+                    .font(AppTypography.pixel(16, weight: .bold))
                     .foregroundStyle(AppPalette.inkPrimary)
             }
-            .frame(width: 86, height: 66)
+            .frame(width: 53, height: 43)
         }
         .buttonStyle(.plain)
         .accessibilityLabel("Open World Alarm")
@@ -2243,8 +2870,8 @@ private struct WorldAlarmObject: View {
 
 private struct RoomBackground: View {
     let layout: FloorLayout
-    private let wallLineWidth: CGFloat = AppStroke.standard
-    private let innerWallLineWidth: CGFloat = AppStroke.standard
+    private let wallLineWidth: CGFloat = AppStroke.standard + 0.4
+    private let innerWallLineWidth: CGFloat = AppStroke.standard + 0.4
 
     var body: some View {
         GeometryReader { proxy in
@@ -2306,7 +2933,7 @@ private struct RoomBackground: View {
         if points.count > 1, pointDistanceSquared(points.first!, points.last!) < 0.5 {
             points.removeLast()
         }
-        return points
+        return sanitizedOrthogonalPoints(points)
     }
 
     private struct LineSegment {
@@ -2316,89 +2943,273 @@ private struct RoomBackground: View {
         let end: CGFloat
     }
 
+    private struct AxisInterval {
+        let start: CGFloat
+        let end: CGFloat
+
+        var normalized: AxisInterval {
+            AxisInterval(start: min(start, end), end: max(start, end))
+        }
+    }
+
+    private struct BoundaryKey: Hashable {
+        let horizontal: Bool
+        let fixedQuantized: Int
+
+        var fixed: CGFloat { CGFloat(fixedQuantized) / 10_000.0 }
+
+        init(horizontal: Bool, fixed: CGFloat) {
+            self.horizontal = horizontal
+            self.fixedQuantized = Int((fixed * 10_000.0).rounded())
+        }
+    }
+
     private func innerWallsPath(in size: CGSize) -> Path {
         var path = Path()
-        for segment in deduplicatedInnerSegments(in: size) {
-            if segment.horizontal {
-                path.move(to: CGPoint(x: segment.start, y: segment.fixed))
-                path.addLine(to: CGPoint(x: segment.end, y: segment.fixed))
-            } else {
-                path.move(to: CGPoint(x: segment.fixed, y: segment.start))
-                path.addLine(to: CGPoint(x: segment.fixed, y: segment.end))
+        if !layout.innerWalls.isEmpty {
+            let pixelSegments: [(CGPoint, CGPoint)] = layout.innerWalls.map { segment in
+                (point(segment.start, in: size), point(segment.end, in: size))
+            }
+            for chain in connectedPointChains(from: pixelSegments) {
+                guard let first = chain.first else { continue }
+                path.move(to: first)
+                for point in chain.dropFirst() {
+                    path.addLine(to: point)
+                }
+            }
+        } else {
+            for segment in deduplicatedInnerSegments(in: size) {
+                if segment.horizontal {
+                    path.move(to: CGPoint(x: segment.start, y: segment.fixed))
+                    path.addLine(to: CGPoint(x: segment.end, y: segment.fixed))
+                } else {
+                    path.move(to: CGPoint(x: segment.fixed, y: segment.start))
+                    path.addLine(to: CGPoint(x: segment.fixed, y: segment.end))
+                }
             }
         }
         return path
     }
 
+    private func connectedPointChains(
+        from segments: [(CGPoint, CGPoint)],
+        tolerance: CGFloat = 1.2
+    ) -> [[CGPoint]] {
+        guard !segments.isEmpty else { return [] }
+        var remaining = segments
+        var chains: [[CGPoint]] = []
+
+        while !remaining.isEmpty {
+            let seed = remaining.removeFirst()
+            var chain: [CGPoint] = [seed.0, seed.1]
+            var didExtend = true
+
+            while didExtend {
+                didExtend = false
+                guard let head = chain.first, let tail = chain.last else { break }
+
+                if let idx = remaining.firstIndex(where: {
+                    endpointsMatch($0.0, head, tolerance: tolerance) || endpointsMatch($0.1, head, tolerance: tolerance)
+                }) {
+                    let segment = remaining.remove(at: idx)
+                    let nextPoint = endpointsMatch(segment.0, head, tolerance: tolerance) ? segment.1 : segment.0
+                    chain.insert(nextPoint, at: 0)
+                    didExtend = true
+                    continue
+                }
+
+                if let idx = remaining.firstIndex(where: {
+                    endpointsMatch($0.0, tail, tolerance: tolerance) || endpointsMatch($0.1, tail, tolerance: tolerance)
+                }) {
+                    let segment = remaining.remove(at: idx)
+                    let nextPoint = endpointsMatch(segment.0, tail, tolerance: tolerance) ? segment.1 : segment.0
+                    chain.append(nextPoint)
+                    didExtend = true
+                }
+            }
+
+            chains.append(chain)
+        }
+
+        return chains
+    }
+
+    private func endpointsMatch(_ lhs: CGPoint, _ rhs: CGPoint, tolerance: CGFloat) -> Bool {
+        pointDistanceSquared(lhs, rhs) <= (tolerance * tolerance)
+    }
+
     private func deduplicatedInnerSegments(in size: CGSize) -> [LineSegment] {
-        var segments: [LineSegment] = []
+        var wallBuckets: [BoundaryKey: [AxisInterval]] = [:]
+        var gapBuckets: [BoundaryKey: [AxisInterval]] = [:]
+
+        func appendWall(horizontal: Bool, fixed: CGFloat, start: CGFloat, end: CGFloat) {
+            let key = BoundaryKey(horizontal: horizontal, fixed: fixed)
+            wallBuckets[key, default: []].append(AxisInterval(start: start, end: end).normalized)
+        }
+
+        func appendGap(horizontal: Bool, fixed: CGFloat, start: CGFloat, end: CGFloat) {
+            let key = BoundaryKey(horizontal: horizontal, fixed: fixed)
+            gapBuckets[key, default: []].append(AxisInterval(start: start, end: end).normalized)
+        }
 
         for room in layout.rooms {
-            let rect = normalizedRect(room.rect, in: size)
-            let doorCenter = normalizedDoorCenter(room.door, roomRect: room.rect, in: size)
-            let doorHalfW = max(pixelStep * 3.2, room.door.width * size.width * 0.5)
-            let doorHalfH = max(pixelStep * 3.2, (room.door.width / layout.planHeight) * size.height * 0.5)
+            let leftX = room.rect.minX
+            let rightX = room.rect.maxX
+            let topY = room.rect.minY
+            let bottomY = room.rect.maxY
+            let doorHalf = room.door.width * 0.5
 
-            func addHorizontal(y: CGFloat, startX: CGFloat, endX: CGFloat) {
-                let start = min(startX, endX)
-                let end = max(startX, endX)
-                guard end - start > 1 else { return }
-                segments.append(LineSegment(horizontal: true, fixed: y, start: start, end: end))
-            }
-
-            func addVertical(x: CGFloat, startY: CGFloat, endY: CGFloat) {
-                let start = min(startY, endY)
-                let end = max(startY, endY)
-                guard end - start > 1 else { return }
-                segments.append(LineSegment(horizontal: false, fixed: x, start: start, end: end))
-            }
-
-            if !isEdgeOnOutline(horizontal: true, fixed: room.rect.minY, start: room.rect.minX, end: room.rect.maxX) {
+            if !isEdgeOnOutline(horizontal: true, fixed: topY, start: leftX, end: rightX) {
+                appendWall(horizontal: true, fixed: topY, start: leftX, end: rightX)
                 if room.door.edge == .top {
-                    addHorizontal(y: rect.minY, startX: rect.minX, endX: doorCenter.x - doorHalfW)
-                    addHorizontal(y: rect.minY, startX: doorCenter.x + doorHalfW, endX: rect.maxX)
-                } else {
-                    addHorizontal(y: rect.minY, startX: rect.minX, endX: rect.maxX)
+                    appendGap(horizontal: true, fixed: topY, start: room.door.center - doorHalf, end: room.door.center + doorHalf)
                 }
             }
 
-            if !isEdgeOnOutline(horizontal: true, fixed: room.rect.maxY, start: room.rect.minX, end: room.rect.maxX) {
+            if !isEdgeOnOutline(horizontal: true, fixed: bottomY, start: leftX, end: rightX) {
+                appendWall(horizontal: true, fixed: bottomY, start: leftX, end: rightX)
                 if room.door.edge == .bottom {
-                    addHorizontal(y: rect.maxY, startX: rect.minX, endX: doorCenter.x - doorHalfW)
-                    addHorizontal(y: rect.maxY, startX: doorCenter.x + doorHalfW, endX: rect.maxX)
-                } else {
-                    addHorizontal(y: rect.maxY, startX: rect.minX, endX: rect.maxX)
+                    appendGap(horizontal: true, fixed: bottomY, start: room.door.center - doorHalf, end: room.door.center + doorHalf)
                 }
             }
 
-            if !isEdgeOnOutline(horizontal: false, fixed: room.rect.minX, start: room.rect.minY, end: room.rect.maxY) {
+            if !isEdgeOnOutline(horizontal: false, fixed: leftX, start: topY, end: bottomY) {
+                appendWall(horizontal: false, fixed: leftX, start: topY, end: bottomY)
                 if room.door.edge == .left {
-                    addVertical(x: rect.minX, startY: rect.minY, endY: doorCenter.y - doorHalfH)
-                    addVertical(x: rect.minX, startY: doorCenter.y + doorHalfH, endY: rect.maxY)
-                } else {
-                    addVertical(x: rect.minX, startY: rect.minY, endY: rect.maxY)
+                    appendGap(horizontal: false, fixed: leftX, start: room.door.center - doorHalf, end: room.door.center + doorHalf)
                 }
             }
 
-            if !isEdgeOnOutline(horizontal: false, fixed: room.rect.maxX, start: room.rect.minY, end: room.rect.maxY) {
+            if !isEdgeOnOutline(horizontal: false, fixed: rightX, start: topY, end: bottomY) {
+                appendWall(horizontal: false, fixed: rightX, start: topY, end: bottomY)
                 if room.door.edge == .right {
-                    addVertical(x: rect.maxX, startY: rect.minY, endY: doorCenter.y - doorHalfH)
-                    addVertical(x: rect.maxX, startY: doorCenter.y + doorHalfH, endY: rect.maxY)
-                } else {
-                    addVertical(x: rect.maxX, startY: rect.minY, endY: rect.maxY)
+                    appendGap(horizontal: false, fixed: rightX, start: room.door.center - doorHalf, end: room.door.center + doorHalf)
                 }
             }
         }
 
-        var unique: [String: LineSegment] = [:]
-        for segment in segments {
-            let fixed = Int((segment.fixed * 100).rounded())
-            let start = Int((segment.start * 100).rounded())
-            let end = Int((segment.end * 100).rounded())
-            let key = "\(segment.horizontal)-\(fixed)-\(start)-\(end)"
-            unique[key] = segment
+        var output: [LineSegment] = []
+        for (key, wallIntervals) in wallBuckets {
+            let mergedWalls = mergeIntervals(wallIntervals)
+            let mergedGaps = mergeIntervals(gapBuckets[key] ?? [])
+
+            for wall in mergedWalls {
+                for trimmed in subtractIntervals(wall, by: mergedGaps) where (trimmed.end - trimmed.start) > 0.035 {
+                    if key.horizontal {
+                        let startX = trimmed.start * size.width
+                        let endX = trimmed.end * size.width
+                        if abs(endX - startX) < 18 { continue }
+                        output.append(
+                            LineSegment(
+                                horizontal: true,
+                                fixed: normalizedY(key.fixed, in: size),
+                                start: startX,
+                                end: endX
+                            )
+                        )
+                    } else {
+                        let startY = normalizedY(trimmed.start, in: size)
+                        let endY = normalizedY(trimmed.end, in: size)
+                        if abs(endY - startY) < 18 { continue }
+                        output.append(
+                            LineSegment(
+                                horizontal: false,
+                                fixed: key.fixed * size.width,
+                                start: startY,
+                                end: endY
+                            )
+                        )
+                    }
+                }
+            }
         }
-        return Array(unique.values)
+
+        let cornerPoints = normalizedOutlinePoints(in: size)
+        let cleaned = output.filter { segment in
+            let length = abs(segment.end - segment.start)
+            // Force-remove short spur branches near outer corners.
+            guard length < 44 else { return true }
+
+            let p1: CGPoint
+            let p2: CGPoint
+            if segment.horizontal {
+                p1 = CGPoint(x: segment.start, y: segment.fixed)
+                p2 = CGPoint(x: segment.end, y: segment.fixed)
+            } else {
+                p1 = CGPoint(x: segment.fixed, y: segment.start)
+                p2 = CGPoint(x: segment.fixed, y: segment.end)
+            }
+
+            let cornerThreshold: CGFloat = 16
+            let nearCorner = cornerPoints.contains { corner in
+                pointDistanceSquared(corner, p1) < cornerThreshold * cornerThreshold
+                    || pointDistanceSquared(corner, p2) < cornerThreshold * cornerThreshold
+            }
+            return !nearCorner
+        }
+
+        return cleaned.sorted {
+            if $0.horizontal != $1.horizontal {
+                return $0.horizontal && !$1.horizontal
+            }
+            if abs($0.fixed - $1.fixed) > 0.01 {
+                return $0.fixed < $1.fixed
+            }
+            return $0.start < $1.start
+        }
+    }
+
+    private func mergeIntervals(_ intervals: [AxisInterval], epsilon: CGFloat = 0.0008) -> [AxisInterval] {
+        let ordered = intervals
+            .map(\.normalized)
+            .sorted { lhs, rhs in
+                if abs(lhs.start - rhs.start) > epsilon {
+                    return lhs.start < rhs.start
+                }
+                return lhs.end < rhs.end
+            }
+        guard var current = ordered.first else { return [] }
+
+        var merged: [AxisInterval] = []
+        for interval in ordered.dropFirst() {
+            if interval.start <= current.end + epsilon {
+                current = AxisInterval(start: current.start, end: max(current.end, interval.end))
+            } else {
+                merged.append(current)
+                current = interval
+            }
+        }
+        merged.append(current)
+        return merged
+    }
+
+    private func subtractIntervals(_ base: AxisInterval, by gaps: [AxisInterval], epsilon: CGFloat = 0.0008) -> [AxisInterval] {
+        guard !gaps.isEmpty else { return [base] }
+        var fragments: [AxisInterval] = [base]
+
+        for gap in gaps {
+            var next: [AxisInterval] = []
+            for fragment in fragments {
+                let overlapStart = max(fragment.start, gap.start)
+                let overlapEnd = min(fragment.end, gap.end)
+
+                if overlapEnd <= overlapStart + epsilon {
+                    next.append(fragment)
+                    continue
+                }
+
+                if overlapStart > fragment.start + epsilon {
+                    next.append(AxisInterval(start: fragment.start, end: overlapStart))
+                }
+                if overlapEnd < fragment.end - epsilon {
+                    next.append(AxisInterval(start: overlapEnd, end: fragment.end))
+                }
+            }
+            fragments = next
+            if fragments.isEmpty { break }
+        }
+
+        return fragments
     }
 
     private struct AxisSegment {
@@ -2414,7 +3225,8 @@ private struct RoomBackground: View {
         start: CGFloat,
         end: CGFloat
     ) -> Bool {
-        let tolerance: CGFloat = 0.0008
+        // Be more tolerant to tiny floating-point drift so outline edges are not redrawn as inner walls.
+        let tolerance: CGFloat = 0.0035
         let targetStart = min(start, end)
         let targetEnd = max(start, end)
         let targetLength = targetEnd - targetStart
@@ -2425,8 +3237,12 @@ private struct RoomBackground: View {
             if abs(segment.fixed - fixed) > tolerance {
                 continue
             }
-            let overlap = max(0, min(targetEnd, segment.end) - max(targetStart, segment.start))
-            if overlap >= targetLength - 0.0015 {
+            if segment.start - tolerance <= targetStart,
+               segment.end + tolerance >= targetEnd {
+                return true
+            }
+            let overlap = max(0, min(targetEnd, segment.end + tolerance) - max(targetStart, segment.start - tolerance))
+            if overlap >= targetLength - 0.004 {
                 return true
             }
         }
@@ -2502,6 +3318,64 @@ private struct RoomBackground: View {
         return (dx * dx) + (dy * dy)
     }
 
+    private func sanitizedOrthogonalPoints(_ points: [CGPoint]) -> [CGPoint] {
+        guard points.count > 2 else { return points }
+        let epsilon: CGFloat = 0.8
+        let minEdgeLength: CGFloat = 10
+
+        var deduped: [CGPoint] = []
+        for point in points {
+            if let last = deduped.last, pointDistanceSquared(last, point) < (epsilon * epsilon) {
+                continue
+            }
+            deduped.append(point)
+        }
+        if deduped.count > 2,
+           let first = deduped.first,
+           let last = deduped.last,
+           pointDistanceSquared(first, last) < (epsilon * epsilon) {
+            deduped.removeLast()
+        }
+
+        guard deduped.count > 2 else { return deduped }
+        var simplified: [CGPoint] = deduped
+        var changed = true
+        while changed && simplified.count > 2 {
+            changed = false
+            var next: [CGPoint] = []
+            let count = simplified.count
+            for i in 0..<count {
+                let prev = simplified[(i - 1 + count) % count]
+                let current = simplified[i]
+                let nxt = simplified[(i + 1) % count]
+
+                // Drop tiny jog corners that create visible branch artifacts on rounded strokes.
+                let prevLen = sqrt(pointDistanceSquared(prev, current))
+                let nextLen = sqrt(pointDistanceSquared(current, nxt))
+                if prevLen < minEdgeLength || nextLen < minEdgeLength {
+                    changed = true
+                    continue
+                }
+
+                let isVertical = abs(prev.x - current.x) < epsilon && abs(current.x - nxt.x) < epsilon
+                let isHorizontal = abs(prev.y - current.y) < epsilon && abs(current.y - nxt.y) < epsilon
+
+                if isVertical || isHorizontal {
+                    changed = true
+                    continue
+                }
+                next.append(current)
+            }
+            if !next.isEmpty {
+                simplified = next
+            } else {
+                break
+            }
+        }
+
+        return simplified
+    }
+
     private func point(_ normalized: CGPoint, in size: CGSize) -> CGPoint {
         CGPoint(
             x: normalized.x * size.width,
@@ -2527,29 +3401,74 @@ private struct RoomBackground: View {
 
 private struct BedSlotView: View {
     let isSleeping: Bool
-    let tint: Color
+    let orientation: BedOrientation
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .fill(AppPalette.flatShadow.opacity(0.55))
-                .frame(width: 126, height: 76)
-                .offset(x: 4, y: 4)
-
-            RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .fill(AppPalette.roomWall)
-                .frame(width: 126, height: 76)
-
-            HStack(spacing: 10) {
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(AppPalette.white)
-                    .frame(width: 30, height: 44)
-                RoundedRectangle(cornerRadius: 12, style: .continuous)
-                    .fill(isSleeping ? tint.opacity(0.68) : tint)
-                    .frame(width: 78, height: 46)
+            if orientation == .horizontal {
+                horizontalBed
+            } else {
+                verticalBed
             }
         }
-        .frame(width: 126, height: 76)
+    }
+
+    private var horizontalBed: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(AppPalette.flatShadow.opacity(0.50))
+                .frame(width: 117, height: 70)
+                .offset(x: 3, y: 3)
+
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(AppPalette.bedShell)
+                .frame(width: 117, height: 70)
+
+            HStack(spacing: 8) {
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .fill(AppPalette.white)
+                    .frame(width: 19, height: 29)
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .fill(isSleeping ? AppPalette.bedBlanket.opacity(0.72) : AppPalette.bedBlanket)
+                    .frame(width: 77, height: 42)
+            }
+            .overlay(alignment: .leading) {
+                RoundedRectangle(cornerRadius: 6, style: .continuous)
+                    .fill(AppPalette.bedHeadboard)
+                    .frame(width: 5, height: 26)
+                    .offset(x: 9)
+            }
+        }
+        .frame(width: 117, height: 70)
+    }
+
+    private var verticalBed: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(AppPalette.flatShadow.opacity(0.50))
+                .frame(width: 70, height: 117)
+                .offset(x: 3, y: 3)
+
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(AppPalette.bedShell)
+                .frame(width: 70, height: 117)
+
+            VStack(spacing: 8) {
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .fill(AppPalette.white)
+                    .frame(width: 29, height: 19)
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .fill(isSleeping ? AppPalette.bedBlanket.opacity(0.72) : AppPalette.bedBlanket)
+                    .frame(width: 42, height: 77)
+            }
+            .overlay(alignment: .top) {
+                RoundedRectangle(cornerRadius: 6, style: .continuous)
+                    .fill(AppPalette.bedHeadboard)
+                    .frame(width: 26, height: 5)
+                    .offset(y: 9)
+            }
+        }
+        .frame(width: 70, height: 117)
     }
 }
 
@@ -2629,7 +3548,7 @@ private struct AvatarNode: View {
     let isWakeReaction: Bool
 
     var body: some View {
-        VStack(spacing: 3) {
+        VStack(spacing: 2) {
             ZStack(alignment: .topTrailing) {
                 StickerAvatar(member: member, isWakeReaction: isWakeReaction)
 
@@ -2669,18 +3588,14 @@ private struct AvatarNode: View {
             }
 
             Text(member.name)
-                .font(AppTypography.pixel(10, weight: .bold))
+                .font(AppTypography.pixel(10, weight: .semibold))
                 .foregroundStyle(AppPalette.inkPrimary)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
+                .padding(.horizontal, 7)
+                .padding(.vertical, 2.5)
                 .background(
                     Capsule()
                         .fill(AppPalette.white)
                 )
-
-            Text(member.activity)
-                .font(AppTypography.pixel(8, weight: .semibold))
-                .foregroundStyle(AppPalette.inkMuted)
         }
         .offset(x: isWakeAction ? 1.5 : 0, y: isWakeAction ? -0.5 : 0)
         .rotationEffect(.degrees(isWakeAction ? 2.6 : 0))
@@ -2727,8 +3642,8 @@ private struct StickerAvatar: View {
         ZStack {
             avatarShape
                 .fill(member.avatar.fillColor)
-                .frame(width: 58, height: 58)
-                .shadow(color: AppPalette.flatShadow.opacity(0.35), radius: 0, x: 2, y: 3)
+                .frame(width: 52, height: 52)
+                .shadow(color: AppPalette.flatShadow.opacity(0.36), radius: 0, x: 2, y: 3)
 
             if member.status == .sleeping {
                 sleepingEyes
@@ -2736,20 +3651,9 @@ private struct StickerAvatar: View {
             } else {
                 normalEyes
                     .offset(y: -1)
-                if isWakeReaction {
-                    Circle()
-                        .fill(AppPalette.inkPrimary)
-                        .frame(width: 4, height: 4)
-                        .offset(y: 10)
-                } else {
-                    Capsule()
-                        .fill(AppPalette.inkPrimary)
-                        .frame(width: 10, height: 2)
-                        .offset(y: 10)
-                }
             }
         }
-        .frame(width: 62, height: 62)
+        .frame(width: 60, height: 60)
     }
 
     private var avatarShape: AnyShape {
@@ -2757,26 +3661,26 @@ private struct StickerAvatar: View {
     }
 
     private var normalEyes: some View {
-        HStack(spacing: 8) {
+        HStack(spacing: 5) {
             Circle()
                 .fill(AppPalette.white)
-                .frame(width: 18, height: 18)
-                .overlay(Circle().fill(AppPalette.inkPrimary).frame(width: 12, height: 12))
+                .frame(width: 11, height: 11)
+                .overlay(Circle().fill(AppPalette.inkPrimary).frame(width: 7, height: 7))
             Circle()
                 .fill(AppPalette.white)
-                .frame(width: 18, height: 18)
-                .overlay(Circle().fill(AppPalette.inkPrimary).frame(width: 12, height: 12))
+                .frame(width: 11, height: 11)
+                .overlay(Circle().fill(AppPalette.inkPrimary).frame(width: 7, height: 7))
         }
     }
 
     private var sleepingEyes: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
             Capsule()
                 .fill(AppPalette.inkPrimary)
-                .frame(width: 12, height: 3)
+                .frame(width: 9, height: 2.5)
             Capsule()
                 .fill(AppPalette.inkPrimary)
-                .frame(width: 12, height: 3)
+                .frame(width: 9, height: 2.5)
         }
     }
 }
@@ -2809,7 +3713,30 @@ private struct AvatarSilhouetteShape: Shape {
         case .coralCircle:
             return Circle().path(in: rect)
         case .archPill:
-            return RoundedRectangle(cornerRadius: rect.width * 0.30, style: .continuous).path(in: rect)
+            var path = Path()
+            let bottomRadius = rect.width * 0.15
+            path.move(to: CGPoint(x: rect.minX + bottomRadius, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.maxX - bottomRadius, y: rect.maxY))
+            path.addQuadCurve(
+                to: CGPoint(x: rect.maxX, y: rect.maxY - bottomRadius),
+                control: CGPoint(x: rect.maxX, y: rect.maxY)
+            )
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
+            path.addQuadCurve(
+                to: CGPoint(x: rect.midX, y: rect.minY),
+                control: CGPoint(x: rect.maxX, y: rect.minY)
+            )
+            path.addQuadCurve(
+                to: CGPoint(x: rect.minX, y: rect.midY),
+                control: CGPoint(x: rect.minX, y: rect.minY)
+            )
+            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - bottomRadius))
+            path.addQuadCurve(
+                to: CGPoint(x: rect.minX + bottomRadius, y: rect.maxY),
+                control: CGPoint(x: rect.minX, y: rect.maxY)
+            )
+            path.closeSubpath()
+            return path
         case .fourBlob:
             var path = Path()
             let r = min(rect.width, rect.height) * 0.30
@@ -2901,7 +3828,7 @@ private struct WakeScheduleListView: View {
     let formatWake: (FamilyMember) -> String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 10) {
             ForEach(members) { member in
                 let overdue = isOverdue(member)
 
@@ -2918,25 +3845,21 @@ private struct WakeScheduleListView: View {
                     Spacer()
 
                     Text(formatWake(member))
-                        .font(AppTypography.pixel(13, weight: .black))
+                        .font(AppTypography.pixel(12, weight: .regular))
                         .foregroundStyle(AppPalette.inkSecondary)
 
                     if overdue && !member.isMe {
                         Button {
                             onWakeTap(member.id)
                         } label: {
-                            Text("Wake Up")
-                                .font(AppTypography.pixel(11, weight: .black))
-                                .foregroundStyle(AppPalette.inkPrimary)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
+                            Text("Awake")
+                                .font(AppTypography.pixel(12, weight: .semibold))
+                                .foregroundStyle(AppPalette.white)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
                                 .background(
                                     Capsule()
-                                        .fill(AppPalette.blockGray)
-                                        .overlay(
-                                            Capsule()
-                                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                                        )
+                                        .fill(AppPalette.vibrantOrange)
                                 )
                         }
                         .buttonStyle(.plain)
@@ -2947,26 +3870,13 @@ private struct WakeScheduleListView: View {
                     }
                 }
                 .padding(.horizontal, 10)
-                .padding(.vertical, 7)
+                .padding(.vertical, 10)
                 .background(
-                    RoundedRectangle(cornerRadius: AppRadius.control)
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
                         .fill(AppPalette.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: AppRadius.control)
-                                .stroke(AppPalette.inkPrimary, lineWidth: overdue ? 1.8 : 1.4)
-                        )
                 )
             }
         }
-        .padding(12)
-        .background(
-            RoundedRectangle(cornerRadius: AppRadius.card)
-                .fill(AppPalette.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: AppRadius.card)
-                        .stroke(AppPalette.inkPrimary, lineWidth: 2)
-                )
-        )
     }
 }
 
@@ -2978,58 +3888,47 @@ private struct WakeScheduleFullScreenView: View {
     let onBack: () -> Void
 
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Button {
-                    onBack()
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                    }
-                    .font(AppTypography.pixel(16, weight: .semibold))
-                    .foregroundStyle(AppPalette.inkPrimary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(
-                        Capsule()
-                            .fill(AppPalette.white)
-                            .overlay(
-                                Capsule().stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
+        ZStack {
+            AppPalette.appBackground.ignoresSafeArea()
+
+            VStack(spacing: 12) {
+                HStack {
+                    Button {
+                        onBack()
+                    } label: {
+                        Label("Back", systemImage: "chevron.left")
+                            .font(AppTypography.pixel(14, weight: .semibold))
+                            .foregroundStyle(AppPalette.inkPrimary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 9)
+                            .background(
+                                Capsule()
+                                    .fill(AppPalette.white)
                             )
-                    )
+                    }
+                    .buttonStyle(.plain)
+
+                    Spacer()
+                    Text("Wake Schedule")
+                        .font(AppTypography.pixel(24, weight: .semibold))
+                        .foregroundStyle(AppPalette.inkPrimary)
+                    Spacer()
+                    Color.clear.frame(width: 66, height: 1)
                 }
-                .buttonStyle(.plain)
 
-                Spacer()
-
-                Text("Wake Schedule")
-                    .font(AppTypography.pixel(30, weight: .bold))
-                    .foregroundStyle(AppPalette.inkPrimary)
-
-                Spacer()
-                Color.clear.frame(width: 84, height: 1)
+                ScrollView(showsIndicators: false) {
+                    WakeScheduleListView(
+                        members: members,
+                        isOverdue: isOverdue,
+                        onWakeTap: onWakeTap,
+                        formatWake: formatWake
+                    )
+                    .padding(.bottom, 24)
+                }
             }
             .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 10)
-
-            ScrollView(showsIndicators: false) {
-                WakeScheduleListView(
-                    members: members,
-                    isOverdue: isOverdue,
-                    onWakeTap: onWakeTap,
-                    formatWake: formatWake
-                )
-                .padding(.horizontal, 16)
-                .padding(.top, 8)
-                .padding(.bottom, 32)
-            }
+            .padding(.top, 10)
         }
-        .background(
-            AppPalette.appBackground
-                .ignoresSafeArea()
-        )
     }
 }
 
@@ -3461,11 +4360,11 @@ private enum FamilySample {
     static let maxMembers = 7
 
     static let editableColorHexes: [Int] = [
-        0x42B9BB,
-        0xCC95AE,
-        0xEE6C4D,
-        0xE2AF26,
+        0xEF6E50,
         0x7692CC,
+        0xE2AF26,
+        0xCC95AE,
+        0x42B9BB,
         0x6EC9B1,
         0xB8AFE0,
         0xE8B27B,
@@ -3476,7 +4375,7 @@ private enum FamilySample {
     static let avatarCatalog: [AvatarTheme] = [
         AvatarTheme(id: "shape-teal-square", fillHex: 0x42B9BB, bodyShape: .roundedSquare, faceStyle: .classic),
         AvatarTheme(id: "shape-pink-pentagon", fillHex: 0xCC95AE, bodyShape: .pentagon, faceStyle: .classic),
-        AvatarTheme(id: "shape-coral-circle", fillHex: 0xEE6C4D, bodyShape: .coralCircle, faceStyle: .classic),
+        AvatarTheme(id: "shape-coral-circle", fillHex: 0xEF6E50, bodyShape: .coralCircle, faceStyle: .classic),
         AvatarTheme(id: "shape-yellow-four", fillHex: 0xE2AF26, bodyShape: .fourBlob, faceStyle: .classic),
         AvatarTheme(id: "shape-blue-arch", fillHex: 0x7692CC, bodyShape: .archPill, faceStyle: .classic),
         AvatarTheme(id: "shape-mint-drop", fillHex: 0x6EC9B1, bodyShape: .mintDroplet, faceStyle: .classic),
@@ -3495,7 +4394,7 @@ private enum FamilySample {
             avatar: avatarTheme(with: "shape-teal-square"),
             status: .awake,
             wakeSchedule: WakeSchedule(hour: 7, minute: 30),
-            position: CGPoint(x: 0.16, y: 0.50),
+            position: CGPoint(x: 0.56, y: 0.71),
             isMe: true,
             activity: "Walking"
         ),
@@ -3503,39 +4402,29 @@ private enum FamilySample {
             id: UUID(),
             name: "Ruby",
             avatar: avatarTheme(with: "shape-pink-pentagon"),
-            status: .awake,
+            status: .sleeping,
             wakeSchedule: WakeSchedule(hour: 7, minute: 45),
-            position: CGPoint(x: 0.24, y: 0.62),
+            position: CGPoint(x: 0.50, y: 0.30),
             isMe: false,
-            activity: "Walking"
+            activity: "Sleeping"
         ),
         FamilyMember(
             id: UUID(),
             name: "Will",
             avatar: avatarTheme(with: "shape-coral-circle"),
-            status: .awake,
-            wakeSchedule: WakeSchedule(hour: 8, minute: 20),
-            position: CGPoint(x: 0.61, y: 0.72),
+            status: .sleeping,
+            wakeSchedule: WakeSchedule(hour: 6, minute: 30),
+            position: CGPoint(x: 0.20, y: 0.71),
             isMe: false,
-            activity: "Walking"
-        ),
-        FamilyMember(
-            id: UUID(),
-            name: "Mason",
-            avatar: avatarTheme(with: "shape-yellow-four"),
-            status: .awake,
-            wakeSchedule: WakeSchedule(hour: 9, minute: 30),
-            position: CGPoint(x: 0.46, y: 0.80),
-            isMe: false,
-            activity: "Walking"
+            activity: "Sleeping"
         ),
         FamilyMember(
             id: UUID(),
             name: "Eric",
             avatar: avatarTheme(with: "shape-blue-arch"),
             status: .awake,
-            wakeSchedule: WakeSchedule(hour: 8, minute: 40),
-            position: CGPoint(x: 0.43, y: 0.94),
+            wakeSchedule: WakeSchedule(hour: 8, minute: 30),
+            position: CGPoint(x: 0.45, y: 0.95),
             isMe: false,
             activity: "Walking"
         )
@@ -3693,110 +4582,87 @@ private struct RankingView: View {
     ]
 
     var body: some View {
-        VStack(spacing: 0) {
-            HStack {
-                Button {
-                    onBack()
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                    }
-                    .font(AppTypography.pixel(16, weight: .semibold))
-                    .foregroundStyle(AppPalette.inkPrimary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(
-                        Capsule()
-                            .fill(AppPalette.white)
-                            .overlay(
+        ZStack {
+            AppPalette.appBackground.ignoresSafeArea()
+
+            VStack(spacing: 12) {
+                HStack {
+                    Button {
+                        onBack()
+                    } label: {
+                        Label("Back", systemImage: "chevron.left")
+                            .font(AppTypography.pixel(14, weight: .semibold))
+                            .foregroundStyle(AppPalette.inkPrimary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 9)
+                            .background(
                                 Capsule()
-                                    .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
+                                    .fill(AppPalette.white)
                             )
-                    )
+                    }
+                    .buttonStyle(.plain)
+
+                    Spacer()
+                    Text("Ranking")
+                        .font(AppTypography.pixel(24, weight: .semibold))
+                        .foregroundStyle(AppPalette.inkPrimary)
+                    Spacer()
+                    Color.clear.frame(width: 66, height: 1)
                 }
-                .buttonStyle(.plain)
 
-                Spacer()
-
-                Text("Ranking")
-                    .font(AppTypography.pixel(30, weight: .bold))
-                    .foregroundStyle(AppPalette.inkPrimary)
-
-                Spacer()
-                Color.clear.frame(width: 84, height: 1)
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 10)
-
-            ScrollView {
-                VStack(spacing: 12) {
-                    ForEach(sections) { section in
-                        VStack(alignment: .leading, spacing: 8) {
+                ScrollView(showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(sections) { section in
                             Text(section.title)
-                                .font(AppTypography.pixel(16, weight: .semibold))
-                                .foregroundStyle(AppPalette.inkPrimary)
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
+                                .font(AppTypography.pixel(14, weight: .semibold))
+                                .foregroundStyle(AppPalette.white)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 7)
                                 .background(
                                     Capsule()
-                                        .fill(section.tint)
-                                        .overlay(
-                                            Capsule()
-                                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                                        )
+                                        .fill(AppPalette.vibrantOrange)
                                 )
+                                .padding(.top, 2)
 
-                            ForEach(section.rows) { row in
-                                HStack {
-                                    Text("#\(row.rank)")
-                                        .font(AppTypography.pixel(16, weight: .bold))
-                                        .frame(width: 36)
-                                        .padding(.vertical, 5)
-                                        .background(
-                                            RoundedRectangle(cornerRadius: AppRadius.micro)
-                                                .fill(AppPalette.blockGray)
-                                        )
-                                        .foregroundStyle(AppPalette.inkPrimary)
-                                    VStack(alignment: .leading, spacing: 4) {
+                            VStack(alignment: .leading, spacing: 10) {
+                                ForEach(section.rows) { row in
+                                    HStack(spacing: 10) {
+                                        Circle()
+                                            .fill(AppPalette.inkMuted.opacity(0.28))
+                                            .frame(width: 8, height: 8)
+
+                                        Text("#\(row.rank)")
+                                            .font(AppTypography.pixel(12, weight: .regular))
+                                            .foregroundStyle(AppPalette.inkSecondary)
+                                            .frame(width: 26, alignment: .leading)
+
                                         Text(row.name)
-                                            .font(AppTypography.pixel(16, weight: .semibold))
+                                            .font(AppTypography.pixel(14, weight: .semibold))
                                             .foregroundStyle(AppPalette.inkPrimary)
+                                            .lineLimit(1)
+
+                                        Spacer()
+
                                         Text(row.score)
-                                            .font(AppTypography.pixel(13, weight: .regular))
+                                            .font(AppTypography.pixel(12, weight: .regular))
                                             .foregroundStyle(AppPalette.inkSecondary)
                                     }
-                                    Spacer()
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 10)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 14, style: .continuous)
+                                            .fill(AppPalette.white)
+                                    )
                                 }
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 10)
-                                .background(
-                                    RoundedRectangle(cornerRadius: AppRadius.card)
-                                        .fill(AppPalette.white)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: AppRadius.card)
-                                                .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                                        )
-                                )
                             }
                         }
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: AppRadius.card)
-                                .fill(AppPalette.white)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: AppRadius.card)
-                                        .stroke(AppPalette.inkPrimary, lineWidth: AppStroke.standard)
-                                )
-                        )
                     }
+                    .padding(.bottom, 24)
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 24)
             }
+            .padding(.horizontal, 16)
+            .padding(.top, 10)
         }
-        .background(AppPalette.appBackground.ignoresSafeArea())
     }
 }
 
